@@ -1,0 +1,74 @@
+import { Eyebrow } from "./Eyebrow";
+import { SectionAccent } from "./SectionAccent";
+
+const THEMES = [
+  { title: "Role of Science and Technology in Agrarian and Rural Transformation" },
+  { title: "Policies and Practices in Rural and Agrarian Development" },
+  { title: "Inequality and Deprivation in the Countryside" },
+  { title: "The Dynamics of Farm–Non-Farm Linkages" },
+  { title: "Agriculture as an Arena of Human–Nature Interaction" },
+];
+
+function ThemeCard({
+  title,
+  index,
+  delay = 0,
+}: {
+  title: string;
+  index: number;
+  delay?: number;
+}) {
+  return (
+    <div
+      className="flex h-full flex-col justify-between rounded-xl border border-gray-200 border-t-4 border-t-brand-gold bg-white p-6 shadow-sm transition-[transform,box-shadow] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-1 hover:shadow-md"
+      data-aos="fade-up"
+      data-aos-delay={delay}
+    >
+      <div>
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-gold text-xs font-bold text-blue-950">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 className="mt-4 text-lg font-bold leading-snug text-brand-blue">{title}</h3>
+      </div>
+      <a
+        href="#call-for-papers"
+        className="mt-6 inline-block text-sm font-semibold text-brand-blue underline underline-offset-4 transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-gray-700"
+      >
+        Submission details
+      </a>
+    </div>
+  );
+}
+
+export function ThemesSection() {
+  return (
+    <section
+      id="themes"
+      className="relative overflow-hidden bg-linear-to-b from-white to-blue-50/40 py-20 md:py-28"
+    >
+      <SectionAccent position="top-left" />
+      <div className="mx-auto max-w-6xl px-6 lg:px-10">
+        <Eyebrow className="text-center">Themes</Eyebrow>
+        <h2
+          className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
+          data-aos="fade-up"
+        >
+          Our Themes
+        </h2>
+        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+        <p
+          className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500"
+          data-aos="fade-up"
+        >
+          Tentative thematic areas for the Young Scholars&rsquo; Conclave 2026.
+        </p>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {THEMES.map((theme, index) => (
+            <ThemeCard key={theme.title} {...theme} index={index} delay={index * 80} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

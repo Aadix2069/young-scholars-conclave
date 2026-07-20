@@ -2,25 +2,219 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
+
+  /* CHRIST University institutional blue, matching the conference-site template
+   * this design is based on (icbe2025.christuniversity.in). */
+  --color-brand-blue: #1d398f;
+
+  /* CHRIST University brand gold, used only for the official seal/logo accents */
+  --color-brand-gold: #b8860b;
+
+  /* Shared hover/motion easing - same curve as the aos-* keyframes below, so
+   * scroll-reveal and hover transitions feel like one consistent motion system. */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: Garamond, Georgia, serif;
+  --font-serif: Garamond, Georgia, serif;
+
+  --color-brand-blue: var(--color-brand-blue);
+  --color-brand-gold: var(--color-brand-gold);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-padding-top: 96px;
+}
+
+/*
+ * Scroll-reveal animation (replaces the aos/dist/aos.css import).
+ * The vendor stylesheet's specificity-boosting duplicate-attribute selectors
+ * get collapsed by this build pipeline's CSS optimizer, silently breaking the
+ * cascade. A `transition`-based reimplementation also proved unreliable here
+ * for above-the-fold content (aos-init/aos-animate can land in the same
+ * paint tick, leaving no before/after boundary for a transition to animate
+ * across). `@keyframes` animations don't have that requirement - assigning
+ * `animation-name` always plays the keyframes from their `from` state
+ * regardless of timing - so used here instead. The `aos` package's JS engine
+ * (scroll detection, class toggling) still works correctly; only its CSS
+ * mechanism was replaced.
+ */
+@keyframes aos-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes aos-fade-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes aos-fade-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes aos-fade-right {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes aos-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+[data-aos] {
+  opacity: 0;
+}
+
+[data-aos="fade-up"] {
+  transform: translate3d(0, 24px, 0);
+}
+[data-aos="fade-down"] {
+  transform: translate3d(0, -24px, 0);
+}
+[data-aos="fade-left"] {
+  transform: translate3d(-24px, 0, 0);
+}
+[data-aos="fade-right"] {
+  transform: translate3d(24px, 0, 0);
+}
+[data-aos="zoom-in"] {
+  transform: scale(0.94);
+}
+
+[data-aos].aos-animate {
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+[data-aos="fade-up"].aos-animate {
+  animation-name: aos-fade-up;
+}
+[data-aos="fade-down"].aos-animate {
+  animation-name: aos-fade-down;
+}
+[data-aos="fade-left"].aos-animate {
+  animation-name: aos-fade-left;
+}
+[data-aos="fade-right"].aos-animate {
+  animation-name: aos-fade-right;
+}
+[data-aos="zoom-in"].aos-animate {
+  animation-name: aos-zoom-in;
+}
+
+[data-aos-delay="50"] {
+  animation-delay: 50ms;
+}
+[data-aos-delay="60"] {
+  animation-delay: 60ms;
+}
+[data-aos-delay="80"] {
+  animation-delay: 80ms;
+}
+[data-aos-delay="100"] {
+  animation-delay: 100ms;
+}
+[data-aos-delay="120"] {
+  animation-delay: 120ms;
+}
+[data-aos-delay="150"] {
+  animation-delay: 150ms;
+}
+[data-aos-delay="160"] {
+  animation-delay: 160ms;
+}
+[data-aos-delay="180"] {
+  animation-delay: 180ms;
+}
+[data-aos-delay="200"] {
+  animation-delay: 200ms;
+}
+[data-aos-delay="240"] {
+  animation-delay: 240ms;
+}
+[data-aos-delay="300"] {
+  animation-delay: 300ms;
+}
+
+/* Small idle nudge on CTA arrow icons - draws the eye to the primary action
+ * without being "bouncy". Kept to a 3px amplitude over a slow 1.8s loop. */
+@keyframes nudge-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+.animate-nudge-x {
+  animation: nudge-x 1.8s ease-in-out infinite;
+}
+
+/* Visually hidden until focused - WCAG 2.4.1 bypass block */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  transition: top 200ms ease-out;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
