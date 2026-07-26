@@ -17,7 +17,7 @@ export function ContactSection() {
         >
           Contact Us
         </h2>
-        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div

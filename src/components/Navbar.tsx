@@ -101,7 +101,7 @@ export function Navbar() {
                     href={link.href}
                     onClick={() => handleLinkClick(link)}
                     aria-current={active ? "page" : undefined}
-                    className={`relative inline-flex items-center whitespace-nowrap px-2 py-3 text-sm font-semibold no-underline transition-colors duration-200 ease-[var(--ease-smooth)] after:absolute after:bottom-1 after:left-2 after:right-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-blue after:transition-transform after:duration-200 after:ease-[var(--ease-smooth)] hover:text-brand-blue hover:after:scale-x-100 ${
+                    className={`relative inline-flex items-center whitespace-nowrap px-2 py-3 text-sm font-semibold no-underline transition-colors duration-200 ease-[var(--ease-smooth)] after:absolute after:bottom-1 after:left-2 after:right-2 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-green after:transition-transform after:duration-200 after:ease-[var(--ease-smooth)] hover:text-brand-green-dark hover:after:scale-x-100 ${
                       active ? "text-brand-blue after:scale-x-100" : "text-gray-700"
                     }`}
                   >

@@ -18,7 +18,7 @@ export function CallForPapersSection() {
         <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
           Call for Papers
         </h2>
-        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
         <p className="mt-5 text-justify text-base leading-7 text-white/80 sm:text-lg">
           Young scholars working on agrarian studies and rural India are
           invited to submit their research. Applicants must be either at an

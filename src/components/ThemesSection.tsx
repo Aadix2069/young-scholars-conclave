@@ -23,12 +23,12 @@ function ThemeCard({
 }) {
   return (
     <div
-      className="flex h-full flex-col justify-between rounded-xl border border-gray-200 border-t-4 border-t-brand-gold bg-white p-6 shadow-sm transition-[transform,box-shadow] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-1 hover:shadow-md"
+      className="flex h-full flex-col justify-between rounded-xl border border-gray-200 border-t-4 border-t-brand-green bg-white p-6 shadow-sm transition-[transform,box-shadow] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-1 hover:shadow-md"
       data-aos="fade-up"
       data-aos-delay={delay}
     >
       <div>
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-gold text-xs font-bold text-blue-950">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-green text-xs font-bold text-brand-charcoal">
           {String(index + 1).padStart(2, "0")}
         </span>
         <h3 className="mt-4 text-lg font-bold leading-snug text-brand-blue">{title}</h3>
@@ -70,7 +70,7 @@ export function ThemesSection() {
         >
           Our Themes
         </h2>
-        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
         <p
           className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500"
           data-aos="fade-up"

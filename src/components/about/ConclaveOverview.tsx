@@ -7,7 +7,7 @@ export function ConclaveOverview() {
       >
         About the Conclave
       </h2>
-      <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+      <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
 
       <p
         className="mx-auto mt-8 max-w-3xl text-center text-lg italic leading-8 text-brand-blue/80"

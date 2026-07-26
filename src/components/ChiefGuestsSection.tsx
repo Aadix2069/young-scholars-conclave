@@ -24,7 +24,7 @@ export function ChiefGuestsSection() {
         >
           Chief Guests
         </h2>
-        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+        <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
 
         {CHIEF_GUESTS.length === 0 ? (
           <p

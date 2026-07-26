@@ -9,7 +9,7 @@ export function AboutChristUniversity() {
       >
         About CHRIST (Deemed to be University)
       </h2>
-      <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-gold" aria-hidden="true" />
+      <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
 
       <div className="mb-10 mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <Image

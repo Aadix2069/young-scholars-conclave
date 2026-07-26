@@ -17,7 +17,7 @@ export function RegistrationFees() {
       >
         Conclave Registration Fees
       </h1>
-      <div className="mx-auto mb-8 h-1 w-12 rounded-full bg-brand-gold md:mb-10" aria-hidden="true" />
+      <div className="mx-auto mb-8 h-1 w-12 rounded-full bg-brand-green md:mb-10" aria-hidden="true" />
       <p
         className="mx-auto mb-10 max-w-2xl text-center text-sm text-gray-500"
         data-aos="fade-up"
