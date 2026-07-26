@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ChristLogo } from "./Logos";
+import { ChristLogo, FASLogo } from "./Logos";
 import { ArrowRightIcon } from "./icons";
 import { ConclaveCountdown } from "./ConclaveCountdown";
 import { HeroSlideshow } from "./HeroSlideshow";
@@ -21,6 +21,11 @@ const fadeUp: Variants = {
 
 const fadeRight: Variants = {
   hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
+};
+
+const fadeLeft: Variants = {
+  hidden: { opacity: 0, x: 20 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
 };
 
@@ -44,6 +49,10 @@ export function Hero() {
       >
         <motion.div className="absolute left-4 top-4 z-10" variants={fadeRight}>
           <ChristLogo variant="white" className="h-12 w-auto sm:h-16" />
+        </motion.div>
+
+        <motion.div className="absolute right-4 top-4 z-10" variants={fadeLeft}>
+          <FASLogo variant="white" className="h-12 w-auto sm:h-16" />
         </motion.div>
 
         <motion.div variants={fadeUp}>
