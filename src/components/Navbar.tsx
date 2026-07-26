@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { label: "Organisers", href: "/#organisers", hash: "#organisers" },
   { label: "Registration", href: "/registration", hash: null as string | null },
   { label: "Contact", href: "/#contact", hash: "#contact" },
+  { label: "Archive", href: "/archive", hash: null as string | null },
 ];
 
 export function Navbar() {

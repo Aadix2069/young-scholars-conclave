@@ -139,6 +139,22 @@ Static files (logos, images) live in
 [`public/`](public/) and are referenced in code as `/filename.ext`. Add a file there and
 reference it the same way an existing image is referenced nearby.
 
+### 4.9 Registration, Submit Abstract, and the Archive
+
+Registration and paper submission are real forms on the site itself (not Google Forms) —
+`src/components/registration/RegistrationForm.tsx` and
+`src/components/submissions/SubmitAbstractForm.tsx`. Submissions are sent to a Google Sheet
+through a Google Apps Script Web App; see
+[`google-apps-script/DEPLOYMENT.md`](google-apps-script/DEPLOYMENT.md) for how to set that up.
+Until the `APPS_SCRIPT_URL` environment variable is set, both forms show a clear
+"not connected yet" message instead of failing silently.
+
+The **Archive** (`/archive`) is password-protected, restricted to a single administrator.
+Set the `ARCHIVE_PASSWORD` environment variable (locally in `.env.local`, in production in
+Vercel's dashboard under Project → Settings → Environment Variables) — nobody can sign in
+until it's set. Each year of the Conclave gets one entry in the `ARCHIVE_YEARS` array at the
+top of `src/app/archive/page.tsx`.
+
 ---
 
 ## 5. Deploying changes to the live site
