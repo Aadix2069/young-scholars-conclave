@@ -427,7 +427,7 @@ export function HeroSlideshow() {
             src={slide.src}
             alt={slide.alt}
             fill
-            priority
+            preload
             sizes="100vw"
             className="object-cover"
           />
