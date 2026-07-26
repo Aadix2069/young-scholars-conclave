@@ -993,6 +993,71 @@ git commit -m "feat: add conclave logo placeholder slot for drop-in replacement"
 
 ---
 
+### Task 9: Integrate the real FAS logo (not the deferred collaborative logo)
+
+**Files:**
+- Modify: `src/components/Logos.tsx`, `src/components/Footer.tsx`
+
+**Interfaces:**
+- Consumes: `public/fas-logo.svg` (added to the repo directly — real asset, not a placeholder).
+- Produces: `FASLogo({ className }: LogoProps)`, exported from `src/components/Logos.tsx`.
+
+**DOCX requirement (verbatim):** *"The FAS logo is missing"* — this is the existing Foundation for Agrarian Studies organisational logo, distinct from the new "Collaborative Conference Logo" that Task 8 placeholders (that one is still pending from the organisers). The FAS logo file now exists in the repo, so this is a real integration, not a placeholder.
+
+- [ ] **Step 1: Confirm the asset**
+
+Run: `python3 -c "from PIL import Image; import cairosvg" 2>&1 || true` then simply verify the file is well-formed XML: `python3 -c "import xml.etree.ElementTree as ET; ET.parse('public/fas-logo.svg'); print('valid svg xml')"`. Expected: `valid svg xml`.
+
+- [ ] **Step 2: Add `FASLogo` to `Logos.tsx`**
+
+SVG files can be referenced directly via `next/image` with `src="/fas-logo.svg"` (Next.js serves it as a static asset; no import needed since it's in `public/`, not `src/`).
+
+```tsx
+/** Foundation for Agrarian Studies organisational logo. */
+export function FASLogo({ className }: LogoProps) {
+  return (
+    <Image
+      src="/fas-logo.svg"
+      alt="Foundation for Agrarian Studies"
+      width={1506}
+      height={1012}
+      className={className}
+    />
+  );
+}
+```
+
+- [ ] **Step 3: Add it to the Footer brand block, alongside Christ and the conclave logo placeholder**
+
+In `src/components/Footer.tsx`, extend the brand logo row (the one Task 8 already turns into a 3-logo row: Christ + Conclave placeholder) to include the FAS logo as a fourth item:
+
+```tsx
+          <div className="mb-4 flex flex-wrap items-center gap-4">
+            <ChristLogo variant="white" className="h-auto w-32" />
+            <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
+            <ConclaveLogo variant="white" className="h-12 shrink-0" />
+            <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
+            <FASLogo className="h-14 w-auto shrink-0 brightness-0 invert" />
+          </div>
+```
+
+(`brightness-0 invert` renders the logo in white to match the dark footer background, since `fas-logo.svg` is a full-color mark with no dedicated white variant — the same technique already used for `ChristLogo`'s `variant="white"` prop, just applied via CSS filter instead of a second asset since only one FAS logo file exists.)
+
+Update the import: `import { ChristLogo, ConclaveLogo, FASLogo } from "./Logos";`
+
+- [ ] **Step 4: Verify in browser**
+
+Run the dev server, scroll to the footer, and use `read_page` to confirm all four brand marks render (Christ, conclave placeholder wordmark, FAS). Use `javascript_tool` to confirm the FAS `<img>` element's natural width/height are non-zero (proof the SVG rendered, not a broken image icon). `read_console_messages` clean.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add public/fas-logo.svg src/components/Logos.tsx src/components/Footer.tsx
+git commit -m "feat: add missing FAS organisational logo to footer"
+```
+
+---
+
 ## Self-Review Notes
 
 **DOCX coverage:** FAS logo missing → deferred by client (Task 8 slot holds the position). Video → slideshow ✓ (Task 7, plus Plan-1 Task 4). 16px text ✓ (Plan 1 Task 1). Important Dates additions ✓ (Task 2). Theme "Know more" + PDF + centre-align ✓ (Task 3). Call for Papers button swap ✓ (Task 4). Organisers photos ✓ (Task 5). Scholars "See Call for Papers" → superseded, whole section removed per client override ✓ (Task 1). Contact mis-scroll + prominence ✓ (Task 6). Archive/Repository and Conference Proceedings → separate plans, not this one.
