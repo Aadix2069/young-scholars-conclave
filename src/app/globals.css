@@ -4,12 +4,30 @@
   --background: #ffffff;
   --foreground: #111827;
 
-  /* CHRIST University institutional blue, matching the conference-site template
-   * this design is based on (icbe2025.christuniversity.in). */
-  --color-brand-blue: #1d398f;
+  /* Royal Blue - confirmed identical across both DOCX palette mockups
+   * (updation/YSC 2026 Design.docx). Headings, primary buttons, links. */
+  --color-brand-blue: #234aa5;
 
-  /* CHRIST University brand gold, used only for the official seal/logo accents */
-  --color-brand-gold: #b8860b;
+  /* Warm Gold - confirmed identical across both DOCX palette mockups.
+   * Accents, hover states, dividers. */
+  --color-brand-gold: #c8a24a;
+
+  /* FAS green - the one color value the DOCX review note explicitly confirms
+   * ("Here is the FAS green colour: RGB 153,174,106"), overriding the two
+   * palette mockups in the same doc, which disagree with each other on this
+   * color and are called out as "not the right shade". Primary agrarian
+   * accent - highlight sections, badges, buttons/tags per "IMPORTANT INFO"
+   * usage in the DOCX color-usage table. */
+  --color-brand-green: #99ae6a;
+
+  /* Darker derived shade of the FAS green (same hue/saturation, ~35% darker
+   * lightness) for text-on-light and hover states, matching the DOCX's
+   * "Deep Olive Green / Support-Accent" role without reusing either of its
+   * unconfirmed hex values. */
+  --color-brand-green-dark: #5f6f3f;
+
+  /* Charcoal body text, matches both DOCX palette mockups (#2B2B2B). */
+  --color-brand-charcoal: #2b2b2b;
 
   /* Shared hover/motion easing - same curve as the aos-* keyframes below, so
    * scroll-reveal and hover transitions feel like one consistent motion system. */
@@ -23,13 +41,24 @@
   --font-sans: Garamond, Georgia, serif;
   --font-serif: Garamond, Georgia, serif;
 
+  /* Base font size floor per DOCX: "Industrial standard suggests 16px
+   * (equivalent to 1rem or 12pt)". Tailwind's default text-base is already
+   * 1rem/16px; this token exists so `text-base` unambiguously resolves to
+   * the DOCX-mandated 16px rather than any inherited browser default. */
+  --text-base: 1rem;
+
   --color-brand-blue: var(--color-brand-blue);
   --color-brand-gold: var(--color-brand-gold);
+  --color-brand-green: var(--color-brand-green);
+  --color-brand-green-dark: var(--color-brand-green-dark);
+  --color-brand-charcoal: var(--color-brand-charcoal);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 html {
