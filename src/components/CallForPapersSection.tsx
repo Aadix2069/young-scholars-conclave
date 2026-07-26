@@ -2,6 +2,7 @@ import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 import { RegisterLink } from "./RegisterLink";
 import { GOOGLE_FORMS } from "@/lib/googleForms";
+import { SUBMISSION_GUIDELINES_PDF } from "@/lib/conferenceDocs";
 
 export function CallForPapersSection() {
   return (
@@ -51,12 +52,24 @@ export function CallForPapersSection() {
           >
             Submit Abstract
           </RegisterLink>
-          <a
-            href="#organisers"
-            className="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-8 py-3 text-sm font-semibold text-white transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10"
-          >
-            Meet the Organisers
-          </a>
+          {SUBMISSION_GUIDELINES_PDF ? (
+            <a
+              href={SUBMISSION_GUIDELINES_PDF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-8 py-3 text-sm font-semibold text-white transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
+            >
+              Submission Guidelines
+            </a>
+          ) : (
+            <span
+              className="inline-flex cursor-not-allowed items-center justify-center rounded-full border-2 border-white/40 px-8 py-3 text-sm font-semibold text-white/60"
+              aria-disabled="true"
+              title="The submission guidelines PDF will be available soon"
+            >
+              Submission Guidelines
+            </span>
+          )}
         </div>
       </div>
     </section>
