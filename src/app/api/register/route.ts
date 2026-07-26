@@ -3,7 +3,7 @@ import { APPS_SCRIPT_URL } from "@/lib/appsScript";
 type RegistrationPayload = {
   fullName: string;
   email: string;
-  phone?: string;
+  phone: string;
   institution: string;
   category: string;
   country?: string;
@@ -13,6 +13,7 @@ type RegistrationPayload = {
 const REQUIRED_FIELDS: (keyof RegistrationPayload)[] = [
   "fullName",
   "email",
+  "phone",
   "institution",
   "category",
 ];
@@ -49,10 +50,27 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ formType: "registration", ...body }),
+      redirect: "follow",
     });
-    const result = await upstream.json();
+
+    const text = await upstream.text();
+    
+    // Parse JSON safely
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch {
+      console.error("Google Apps Script did not return valid JSON. Received:", text.slice(0, 300));
+      return Response.json(
+        { success: false, message: "Received invalid response format from Google Apps Script." },
+        { status: 502 }
+      );
+    }
+
     return Response.json(result, { status: result.success ? 200 : 400 });
-  } catch {
+
+  } catch (err) {
+    console.error("Apps Script Fetch Error:", err);
     return Response.json(
       { success: false, message: "Couldn't reach the registration server. Please try again." },
       { status: 502 }

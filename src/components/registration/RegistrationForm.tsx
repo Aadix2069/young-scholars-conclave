@@ -28,7 +28,7 @@ const EMPTY_FIELDS: Fields = {
   dietaryRequirements: "",
 };
 
-const REQUIRED: (keyof Fields)[] = ["fullName", "email", "institution", "category"];
+const REQUIRED: (keyof Fields)[] = ["fullName", "email","phone", "institution", "category"];
 
 function validate(fields: Fields): Partial<Record<keyof Fields, string>> {
   const errors: Partial<Record<keyof Fields, string>> = {};
@@ -123,9 +123,10 @@ export function RegistrationForm() {
           name="phone"
           type="tel"
           autoComplete="tel"
+          required
           value={fields.phone}
           onChange={(v) => setField("phone", v)}
-          helperText="Optional"
+          helperText=""
         />
         <FormField
           label="Country"

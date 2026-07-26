@@ -41,7 +41,7 @@ function ThemeCard({
           aria-disabled="true"
           title="The theme description PDF will be available soon"
         >
-          Know more
+          
         </span>
       )}
     </div>
