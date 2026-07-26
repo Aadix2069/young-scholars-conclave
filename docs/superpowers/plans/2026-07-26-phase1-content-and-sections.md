@@ -756,12 +756,14 @@ import "swiper/css/pagination";
 /**
  * Hero slides.
  *
- * The official conference photographs are supplied by the organising
- * committee. To integrate them: drop each image into public/hero/ and set
- * `src` to its path. Entries with an empty `src` render a branded gradient
- * panel captioned with the shot that belongs there, so the slideshow is
- * fully functional and correctly laid out before the photos arrive — no
- * layout change is needed when swapping them in.
+ * Two real conference photos are already in public/hero/ (added directly to
+ * the repo) and are wired in below. The remaining three categories are
+ * still awaited from the organising committee — to integrate them, drop
+ * each image into public/hero/ and set that entry's `src` to its path.
+ * Entries with an empty `src` render a branded gradient panel captioned
+ * with the shot that belongs there, so the slideshow is fully functional
+ * and correctly laid out before the rest of the photos arrive — no layout
+ * change is needed when swapping them in.
  */
 const HERO_SLIDES: { src: string; alt: string; caption: string }[] = [
   {
@@ -775,13 +777,13 @@ const HERO_SLIDES: { src: string; alt: string; caption: string }[] = [
     caption: "CHRIST University campus",
   },
   {
-    src: "",
-    alt: "Conference hall prepared for the Young Scholars' Conclave",
+    src: "/hero/conference-hall-1.jpg",
+    alt: "Delegates seated at the Young Scholars' Conclave conference hall",
     caption: "Conference venue",
   },
   {
-    src: "",
-    alt: "Young scholars presenting their research at the Conclave",
+    src: "/hero/conference-hall-2.jpg",
+    alt: "Attendees at a past Young Scholars' Conclave session",
     caption: "Young scholars presenting",
   },
   {
