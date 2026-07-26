@@ -56,7 +56,7 @@ export function ContactSection() {
               </li>
               <li>
                 <p className="text-base font-semibold text-gray-800">Dr Jayesh M. P.</p>
-                <p className="mt-1 text-sm text-gray-500">CHRIST University</p>
+                <p className="mt-1 text-sm text-gray-500">CHRIST (Deemed To be University)</p>
               </li>
             </ul>
           </div>
