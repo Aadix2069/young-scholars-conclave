@@ -1,3 +1,4 @@
+import { THEME_PDFS } from "@/lib/conferenceDocs";
 import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 
@@ -12,10 +13,12 @@ const THEMES = [
 function ThemeCard({
   title,
   index,
+  pdfHref,
   delay = 0,
 }: {
   title: string;
   index: number;
+  pdfHref: string;
   delay?: number;
 }) {
   return (
@@ -30,12 +33,24 @@ function ThemeCard({
         </span>
         <h3 className="mt-4 text-lg font-bold leading-snug text-brand-blue">{title}</h3>
       </div>
-      <a
-        href="#call-for-papers"
-        className="mt-6 inline-block text-sm font-semibold text-brand-blue underline underline-offset-4 transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-gray-700"
-      >
-        Submission details
-      </a>
+      {pdfHref ? (
+        <a
+          href={pdfHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-block text-sm font-semibold text-brand-blue underline underline-offset-4 transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+        >
+          Know more
+        </a>
+      ) : (
+        <span
+          className="mt-6 inline-block cursor-not-allowed text-sm font-semibold text-gray-400 underline underline-offset-4"
+          aria-disabled="true"
+          title="The theme description PDF will be available soon"
+        >
+          Know more
+        </span>
+      )}
     </div>
   );
 }
@@ -63,9 +78,19 @@ export function ThemesSection() {
           Tentative thematic areas for the Young Scholars&rsquo; Conclave 2026.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 flex flex-wrap justify-center gap-6">
           {THEMES.map((theme, index) => (
-            <ThemeCard key={theme.title} {...theme} index={index} delay={index * 80} />
+            <div
+              key={theme.title}
+              className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            >
+              <ThemeCard
+                title={theme.title}
+                index={index}
+                pdfHref={THEME_PDFS[theme.title] ?? ""}
+                delay={index * 80}
+              />
+            </div>
           ))}
         </div>
       </div>
