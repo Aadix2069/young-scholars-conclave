@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChristLogo, FASLogo } from "./Logos";
+import { ChristLogo, ConclaveLogo, FASLogo } from "./Logos";
 import { CloseIcon, MenuIcon } from "./icons";
 
 const NAV_LINKS = [
@@ -87,9 +87,7 @@ export function Navbar() {
             </span>
             <FASLogo className="h-8 w-auto shrink-0 sm:h-10" />
             <span className="hidden h-8 w-px shrink-0 bg-gray-200 sm:block sm:h-10" aria-hidden="true" />
-            <span className="hidden whitespace-nowrap text-lg font-black uppercase text-gray-900 sm:inline sm:text-2xl">
-              YSC 2026
-            </span>
+            <ConclaveLogo className="hidden shrink-0 sm:flex sm:h-11" />
           </Link>
 
           <ul className="hidden items-center gap-0.5 xl:flex">

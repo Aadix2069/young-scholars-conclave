@@ -58,3 +58,50 @@ export function FASLogo({ className }: LogoProps) {
     />
   );
 }
+
+/**
+ * Young Scholars' Conclave collaborative conference logo.
+ *
+ * The organisers are still finalising this mark. To integrate it once
+ * supplied: save the transparent PNG to public/conclave-logo.png and set
+ * CONCLAVE_LOGO_SRC below to "/conclave-logo.png". Until then a typographic
+ * wordmark occupies the same slot, so no layout change is needed when the
+ * real logo arrives.
+ */
+const CONCLAVE_LOGO_SRC = "";
+
+export function ConclaveLogo({
+  className,
+  variant = "color",
+}: LogoProps & { variant?: "color" | "white" }) {
+  if (CONCLAVE_LOGO_SRC) {
+    return (
+      <Image
+        src={CONCLAVE_LOGO_SRC}
+        alt="Young Scholars' Conclave"
+        width={512}
+        height={512}
+        className={className}
+        preload
+      />
+    );
+  }
+
+  return (
+    <span
+      className={`flex flex-col justify-center leading-none ${className ?? ""}`}
+      aria-label="Young Scholars' Conclave"
+    >
+      <span
+        className={`whitespace-nowrap text-sm font-black uppercase tracking-tight sm:text-lg ${
+          variant === "white" ? "text-white" : "text-brand-blue"
+        }`}
+      >
+        Young Scholars&rsquo;
+      </span>
+      <span className="whitespace-nowrap text-[0.6rem] font-bold uppercase tracking-[0.25em] text-brand-green sm:text-xs">
+        Conclave
+      </span>
+    </span>
+  );
+}

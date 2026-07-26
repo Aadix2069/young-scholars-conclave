@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChristLogo, FASLogo } from "./Logos";
+import { ChristLogo, ConclaveLogo, FASLogo } from "./Logos";
 import { SectionAccent } from "./SectionAccent";
 
 const USEFUL_LINKS = [
@@ -22,6 +22,8 @@ export function Footer() {
             <ChristLogo variant="white" className="h-auto w-32 sm:w-40" />
             <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
             <FASLogo className="h-14 w-auto shrink-0 brightness-0 invert" />
+            <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
+            <ConclaveLogo variant="white" className="h-11 shrink-0" />
           </div>
           <p className="text-justify text-sm leading-relaxed">
             Young Scholars&rsquo; Conclave 2026, jointly organised by the
