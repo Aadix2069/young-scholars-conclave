@@ -5,6 +5,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ChristLogo } from "./Logos";
 import { ArrowRightIcon } from "./icons";
 import { ConclaveCountdown } from "./ConclaveCountdown";
+import { HeroSlideshow } from "./HeroSlideshow";
 
 const EASE_SMOOTH = [0.16, 1, 0.3, 1] as const;
 
@@ -32,16 +33,7 @@ export function Hero() {
       className="relative flex h-[85vh] w-full items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 -z-10 h-full w-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/homevedio-l78V7urb.mp4" type="video/mp4" />
-        </video>
+        <HeroSlideshow />
       </div>
 
       <motion.div
