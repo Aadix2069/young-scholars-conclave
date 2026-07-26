@@ -6,7 +6,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-linear-to-b from-blue-50/40 to-white py-20 md:py-28"
+      className="relative overflow-hidden bg-linear-to-b from-brand-sand/50 to-white py-20 md:py-28"
     >
       <SectionAccent position="bottom-left" />
       <div className="mx-auto max-w-5xl px-6 lg:px-10">

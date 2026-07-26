@@ -29,3 +29,16 @@ export function ChristLogo({
     />
   );
 }
+
+/** Foundation for Agrarian Studies organisational logo. */
+export function FASLogo({ className }: LogoProps) {
+  return (
+    <Image
+      src="/fas-logo.svg"
+      alt="Foundation for Agrarian Studies"
+      width={1506}
+      height={1012}
+      className={className}
+    />
+  );
+}

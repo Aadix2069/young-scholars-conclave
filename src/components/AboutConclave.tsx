@@ -6,7 +6,7 @@ export function AboutConclave() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-linear-to-b from-white to-blue-50/40 py-20 md:py-28"
+      className="relative overflow-hidden bg-linear-to-b from-white to-brand-sand/50 py-20 md:py-28"
     >
       <SectionAccent position="top-right" />
       <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">

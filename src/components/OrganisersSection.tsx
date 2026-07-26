@@ -89,7 +89,7 @@ export function OrganisersSection() {
         </p>
 
         <div
-          className="mx-auto mt-12 flex max-w-2xl flex-col items-center rounded-xl border border-brand-blue/20 bg-blue-50/40 px-6 py-8 text-center"
+          className="mx-auto mt-12 flex max-w-2xl flex-col items-center rounded-xl border border-brand-gold/40 bg-brand-sand/40 px-6 py-8 text-center"
           data-aos="fade-up"
           data-aos-delay="60"
         >

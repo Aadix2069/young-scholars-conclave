@@ -40,7 +40,7 @@ const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeI
 
 export function DatesTimeline() {
   return (
-    <section id="dates" className="relative overflow-hidden bg-gray-50 py-16 md:py-24">
+    <section id="dates" className="relative overflow-hidden bg-brand-sand/30 py-16 md:py-24">
       <SectionAccent position="top-right" />
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <Eyebrow className="text-center">Dates</Eyebrow>

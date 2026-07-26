@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChristLogo } from "./Logos";
+import { ChristLogo, FASLogo } from "./Logos";
 import { CloseIcon, MenuIcon } from "./icons";
 
 const NAV_LINKS = [
@@ -73,9 +73,21 @@ export function Navbar() {
     >
       <nav className="px-4">
         <div className="flex h-20 items-center justify-between gap-2 sm:h-24 sm:gap-6">
-          <Link href="/" className="flex shrink-0 items-center gap-2 no-underline sm:gap-3">
-            <ChristLogo variant="color" className="h-9 w-auto shrink-0 sm:h-12" />
-            <span className="whitespace-nowrap text-lg font-black uppercase text-gray-900 sm:ml-[3%] sm:text-2xl">
+          <Link
+            href="/"
+            className="flex min-w-0 shrink-0 items-center gap-2.5 no-underline sm:gap-3"
+            aria-label="Young Scholars' Conclave — a collaboration between CHRIST (Deemed to be University) and the Foundation for Agrarian Studies"
+          >
+            <ChristLogo variant="color" className="h-9 w-auto shrink-0 sm:h-11" />
+            <span
+              className="shrink-0 text-lg font-light text-brand-gold sm:text-xl"
+              aria-hidden="true"
+            >
+              ×
+            </span>
+            <FASLogo className="h-8 w-auto shrink-0 sm:h-10" />
+            <span className="hidden h-8 w-px shrink-0 bg-gray-200 sm:block sm:h-10" aria-hidden="true" />
+            <span className="hidden whitespace-nowrap text-lg font-black uppercase text-gray-900 sm:inline sm:text-2xl">
               YSC 2026
             </span>
           </Link>

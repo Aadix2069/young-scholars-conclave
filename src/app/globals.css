@@ -1,8 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* Off White - DOCX "Main Background" (both palette mockups agree:
+   * #FAF9F5). Blue was overused as the default section tint across this
+   * site (bg-blue-50 gradients on About/Themes/Contact, full blue-900
+   * fields on Hero/CFP/Footer) - the DOCX's own recommended balance is
+   * 50% off-white/neutral vs 25% Royal Blue, with blue reserved for
+   * headings, buttons, nav accents and the (explicitly sanctioned) footer,
+   * not as the page's ambient background tint. */
+  --background: #faf9f5;
   --foreground: #111827;
+
+  /* Light Sand - DOCX "Cards / Boxes" background, paired with a gold
+   * border per the DOCX's usage table ("Cards/Panels: Light Sand
+   * background with Gold border"). */
+  --color-brand-sand: #f1e9d8;
+
+  /* Muted Blue - DOCX "Alternate Sections / Alt. Background". Used
+   * sparingly (per the 25% Royal Blue budget), not as the default tint. */
+  --color-muted-blue: #eaf0fb;
 
   /* Royal Blue - confirmed identical across both DOCX palette mockups
    * (updation/YSC 2026 Design.docx). Headings, primary buttons, links. */
@@ -52,6 +68,8 @@
   --color-brand-green: var(--color-brand-green);
   --color-brand-green-dark: var(--color-brand-green-dark);
   --color-brand-charcoal: var(--color-brand-charcoal);
+  --color-brand-sand: var(--color-brand-sand);
+  --color-muted-blue: var(--color-muted-blue);
 }
 
 body {
@@ -245,5 +263,38 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Hero slideshow controls - Swiper's defaults use its own theme blue and a
+ * small hit area; these bring it in line with the conference palette and
+ * give the arrows a comfortable touch target on mobile. */
+.hero-swiper {
+  --swiper-theme-color: var(--color-brand-gold);
+  --swiper-navigation-size: 24px;
+  --swiper-navigation-color: #ffffff;
+  --swiper-pagination-bullet-inactive-color: #ffffff;
+  --swiper-pagination-bullet-inactive-opacity: 0.5;
+}
+
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+  height: 44px;
+  width: 44px;
+  border-radius: 9999px;
+  background-color: rgb(0 0 0 / 0.25);
+  backdrop-filter: blur(4px);
+  transition: background-color 200ms var(--ease-smooth);
+}
+
+.hero-swiper .swiper-button-next:hover,
+.hero-swiper .swiper-button-prev:hover {
+  background-color: rgb(0 0 0 / 0.45);
+}
+
+@media (max-width: 640px) {
+  .hero-swiper .swiper-button-next,
+  .hero-swiper .swiper-button-prev {
+    display: none;
   }
 }

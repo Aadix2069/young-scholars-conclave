@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChristLogo } from "./Logos";
+import { ChristLogo, FASLogo } from "./Logos";
 import { SectionAccent } from "./SectionAccent";
 
 const USEFUL_LINKS = [
@@ -18,8 +18,10 @@ export function Footer() {
       <SectionAccent variant="dark" position="top-right" />
       <div className="mx-auto mb-8 grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2">
         <div>
-          <div className="mb-4 flex items-center gap-3">
-            <ChristLogo variant="white" className="h-auto w-40" />
+          <div className="mb-4 flex flex-wrap items-center gap-4">
+            <ChristLogo variant="white" className="h-auto w-32 sm:w-40" />
+            <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
+            <FASLogo className="h-14 w-auto shrink-0 brightness-0 invert" />
           </div>
           <p className="text-justify text-sm leading-relaxed">
             Young Scholars&rsquo; Conclave 2026, jointly organised by the

@@ -59,7 +59,7 @@ export function ThemesSection() {
   return (
     <section
       id="themes"
-      className="relative overflow-hidden bg-linear-to-b from-white to-blue-50/40 py-20 md:py-28"
+      className="relative overflow-hidden bg-linear-to-b from-white to-brand-sand/50 py-20 md:py-28"
     >
       <SectionAccent position="top-left" />
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
