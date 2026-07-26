@@ -1,14 +1,7 @@
 import { THEME_PDFS } from "@/lib/conferenceDocs";
+import { THEMES } from "@/lib/themes";
 import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
-
-const THEMES = [
-  { title: "Role of Science and Technology in Agrarian and Rural Transformation" },
-  { title: "Policies and Practices in Rural and Agrarian Development" },
-  { title: "Inequality and Deprivation in the Countryside" },
-  { title: "The Dynamics of Farm–Non-Farm Linkages" },
-  { title: "Agriculture as an Arena of Human–Nature Interaction" },
-];
 
 function ThemeCard({
   title,

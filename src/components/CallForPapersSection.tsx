@@ -1,7 +1,6 @@
+import Link from "next/link";
 import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
-import { RegisterLink } from "./RegisterLink";
-import { GOOGLE_FORMS } from "@/lib/googleForms";
 import { SUBMISSION_GUIDELINES_PDF } from "@/lib/conferenceDocs";
 
 export function CallForPapersSection() {
@@ -46,12 +45,12 @@ export function CallForPapersSection() {
         </dl>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <RegisterLink
-            href={GOOGLE_FORMS.paperSubmission}
+          <Link
+            href="/submit-paper"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-blue-900 no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-blue-50"
           >
             Submit Abstract
-          </RegisterLink>
+          </Link>
           {SUBMISSION_GUIDELINES_PDF ? (
             <a
               href={SUBMISSION_GUIDELINES_PDF}

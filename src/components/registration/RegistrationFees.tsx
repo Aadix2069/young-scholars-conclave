@@ -1,5 +1,4 @@
-import { RegisterLink } from "../RegisterLink";
-import { GOOGLE_FORMS } from "@/lib/googleForms";
+import Link from "next/link";
 
 const FEES = [
   { category: "UG/PG Students" },
@@ -84,24 +83,16 @@ export function RegistrationFees() {
         data-aos="fade-up"
         data-aos-delay="300"
       >
-        <RegisterLink
-          href={GOOGLE_FORMS.paperSubmission}
+        <Link
+          href="/submit-paper"
           className="inline-block rounded-lg bg-linear-to-b from-blue-700 to-brand-blue px-8 py-4 text-lg font-bold text-white no-underline shadow-lg transition duration-200 ease-[var(--ease-smooth)] hover:scale-105 hover:from-blue-800 hover:to-blue-900 active:scale-95"
         >
-          Register for Paper Submission
-        </RegisterLink>
-        <RegisterLink
-          href={GOOGLE_FORMS.delegateRegistration}
-          className="inline-block rounded-lg bg-linear-to-b from-blue-600 to-blue-700 px-8 py-4 text-lg font-bold text-white no-underline shadow-lg transition duration-200 ease-[var(--ease-smooth)] hover:scale-105 hover:from-blue-700 hover:to-blue-800 active:scale-95"
-        >
-          Register Now (General)
-        </RegisterLink>
+          Submit a Paper
+        </Link>
       </div>
-      {(!GOOGLE_FORMS.paperSubmission || !GOOGLE_FORMS.delegateRegistration) && (
-        <p className="mt-4 text-center text-xs text-gray-400" data-aos="fade-up" data-aos-delay="350">
-          Registration links will be activated once the form is ready.
-        </p>
-      )}
+      <p className="mt-4 text-center text-sm text-gray-500" data-aos="fade-up" data-aos-delay="350">
+        To register as a delegate, fill in the form below.
+      </p>
     </div>
   );
 }
