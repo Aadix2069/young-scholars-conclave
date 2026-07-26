@@ -1,53 +1,66 @@
 import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
+import { PersonAvatar } from "./PersonAvatar";
 
+/**
+ * Photographs are supplied by the organising committee. Drop the image into
+ * public/people/ and set `photo` to its path (e.g. "/people/jane-doe.jpg").
+ * An empty string shows a branded initials circle instead.
+ */
 const EXPERTS = [
-  { name: "Jayan Jose Thomas", affiliation: "Indian Institute of Technology, Delhi" },
-  { name: "Jayaraman T", affiliation: "National Institute of Advanced Study, Bengaluru" },
-  { name: "Jens Lerche", affiliation: "School of Oriental and Asian Studies, UK" },
-  { name: "John Harris", affiliation: "Simon Fraser University, Canada" },
-  { name: "Judith Heyer", affiliation: "University of Oxford, UK" },
-  { name: "Madhura Swaminathan", affiliation: "Indian Statistical Institute, Bengaluru" },
-  { name: "P. C. Mohanan", affiliation: "Former Chairperson, Kerala State Statistical Commission" },
-  { name: "R. Ramkumar", affiliation: "Tata Institute of Social Sciences, Mumbai" },
-  { name: "Surjit Vikraman", affiliation: "National Institute of Rural Development, Hyderabad" },
-  { name: "Tejal Kanitkar", affiliation: "Indira Gandhi Institute of Development Research, Mumbai" },
-  { name: "V. K. Ramachandran", affiliation: "Former Professor, Indian Statistical Institute, Bengaluru" },
-  { name: "Venkatesh Athreya", affiliation: "Former Professor, Bharathidasan University, Tiruchirappalli" },
-  { name: "Yoshifumi Usami", affiliation: "Osaka Prefecture University, Japan" },
+  { name: "Jayan Jose Thomas", affiliation: "Indian Institute of Technology, Delhi", photo: "" },
+  { name: "Jayaraman T", affiliation: "National Institute of Advanced Study, Bengaluru", photo: "" },
+  { name: "Jens Lerche", affiliation: "School of Oriental and Asian Studies, UK", photo: "" },
+  { name: "John Harris", affiliation: "Simon Fraser University, Canada", photo: "" },
+  { name: "Judith Heyer", affiliation: "University of Oxford, UK", photo: "" },
+  { name: "Madhura Swaminathan", affiliation: "Indian Statistical Institute, Bengaluru", photo: "" },
+  { name: "P. C. Mohanan", affiliation: "Former Chairperson, Kerala State Statistical Commission", photo: "" },
+  { name: "R. Ramkumar", affiliation: "Tata Institute of Social Sciences, Mumbai", photo: "" },
+  { name: "Surjit Vikraman", affiliation: "National Institute of Rural Development, Hyderabad", photo: "" },
+  { name: "Tejal Kanitkar", affiliation: "Indira Gandhi Institute of Development Research, Mumbai", photo: "" },
+  { name: "V. K. Ramachandran", affiliation: "Former Professor, Indian Statistical Institute, Bengaluru", photo: "" },
+  { name: "Venkatesh Athreya", affiliation: "Former Professor, Bharathidasan University, Tiruchirappalli", photo: "" },
+  { name: "Yoshifumi Usami", affiliation: "Osaka Prefecture University, Japan", photo: "" },
 ];
 
 const SENIOR_SCHOLARS = [
-  { name: "Anirban Kundu", affiliation: "CHRIST University, Bengaluru" },
-  { name: "Aravindan Nagarajan", affiliation: "Azim Premji University, Bengaluru" },
-  { name: "Arindam Das", affiliation: "Foundation for Agrarian Studies, Bengaluru" },
-  { name: "Bheemeshwar Reddy", affiliation: "Birla Institute of Technology and Science, Hyderabad" },
-  { name: "Bineetha P. Bose", affiliation: "CHRIST University, Bengaluru" },
-  { name: "Deepak Johnson", affiliation: "CHRIST University, Bengaluru" },
-  { name: "Harshan T. P.", affiliation: "Foundation for Agrarian Studies, Bengaluru" },
-  { name: "Jayesh M. P.", affiliation: "CHRIST University, Bengaluru" },
-  { name: "Mihika Chatterjee", affiliation: "University of Bath, UK" },
-  { name: "Niladri Sekhar Dhar", affiliation: "Bihar Institute of Public Finance and Policy, Patna" },
-  { name: "Niyati Singaraju", affiliation: "International Rice Research Institute, Hyderabad" },
-  { name: "Ranjini Basu", affiliation: "RV University, Bengaluru" },
-  { name: "Sandipan Baksi", affiliation: "Foundation for Agrarian Studies, Bengaluru" },
-  { name: "Soundarya Iyer", affiliation: "RV University, Bengaluru" },
-  { name: "Tapas Modak Singh", affiliation: "Foundation for Agrarian Studies, Bengaluru" },
-  { name: "Vineeth M.", affiliation: "CHRIST University, Bengaluru" },
+  { name: "Anirban Kundu", affiliation: "CHRIST University, Bengaluru", photo: "" },
+  { name: "Aravindan Nagarajan", affiliation: "Azim Premji University, Bengaluru", photo: "" },
+  { name: "Arindam Das", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
+  { name: "Bheemeshwar Reddy", affiliation: "Birla Institute of Technology and Science, Hyderabad", photo: "" },
+  { name: "Bineetha P. Bose", affiliation: "CHRIST University, Bengaluru", photo: "" },
+  { name: "Deepak Johnson", affiliation: "CHRIST University, Bengaluru", photo: "" },
+  { name: "Harshan T. P.", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
+  { name: "Jayesh M. P.", affiliation: "CHRIST University, Bengaluru", photo: "" },
+  { name: "Mihika Chatterjee", affiliation: "University of Bath, UK", photo: "" },
+  { name: "Niladri Sekhar Dhar", affiliation: "Bihar Institute of Public Finance and Policy, Patna", photo: "" },
+  { name: "Niyati Singaraju", affiliation: "International Rice Research Institute, Hyderabad", photo: "" },
+  { name: "Ranjini Basu", affiliation: "RV University, Bengaluru", photo: "" },
+  { name: "Sandipan Baksi", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
+  { name: "Soundarya Iyer", affiliation: "RV University, Bengaluru", photo: "" },
+  { name: "Tapas Modak Singh", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
+  { name: "Vineeth M.", affiliation: "CHRIST University, Bengaluru", photo: "" },
 ];
 
-function PersonList({ people }: { people: { name: string; affiliation: string }[] }) {
+function PersonList({
+  people,
+}: {
+  people: { name: string; affiliation: string; photo: string }[];
+}) {
   return (
     <ul className="mt-8 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
       {people.map((person, index) => (
         <li
           key={person.name}
-          className="border-b-2 border-brand-gold/20 pb-4"
+          className="flex items-start gap-4 border-b-2 border-brand-gold/20 pb-4"
           data-aos="fade-up"
           data-aos-delay={(index % 4) * 60}
         >
-          <p className="text-lg font-bold text-brand-blue">{person.name}</p>
-          <p className="mt-1 text-sm text-gray-500">{person.affiliation}</p>
+          <PersonAvatar name={person.name} photo={person.photo} className="h-14 w-14" />
+          <div>
+            <p className="text-lg font-bold text-brand-blue">{person.name}</p>
+            <p className="mt-1 text-sm text-gray-500">{person.affiliation}</p>
+          </div>
         </li>
       ))}
     </ul>
@@ -76,11 +89,12 @@ export function OrganisersSection() {
         </p>
 
         <div
-          className="mx-auto mt-12 max-w-2xl rounded-xl border border-brand-blue/20 bg-blue-50/40 px-6 py-8 text-center"
+          className="mx-auto mt-12 flex max-w-2xl flex-col items-center rounded-xl border border-brand-blue/20 bg-blue-50/40 px-6 py-8 text-center"
           data-aos="fade-up"
           data-aos-delay="60"
         >
-          <p className="text-xs font-bold uppercase tracking-widest text-brand-blue/70">
+          <PersonAvatar name="Barbara Harriss-White" photo="" className="h-24 w-24" />
+          <p className="mt-4 text-xs font-bold uppercase tracking-widest text-brand-blue/70">
             Academic Convenor
           </p>
           <p className="mt-2 text-xl font-bold text-brand-blue">Barbara Harriss-White</p>

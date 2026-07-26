@@ -5,6 +5,7 @@ import { AboutConclave } from "@/components/AboutConclave";
 import { ThemesSection } from "@/components/ThemesSection";
 import { CallForPapersSection } from "@/components/CallForPapersSection";
 import { OrganisersSection } from "@/components/OrganisersSection";
+import { ChiefGuestsSection } from "@/components/ChiefGuestsSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <ThemesSection />
         <CallForPapersSection />
         <OrganisersSection />
+        <ChiefGuestsSection />
       </main>
       <Footer />
     </div>
