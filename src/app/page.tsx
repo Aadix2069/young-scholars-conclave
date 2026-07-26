@@ -6,6 +6,7 @@ import { ThemesSection } from "@/components/ThemesSection";
 import { CallForPapersSection } from "@/components/CallForPapersSection";
 import { OrganisersSection } from "@/components/OrganisersSection";
 import { ChiefGuestsSection } from "@/components/ChiefGuestsSection";
+import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <CallForPapersSection />
         <OrganisersSection />
         <ChiefGuestsSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>
