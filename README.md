@@ -24,9 +24,8 @@ A statically-generated marketing site built with:
 | [Vercel](https://vercel.com) | Hosting — builds and serves the live site |
 
 There is **no database and no login system**. All content lives directly in the source
-code (or, for the scholars list, a Google Sheet — see §4.3). Registration and paper
-submission both hand off to external Google Forms rather than collecting data on this
-site itself.
+code. Registration and paper submission both hand off to external Google Forms rather
+than collecting data on this site itself.
 
 ---
 
@@ -45,7 +44,7 @@ site itself.
    ```
 
 That's it — no `.env` file, no API keys, no secrets to configure. Everything the site
-needs is either hardcoded or fetched from a public Google Sheet URL at runtime.
+needs is hardcoded directly in the source code.
 
 ---
 
@@ -100,26 +99,7 @@ export const GOOGLE_FORMS = {
   grayed-out "coming soon" state instead of a broken/placeholder link — you don't need
   to hide the button manually anywhere else.
 
-### 4.3 List of Scholars (no code change or redeploy needed)
-
-Once accepted scholars are announced, their names/affiliations/photos are meant to be
-managed by the **organising committee directly in a Google Sheet**, not by editing code:
-
-1. Create a Google Sheet with columns `Name | Affiliation | Photo URL` (header row
-   required; only `Name` is required per row).
-2. In the Sheet: **File → Share → Publish to web** → select the correct
-   sheet/tab → format **"Comma-separated values (.csv)"** → **Publish**.
-3. Copy the generated link and paste it into
-   [`src/lib/scholarsSheet.ts`](src/lib/scholarsSheet.ts) as `SCHOLARS_SHEET_CSV_URL`
-   (this one-time step does require a developer, since it's a code deploy).
-4. After that, **any future edits to the Sheet itself appear on the live site
-   automatically** — the site re-fetches the sheet on its own (every hour, or on next
-   page load after Vercel's cache expires). No redeploy required for row-level changes.
-
-Until `SCHOLARS_SHEET_CSV_URL` is set, the site shows a "Scholar Profiles Coming Soon"
-placeholder — this is expected, not a bug.
-
-### 4.4 Organising Committee (Academic Convenor, Experts, Senior Scholars)
+### 4.3 Organising Committee (Academic Convenor, Experts, Senior Scholars)
 
 **[`src/components/OrganisersSection.tsx`](src/components/OrganisersSection.tsx)**
 
@@ -131,12 +111,12 @@ placeholder — this is expected, not a bug.
 Each entry is a simple `{ name: "...", affiliation: "..." }` object — copy an existing
 line, change the text, keep the commas.
 
-### 4.5 Thematic areas ("Our Themes")
+### 4.4 Thematic areas ("Our Themes")
 
 **[`src/components/ThemesSection.tsx`](src/components/ThemesSection.tsx)** — edit the
 `THEMES` array. Order in the array is the display order (01, 02, 03...).
 
-### 4.6 About page & Registration page (fees, overview text)
+### 4.5 About page & Registration page (fees, overview text)
 
 - [`src/app/about/page.tsx`](src/app/about/page.tsx) and its section components in
   [`src/components/about/`](src/components/about/)
@@ -144,7 +124,7 @@ line, change the text, keep the commas.
   [`src/components/registration/RegistrationFees.tsx`](src/components/registration/RegistrationFees.tsx)
   for the fee table
 
-### 4.7 Site title, description, browser tab icon (SEO / sharing preview)
+### 4.6 Site title, description, browser tab icon (SEO / sharing preview)
 
 **[`src/app/layout.tsx`](src/app/layout.tsx)** — the `metadata` object controls the
 `<title>` and the description shown when the link is shared on WhatsApp/social media/
@@ -153,9 +133,9 @@ Google search results.
 Favicon: replace [`src/app/icon.png`](src/app/icon.png) with a new image of the same
 name to change the browser tab icon.
 
-### 4.8 Images and other files
+### 4.7 Images and other files
 
-Static files (logos, images not pulled from the Sheet) live in
+Static files (logos, images) live in
 [`public/`](public/) and are referenced in code as `/filename.ext`. Add a file there and
 reference it the same way an existing image is referenced nearby.
 
@@ -224,7 +204,6 @@ the same account, which shows the same information visually along with build log
 | "The code isn't correct" while logging in via `vercel login` | The device-approval code shown expired (they're time-limited and single-use) or was already used. Just re-run `npx vercel login` to get a fresh code — it does not affect anything already deployed. |
 | Local `npm run dev` shows a weird error after several edits | Stop the server (Ctrl+C) and restart `npm run dev` — Next.js's dev cache can go stale after many rapid file changes. |
 | Changes don't show up on the live site after `vercel --prod` | Hard-refresh your browser (Ctrl+Shift+R) — browsers/CDNs cache pages briefly. Also confirm the terminal output said the deployment finished with "Ready", not an error. |
-| Scholars list still shows "Coming Soon" after publishing the Sheet | Double-check `SCHOLARS_SHEET_CSV_URL` in `src/lib/scholarsSheet.ts` is set and that the Sheet is published as CSV (not just "shared" — those are different Google Sheets settings). |
 | `npm install` fails | Confirm Node.js version is 20+ (`node -v`) and try deleting `node_modules/` and `package-lock.json`, then `npm install` again. |
 
 ---

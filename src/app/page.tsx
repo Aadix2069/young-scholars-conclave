@@ -3,7 +3,6 @@ import { Hero } from "@/components/Hero";
 import { DatesTimeline } from "@/components/DatesTimeline";
 import { AboutConclave } from "@/components/AboutConclave";
 import { ThemesSection } from "@/components/ThemesSection";
-import { ScholarsGrid } from "@/components/ScholarsGrid";
 import { CallForPapersSection } from "@/components/CallForPapersSection";
 import { OrganisersSection } from "@/components/OrganisersSection";
 import { Footer } from "@/components/Footer";
@@ -19,7 +18,6 @@ export default function Home() {
         <ThemesSection />
         <CallForPapersSection />
         <OrganisersSection />
-        <ScholarsGrid />
       </main>
       <Footer />
     </div>
