@@ -144,6 +144,43 @@ export function ArrowRightIcon({ className }: IconProps) {
   );
 }
 
+export function MegaphoneIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M3 11v2a2 2 0 0 0 2 2h1l1 4h2l-.8-4H10l8 4V5l-8 4H6a2 2 0 0 0-2 2Z" />
+      <path d="M18 9.5v5" />
+    </svg>
+  );
+}
+
+export function CalendarIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3.5" y="5" width="17" height="16" rx="2" />
+      <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+      <path d="M8.5 13.5h.01M12 13.5h.01M15.5 13.5h.01M8.5 17h.01M12 17h.01" />
+    </svg>
+  );
+}
+
 export function UserIcon({ className }: IconProps) {
   return (
     <svg

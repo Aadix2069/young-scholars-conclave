@@ -1,8 +1,26 @@
-import { CheckBadgeIcon, DocumentIcon, SparklesIcon } from "./icons";
+import { CalendarIcon, CheckBadgeIcon, DocumentIcon, MegaphoneIcon, SparklesIcon } from "./icons";
 import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 
-const MILESTONES = [
+/**
+ * Conclave milestones in chronological order.
+ *
+ * `date: null` renders an explicit "To be announced" state. The Call for
+ * Applications and Last Date to Submit dates were requested by the client
+ * design review but not supplied with it — set the real date string here
+ * when the organising committee confirms it. Do not guess a date.
+ */
+const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeIcon }[] = [
+  {
+    date: null,
+    label: "Call for Applications",
+    Icon: MegaphoneIcon,
+  },
+  {
+    date: null,
+    label: "Last Date to Submit",
+    Icon: CalendarIcon,
+  },
   {
     date: "20 September 2026",
     label: "Communication of Acceptance",
@@ -40,7 +58,7 @@ export function DatesTimeline() {
           Key dates for the Young Scholars&rsquo; Conclave 2026.
         </p>
 
-        <div className="relative mt-14 flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-6">
+        <div className="relative mt-14 flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-3">
           <div
             className="absolute left-8 top-8 bottom-8 w-0.5 bg-brand-blue/20 md:left-0 md:right-0 md:top-8 md:bottom-auto md:h-0.5 md:w-auto"
             aria-hidden="true"
@@ -49,7 +67,7 @@ export function DatesTimeline() {
           {MILESTONES.map(({ date, label, Icon }, index) => (
             <div
               key={label}
-              className="relative flex items-start gap-4 md:w-1/3 md:flex-col md:items-center md:text-center md:gap-0"
+              className="relative flex items-start gap-4 md:w-1/5 md:flex-col md:items-center md:text-center md:gap-0"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
@@ -57,8 +75,16 @@ export function DatesTimeline() {
                 <Icon className="h-7 w-7" />
               </div>
               <div className="md:mt-4">
-                <p className="text-sm font-semibold text-gray-500">{date}</p>
-                <p className="mt-1 max-w-[11rem] font-medium text-gray-700 md:mx-auto">
+                <p
+                  className={
+                    date
+                      ? "text-sm font-semibold text-gray-500"
+                      : "text-sm font-semibold italic text-gray-400"
+                  }
+                >
+                  {date ?? "To be announced"}
+                </p>
+                <p className="mt-1 max-w-[9rem] font-medium text-gray-700 md:mx-auto">
                   {label}
                 </p>
               </div>
