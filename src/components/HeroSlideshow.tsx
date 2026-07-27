@@ -25,6 +25,26 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
     src: "/hero/conference-hall-2.jpg",
     alt: "Attendees at a past Young Scholars' Conclave session",
   },
+   {
+    src: "/hero/conference-hall-3.jpeg",
+    alt: "Attendees at a past Young Scholars' Conclave session",
+  },
+   {
+    src: "/hero/conference-hall-4.jpeg",
+    alt: "Attendees at a past Young Scholars' Conclave session",
+  },
+   {
+    src: "/hero/conference-hall-5.jpeg",
+    alt: "Attendees at a past Young Scholars' Conclave session",
+  },
+   {
+    src: "/hero/conference-hall-6.jpeg",
+    alt: "Attendees at a past Young Scholars' Conclave session",
+  },
+   {
+    src: "/hero/conference-hall-7.jpeg",
+    alt: "Attendees at a past Young Scholars' Conclave session",
+  },
 ];
 
 export function HeroSlideshow() {
