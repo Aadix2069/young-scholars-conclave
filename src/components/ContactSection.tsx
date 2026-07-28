@@ -1,5 +1,6 @@
 import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
+import { PersonAvatar } from "./PersonAvatar";
 import { MailIcon, MapPinIcon } from "./icons";
 
 export function ContactSection() {
@@ -48,15 +49,21 @@ export function ContactSection() {
           >
             <h3 className="text-lg font-bold text-brand-blue">Contact Persons</h3>
             <ul className="mt-4 space-y-5">
-              <li>
-                <p className="text-base font-semibold text-gray-800">Dr Harshan T. P.</p>
-                <p className="mt-1 text-sm text-gray-500">
-                  Foundation for Agrarian Studies
-                </p>
+              <li className="flex items-center gap-4">
+                <PersonAvatar name="Harshan T. P." photo="/people/harshan-tp.jpg" className="h-16 w-16" />
+                <div>
+                  <p className="text-base font-semibold text-gray-800">Dr Harshan T. P.</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Foundation for Agrarian Studies
+                  </p>
+                </div>
               </li>
-              <li>
-                <p className="text-base font-semibold text-gray-800">Dr Jayesh M. P.</p>
-                <p className="mt-1 text-sm text-gray-500">CHRIST (Deemed To be University)</p>
+              <li className="flex items-center gap-4">
+                <PersonAvatar name="Jayesh M. P." photo="/people/jayesh-mp.jpg" className="h-16 w-16" />
+                <div>
+                  <p className="text-base font-semibold text-gray-800">Dr Jayesh M. P.</p>
+                  <p className="mt-1 text-sm text-gray-500">CHRIST (Deemed To be University)</p>
+                </div>
               </li>
             </ul>
           </div>
