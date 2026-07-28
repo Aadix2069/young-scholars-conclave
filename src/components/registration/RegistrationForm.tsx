@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { FormField } from "../forms/FormField";
 import { useFormSubmit } from "../forms/useFormSubmit";
 
-const CATEGORIES = ["UG/PG Students", "Research Scholars", "Faculty members", "Professionals"];
+const CATEGORIES = [ "Research Scholars", "Faculty members", "Professionals"];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
