@@ -46,7 +46,7 @@ export function CallForPapersSection() {
 
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href="/submit-paper"
+            href="/submit-abstract"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-blue-900 no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-blue-50"
           >
             Submit Abstract

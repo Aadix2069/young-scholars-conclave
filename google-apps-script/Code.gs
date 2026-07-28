@@ -1,15 +1,19 @@
 /**
- * Young Scholars' Conclave 2026 — Registration & Abstract Submission backend.
+ * Young Scholars' Conclave 2026 — Registration, Abstract & Full Paper
+ * Submission backend.
  *
  * Deploy this as a Google Apps Script Web App bound to a Google Sheet.
  * See google-apps-script/DEPLOYMENT.md in this repo for step-by-step setup.
  *
- * Handles two form types, routed by the `formType` field in the JSON body:
+ * Handles three form types, routed by the `formType` field in the JSON body:
  *   - "registration"  -> appends to the "Registrations" sheet
  *   - "abstract"      -> appends to the "Abstract Submissions" sheet
+ *   - "paper"         -> uploads the manuscript to Drive and appends to the
+ *                        "Paper Submissions" sheet
  *
- * Both sheets are created automatically (with headers) on first submission
- * if they don't already exist.
+ * All sheets are created automatically (with headers) on first submission
+ * if they don't already exist. The paper flow also creates a Drive folder
+ * ("YSC 2026 — Paper Submissions") on first use.
  */
 
 var REGISTRATION_HEADERS = [
@@ -33,6 +37,25 @@ var ABSTRACT_HEADERS = [
   "Abstract",
 ];
 
+var PAPER_HEADERS = [
+  "Timestamp",
+  "Paper Title",
+  "Corresponding Author",
+  "Co-Author(s)",
+  "Institution/Affiliation",
+  "Department",
+  "Email",
+  "Phone",
+  "Research Domain",
+  "Keywords",
+  "Paper File Link",
+  "Additional Remarks",
+  "Declaration Accepted",
+];
+
+var PAPER_DRIVE_FOLDER_NAME = "YSC 2026 — Paper Submissions";
+var PAPER_MAX_FILE_BYTES = 3 * 1024 * 1024; // 3MB, matches the website's client/server checks
+
 function doPost(e) {
   var response;
   try {
@@ -43,6 +66,8 @@ function doPost(e) {
       response = handleRegistration(data);
     } else if (formType === "abstract") {
       response = handleAbstractSubmission(data);
+    } else if (formType === "paper") {
+      response = handlePaperSubmission(data);
     } else {
       response = { success: false, message: "Unknown form type: " + formType };
     }
@@ -111,6 +136,88 @@ function handleAbstractSubmission(data) {
   ]);
 
   return { success: true, message: "Abstract submitted." };
+}
+
+function handlePaperSubmission(data) {
+  var required = [
+    "paperTitle",
+    "correspondingAuthor",
+    "institution",
+    "department",
+    "email",
+    "phone",
+    "researchDomain",
+    "keywords",
+    "declaration",
+    "fileName",
+    "fileMimeType",
+    "fileBase64",
+  ];
+  var missing = findMissingFields(data, required);
+  if (missing.length > 0) {
+    return { success: false, message: "Missing required field(s): " + missing.join(", ") };
+  }
+  if (!isValidEmail(data.email)) {
+    return { success: false, message: "Invalid email address." };
+  }
+  if (String(data.declaration).toLowerCase() !== "true") {
+    return { success: false, message: "The declaration/consent must be accepted." };
+  }
+
+  var fileUrl;
+  try {
+    fileUrl = savePaperFile(data.fileName, data.fileMimeType, data.fileBase64);
+  } catch (err) {
+    return { success: false, message: "Couldn't save the uploaded file: " + err.message };
+  }
+
+  var sheet = getOrCreateSheet("Paper Submissions", PAPER_HEADERS);
+
+  sheet.appendRow([
+    new Date(),
+    data.paperTitle,
+    data.correspondingAuthor,
+    data.coAuthors || "",
+    data.institution,
+    data.department,
+    data.email,
+    data.phone,
+    data.researchDomain,
+    data.keywords,
+    fileUrl,
+    data.additionalRemarks || "",
+    "Yes",
+  ]);
+
+  return { success: true, message: "Full paper submitted." };
+}
+
+/**
+ * Decodes the base64 manuscript, saves it into the shared Drive folder
+ * (created on first use), and returns a shareable link. Throws if the
+ * decoded file exceeds PAPER_MAX_FILE_BYTES - the website already checks
+ * this client- and server-side, but Apps Script re-checks since it's the
+ * last line of defense before writing to Drive.
+ */
+function savePaperFile(fileName, mimeType, fileBase64) {
+  var decoded = Utilities.base64Decode(fileBase64);
+  if (decoded.length > PAPER_MAX_FILE_BYTES) {
+    throw new Error("File exceeds the 3MB limit.");
+  }
+
+  var blob = Utilities.newBlob(decoded, mimeType, fileName);
+  var folder = getOrCreateFolder(PAPER_DRIVE_FOLDER_NAME);
+  var file = folder.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  return file.getUrl();
+}
+
+function getOrCreateFolder(name) {
+  var folders = DriveApp.getFoldersByName(name);
+  if (folders.hasNext()) {
+    return folders.next();
+  }
+  return DriveApp.createFolder(name);
 }
 
 function getOrCreateSheet(name, headers) {
