@@ -34,7 +34,14 @@ type SelectFieldProps = BaseProps & {
   onChange: (value: string) => void;
 };
 
-type FormFieldProps = InputFieldProps | TextareaFieldProps | SelectFieldProps;
+type FileFieldProps = BaseProps & {
+  as: "file";
+  accept?: string;
+  fileName?: string;
+  onFileChange: (file: File | null) => void;
+};
+
+type FormFieldProps = InputFieldProps | TextareaFieldProps | SelectFieldProps | FileFieldProps;
 
 const FIELD_CLASSES =
   "block w-full min-h-11 rounded-lg border bg-white px-4 py-2.5 text-base text-brand-charcoal shadow-sm transition-colors duration-200 ease-[var(--ease-smooth)] focus:outline-none focus:ring-2 focus:ring-offset-1";
@@ -49,7 +56,8 @@ export function FormField(props: FormFieldProps) {
   const errorId = `${id}-error`;
   const helperId = `${id}-helper`;
   const [showPassword, setShowPassword] = useState(false);
-  const isPassword = props.as !== "textarea" && props.as !== "select" && props.type === "password";
+  const isPassword =
+    props.as !== "textarea" && props.as !== "select" && props.as !== "file" && props.type === "password";
   const borderClass = props.error
     ? "border-red-400 focus:border-red-500 focus:ring-red-200"
     : "border-gray-300 focus:border-brand-blue focus:ring-brand-blue/20";
@@ -99,6 +107,24 @@ export function FormField(props: FormFieldProps) {
             </option>
           ))}
         </select>
+      ) : props.as === "file" ? (
+        <div>
+          <input
+            id={id}
+            name={props.name}
+            type="file"
+            accept={props.accept}
+            required={props.required}
+            onChange={(e) => props.onFileChange(e.target.files?.[0] ?? null)}
+            onBlur={props.onBlurValidate}
+            aria-invalid={!!props.error}
+            aria-describedby={props.error ? errorId : props.helperText ? helperId : undefined}
+            className={`${FIELD_CLASSES} ${borderClass} cursor-pointer file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-brand-blue file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-white`}
+          />
+          {props.fileName && (
+            <p className="mt-1.5 text-sm text-gray-600">Selected: {props.fileName}</p>
+          )}
+        </div>
       ) : isPassword ? (
         <div className="relative">
           <input

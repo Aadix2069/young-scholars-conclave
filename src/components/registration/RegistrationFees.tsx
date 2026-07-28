@@ -84,10 +84,10 @@ export function RegistrationFees() {
         data-aos-delay="300"
       >
         <Link
-          href="/submit-paper"
+          href="/submit-abstract"
           className="inline-block rounded-lg bg-linear-to-b from-blue-700 to-brand-blue px-8 py-4 text-lg font-bold text-white no-underline shadow-lg transition duration-200 ease-[var(--ease-smooth)] hover:scale-105 hover:from-blue-800 hover:to-blue-900 active:scale-95"
         >
-          Submit a Paper
+          Submit Abstract
         </Link>
       </div>
       <p className="mt-4 text-center text-sm text-gray-500" data-aos="fade-up" data-aos-delay="350">
