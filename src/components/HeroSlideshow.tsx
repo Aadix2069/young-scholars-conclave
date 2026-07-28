@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination, A11y } from "swiper/modules";
+import { Autoplay, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 /**
@@ -52,12 +51,14 @@ export function HeroSlideshow() {
       // effect="fade" was removed: combined with loop, its CSS transition
       // never fired a transitionend event in testing, which permanently
       // stuck Swiper's internal `animating` flag at true after the first
-      // autoplay transition - silently disabling the nav arrows, pagination,
-      // and swipe/drag from that point on. The default slide transition
-      // doesn't have this failure mode with loop.
-      modules={[Autoplay, Navigation, Pagination, A11y]}
+      // autoplay transition - silently disabling navigation and swipe/drag
+      // from that point on. The default slide transition doesn't have this
+      // failure mode with loop.
+      //
+      // Prev/Next arrow buttons removed per admin feedback (unclickable in
+      // practice) - autoplay, pagination dots, and touch/drag swipe remain.
+      modules={[Autoplay, Pagination, A11y]}
       autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-      navigation
       pagination={{ clickable: true }}
       a11y={{ enabled: true }}
       loop

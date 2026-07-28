@@ -266,35 +266,11 @@ html {
   }
 }
 
-/* Hero slideshow controls - Swiper's defaults use its own theme blue and a
- * small hit area; these bring it in line with the conference palette and
- * give the arrows a comfortable touch target on mobile. */
+/* Hero slideshow pagination dots - Swiper's defaults use its own theme
+ * blue; this brings them in line with the conference palette. (Prev/Next
+ * arrow buttons were removed - see HeroSlideshow.tsx.) */
 .hero-swiper {
   --swiper-theme-color: var(--color-brand-gold);
-  --swiper-navigation-size: 24px;
-  --swiper-navigation-color: #ffffff;
   --swiper-pagination-bullet-inactive-color: #ffffff;
   --swiper-pagination-bullet-inactive-opacity: 0.5;
-}
-
-.hero-swiper .swiper-button-next,
-.hero-swiper .swiper-button-prev {
-  height: 44px;
-  width: 44px;
-  border-radius: 9999px;
-  background-color: rgb(0 0 0 / 0.25);
-  backdrop-filter: blur(4px);
-  transition: background-color 200ms var(--ease-smooth);
-}
-
-.hero-swiper .swiper-button-next:hover,
-.hero-swiper .swiper-button-prev:hover {
-  background-color: rgb(0 0 0 / 0.45);
-}
-
-@media (max-width: 640px) {
-  .hero-swiper .swiper-button-next,
-  .hero-swiper .swiper-button-prev {
-    display: none;
-  }
 }
