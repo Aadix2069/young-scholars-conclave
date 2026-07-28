@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { label: "Organisers", href: "/#organisers", hash: "#organisers" },
   { label: "Registration", href: "/registration", hash: null as string | null },
   { label: "Contact", href: "/#contact", hash: "#contact" },
+  { label: "Proceedings", href: "/proceedings", hash: null as string | null },
   { label: "Archive", href: "/archive", hash: null as string | null },
 ];
 
@@ -86,7 +87,7 @@ export function Navbar() {
             >
               ×
             </span>
-            <FASLogo className="h-8 w-auto shrink-0 sm:h-10" />
+            <FASLogo className="h-10 w-auto shrink-0 sm:h-12" />
             <span className="hidden h-8 w-px shrink-0 bg-gray-200 sm:block sm:h-10" aria-hidden="true" />
             <ConclaveLogo className="hidden shrink-0 sm:flex sm:h-11" />
           </Link>

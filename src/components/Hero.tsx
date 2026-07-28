@@ -42,17 +42,17 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4 text-center text-white"
+        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4 text-center text-white"
         initial={reduceMotion ? "visible" : "hidden"}
         animate="visible"
         variants={container}
       >
-        <motion.div className="absolute left-4 top-4 z-10" variants={fadeRight}>
+        <motion.div className="pointer-events-auto absolute left-4 top-4 z-10" variants={fadeRight}>
           <ChristLogo variant="white" className="h-12 w-auto sm:h-16" />
         </motion.div>
 
-        <motion.div className="absolute right-4 top-4 z-10" variants={fadeLeft}>
-          <FASLogo variant="white" className="h-12 w-auto sm:h-16" />
+        <motion.div className="pointer-events-auto absolute right-4 top-4 z-10" variants={fadeLeft}>
+          <FASLogo variant="white" className="h-16 w-auto sm:h-20" />
         </motion.div>
 
         <motion.div variants={fadeUp}>
@@ -70,7 +70,7 @@ export function Hero() {
           </p>
         </motion.div>
 
-        <motion.div className="mt-8" variants={fadeUp}>
+        <motion.div className="pointer-events-auto mt-8" variants={fadeUp}>
           <Link
             href="/registration"
             className="inline-flex items-center gap-2 rounded-full border-2 border-white bg-transparent px-8 py-3.5 text-base font-semibold text-white no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
@@ -81,7 +81,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-10 flex w-full flex-col items-center gap-6 px-4 sm:flex-row sm:justify-center sm:gap-16 md:absolute md:inset-x-0 md:bottom-8 md:mt-0"
+          className="pointer-events-auto mt-10 flex w-full flex-col items-center gap-6 px-4 sm:flex-row sm:justify-center sm:gap-16 md:absolute md:inset-x-0 md:bottom-8 md:mt-0"
           variants={fadeUp}
         >
           <div className="flex flex-col items-center">

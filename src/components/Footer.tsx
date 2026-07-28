@@ -21,7 +21,7 @@ export function Footer() {
           <div className="mb-4 flex flex-wrap items-center gap-4">
             <ChristLogo variant="white" className="h-auto w-32 sm:w-40" />
             <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
-            <FASLogo variant="white" className="h-14 w-auto shrink-0" />
+            <FASLogo variant="white" className="h-16 w-auto shrink-0" />
             <span className="h-10 w-px shrink-0 bg-white/25" aria-hidden="true" />
             <ConclaveLogo variant="white" className="h-11 shrink-0" />
           </div>
