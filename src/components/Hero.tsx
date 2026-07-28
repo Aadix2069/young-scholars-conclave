@@ -66,7 +66,7 @@ export function Hero() {
             Studying the Countryside in the Global South in the Twenty-First Century
           </p>
           <p className="text-lg opacity-90 sm:text-xl md:text-2xl">
-            1&ndash;3 December 2026 (alt. 2&ndash;4 December) &middot; Bengaluru
+            2 &ndash; 4 December 2026 &middot; Bengaluru
           </p>
         </motion.div>
 
