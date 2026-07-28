@@ -192,14 +192,14 @@ export function Navbar() {
             className="flex min-w-0 shrink-0 items-center gap-2.5 no-underline sm:gap-3"
             aria-label="Young Scholars' Conclave — a collaboration between CHRIST (Deemed to be University) and the Foundation for Agrarian Studies"
           >
-            <ChristLogo variant="color" className="h-auto w-28 shrink-0 sm:w-36" />
+            <ChristLogo variant="color" className="h-auto w-20 shrink-0 sm:w-36" />
             <span
               className="shrink-0 text-lg font-light text-brand-gold sm:text-xl"
               aria-hidden="true"
             >
               ×
             </span>
-            <FASLogo className="h-auto w-28 shrink-0 sm:w-36" />
+            <FASLogo className="h-auto w-20 shrink-0 sm:w-36" />
             <span className="hidden h-8 w-px shrink-0 bg-gray-200 sm:block sm:h-10" aria-hidden="true" />
             <ConclaveLogo className="hidden shrink-0 sm:flex sm:h-11" />
           </Link>

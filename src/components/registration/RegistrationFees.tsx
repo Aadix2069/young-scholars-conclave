@@ -34,13 +34,13 @@ export function RegistrationFees() {
             <tr>
               <th
                 scope="col"
-                className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider text-gray-700"
+                className="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 sm:px-6 sm:py-4 sm:text-sm"
               >
                 Category
               </th>
               <th
                 scope="col"
-                className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider text-gray-700"
+                className="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 sm:px-6 sm:py-4 sm:text-sm"
               >
                 Fee (INR)
               </th>
@@ -52,11 +52,11 @@ export function RegistrationFees() {
                 key={category}
                 className="transition-colors duration-200 ease-[var(--ease-smooth)] hover:bg-blue-50"
               >
-                <td className="whitespace-nowrap px-6 py-4 text-base font-medium text-gray-900">
+                <td className="px-3 py-3 text-sm font-medium text-gray-900 sm:whitespace-nowrap sm:px-6 sm:py-4 sm:text-base">
                   {category}
                 </td>
-                <td className="whitespace-nowrap px-6 py-4 text-base text-gray-700">
-                  <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <td className="px-3 py-3 text-sm text-gray-700 sm:whitespace-nowrap sm:px-6 sm:py-4 sm:text-base">
+                  <span className="inline-flex items-center whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500 sm:px-3 sm:text-xs">
                     To be announced
                   </span>
                 </td>
