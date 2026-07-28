@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { label: "Themes", href: "/#themes", hash: "#themes" },
   { label: "Call for Papers", href: "/#call-for-papers", hash: "#call-for-papers" },
   { label: "Organisers", href: "/#organisers", hash: "#organisers" },
+  { label: "List of Scholars", href: "/#scholars", hash: "#scholars" },
   { label: "Registration", href: "/registration", hash: null as string | null },
   { label: "Contact", href: "/#contact", hash: "#contact" },
   { label: "Proceedings", href: "/proceedings", hash: null as string | null },
