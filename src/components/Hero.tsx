@@ -48,11 +48,11 @@ export function Hero() {
         variants={container}
       >
         <motion.div className="pointer-events-auto absolute left-4 top-4 z-10" variants={fadeRight}>
-          <ChristLogo variant="white" className="h-12 w-auto sm:h-16" />
+          <ChristLogo variant="white" className="h-auto w-36 sm:w-48" />
         </motion.div>
 
         <motion.div className="pointer-events-auto absolute right-4 top-4 z-10" variants={fadeLeft}>
-          <FASLogo variant="white" className="h-16 w-auto sm:h-20" />
+          <FASLogo variant="white" className="h-auto w-36 sm:w-48" />
         </motion.div>
 
         <motion.div variants={fadeUp}>
