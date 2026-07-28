@@ -59,7 +59,7 @@ export function Hero() {
           <p className="mb-3 text-sm font-semibold text-white sm:text-base">
             Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
           </p>
-          <h1 className="mb-3 text-15xl font-bold leading-tight opacity-90 sm:text-4xl md:text-6xl">
+          <h1 className="mb-3 text-3xl font-bold leading-tight opacity-90 sm:text-4xl md:text-6xl">
             Young Scholars&rsquo; Conclave
           </h1>
           <p className="mb-2 text-base italic opacity-90 sm:text-lg md:text-2xl">
