@@ -22,6 +22,6 @@ export const ARCHIVE_YEARS: ArchiveYear[] = [
     year: 2026,
     status: "upcoming",
     description: "Records will be added here once the 2026 Conclave concludes.",
-    spreadsheetId: "",
+    spreadsheetId: "1HSeMqZpNfqDdA8Uevsv7HaMtA1O2OpCv4RBHpWZ6YwM",
   },
 ];
