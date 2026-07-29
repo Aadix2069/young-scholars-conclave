@@ -8,7 +8,19 @@ function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-  window.scrollTo({ top, behavior: "smooth" });
+
+  // `behavior: "auto"` does NOT force an instant jump - per spec it means
+  // "defer to the scrolling box's `scroll-behavior` CSS property", and
+  // <html> has `scroll-smooth` (globals.css/layout.tsx), so "auto" still
+  // animates. That CSS-driven smooth-scroll path is exactly the one that's
+  // unreliable here (the original bug). The only way to force a real
+  // instant jump regardless of CSS is to override the CSS property itself
+  // for the duration of this call, then restore it.
+  const html = document.documentElement;
+  const previousScrollBehavior = html.style.scrollBehavior;
+  html.style.scrollBehavior = "auto";
+  window.scrollTo({ top, behavior: "auto" });
+  html.style.scrollBehavior = previousScrollBehavior;
 }
 
 /**
@@ -46,13 +58,20 @@ export function HashScrollHandler() {
       const onCurrentPage = path === "" || path === window.location.pathname;
       if (!onCurrentPage || !hash) return;
 
+      // Must intercept during the capture phase, before Next.js's own
+      // <Link> click handler (React's bubble-phase delegated listener)
+      // runs its own client-side navigation and (unreliable) scroll
+      // logic - a bubble-phase listener here runs too late: Next's
+      // handler has already fired by the time this one does, and its
+      // aftereffects clobber the scroll position this sets.
       event.preventDefault();
+      event.stopPropagation();
       history.pushState(null, "", `${window.location.pathname}#${hash}`);
       scrollToId(hash);
     }
 
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
   return null;
