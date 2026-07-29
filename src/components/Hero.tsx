@@ -62,6 +62,7 @@ export function Hero() {
           <h1 className="mb-3 text-3xl font-bold leading-tight opacity-90 sm:text-4xl md:text-6xl">
             Young Scholars&rsquo; Conclave
           </h1>
+          <p><i>“Studying the Countryside in the Global South in the Twenty-First Century”</i></p>
           <p className="text-lg opacity-90 sm:text-xl md:text-2xl">
             2&ndash;4 December 2026 &middot; Bengaluru
           </p>
