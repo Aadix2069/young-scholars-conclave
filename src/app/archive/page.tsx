@@ -3,24 +3,12 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ArchiveYearList } from "@/components/archive/ArchiveYearList";
 import { ArchiveLogoutButton } from "@/components/archive/ArchiveLogoutButton";
+import { ARCHIVE_YEARS } from "@/lib/archiveYears";
 
 export const metadata: Metadata = {
   title: "Archive | Young Scholars' Conclave",
   robots: { index: false, follow: false },
 };
-
-/**
- * Every year the Conclave runs, add an entry here. Each year is its own
- * scalable slot for that edition's papers, presentations, proceedings,
- * reports, and photos - the archive grows without any structural change.
- */
-const ARCHIVE_YEARS = [
-  {
-    year: 2026,
-    status: "upcoming" as const,
-    description: "Records will be added here once the 2026 Conclave concludes.",
-  },
-];
 
 export default function ArchivePage() {
   return (
