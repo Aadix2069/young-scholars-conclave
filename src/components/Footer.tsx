@@ -28,8 +28,7 @@ export function Footer() {
           <p className="text-justify text-sm leading-relaxed">
             Young Scholars&rsquo; Conclave 2026, jointly organised by the
             Foundation for Agrarian Studies (FAS) and CHRIST (Deemed to be
-            University), Bengaluru &mdash; 1&ndash;3 December 2026
-            (alt. 2&ndash;4 December).
+            University), Bengaluru &mdash; 2&ndash;4 December 2026.
           </p>
         </div>
 

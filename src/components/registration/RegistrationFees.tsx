@@ -1,11 +1,6 @@
 import Link from "next/link";
 
-const FEES = [
-  { category: "UG/PG Students" },
-  { category: "Research Scholars" },
-  { category: "Faculty members" },
-  { category: "Professionals" },
-];
+const FEES = [{ category: "Research Scholars", fee: "₹3,000" }];
 
 export function RegistrationFees() {
   return (
@@ -21,7 +16,7 @@ export function RegistrationFees() {
         className="mx-auto mb-10 max-w-2xl text-center text-sm text-gray-500"
         data-aos="fade-up"
       >
-        Fee amounts will be announced closer to the Conclave.
+        Registration fee for the Young Scholars&rsquo; Conclave 2026.
       </p>
 
       <div
@@ -47,7 +42,7 @@ export function RegistrationFees() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {FEES.map(({ category }) => (
+            {FEES.map(({ category, fee }) => (
               <tr
                 key={category}
                 className="transition-colors duration-200 ease-[var(--ease-smooth)] hover:bg-blue-50"
@@ -56,9 +51,7 @@ export function RegistrationFees() {
                   {category}
                 </td>
                 <td className="px-3 py-3 text-sm text-gray-700 sm:whitespace-nowrap sm:px-6 sm:py-4 sm:text-base">
-                  <span className="inline-flex items-center whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-gray-500 sm:px-3 sm:text-xs">
-                    To be announced
-                  </span>
+                  {fee}
                 </td>
               </tr>
             ))}

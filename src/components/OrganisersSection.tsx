@@ -8,36 +8,19 @@ import { PersonAvatar } from "./PersonAvatar";
  * An empty string shows a branded initials circle instead.
  */
 const EXPERTS = [
-  { name: "Jayan Jose Thomas", affiliation: "Indian Institute of Technology, Delhi", photo: "" },
   { name: "Jayaraman T", affiliation: "National Institute of Advanced Study, Bengaluru", photo: "" },
-  { name: "Jens Lerche", affiliation: "School of Oriental and Asian Studies, UK", photo: "" },
-  { name: "John Harris", affiliation: "Simon Fraser University, Canada", photo: "" },
-  { name: "Judith Heyer", affiliation: "University of Oxford, UK", photo: "" },
   { name: "Madhura Swaminathan", affiliation: "Indian Statistical Institute, Bengaluru", photo: "" },
-  { name: "P. C. Mohanan", affiliation: "Former Chairperson, Kerala State Statistical Commission", photo: "" },
-  { name: "R. Ramkumar", affiliation: "Tata Institute of Social Sciences, Mumbai", photo: "" },
-  { name: "Surjit Vikraman", affiliation: "National Institute of Rural Development, Hyderabad", photo: "" },
-  { name: "Tejal Kanitkar", affiliation: "Indira Gandhi Institute of Development Research, Mumbai", photo: "" },
   { name: "V. K. Ramachandran", affiliation: "Former Professor, Indian Statistical Institute, Bengaluru", photo: "" },
-  { name: "Venkatesh Athreya", affiliation: "Former Professor, Bharathidasan University, Tiruchirappalli", photo: "" },
-  { name: "Yoshifumi Usami", affiliation: "Osaka Prefecture University, Japan", photo: "" },
 ];
 
 const SENIOR_SCHOLARS = [
   { name: "Anirban Kundu", affiliation: "CHRIST University, Bengaluru", photo: "" },
-  { name: "Aravindan Nagarajan", affiliation: "Azim Premji University, Bengaluru", photo: "" },
   { name: "Arindam Das", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
-  { name: "Bheemeshwar Reddy", affiliation: "Birla Institute of Technology and Science, Hyderabad", photo: "" },
   { name: "Bineetha P. Bose", affiliation: "CHRIST University, Bengaluru", photo: "" },
   { name: "Deepak Johnson", affiliation: "CHRIST University, Bengaluru", photo: "" },
   { name: "Harshan T. P.", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
   { name: "Jayesh M. P.", affiliation: "CHRIST University, Bengaluru", photo: "" },
-  { name: "Mihika Chatterjee", affiliation: "University of Bath, UK", photo: "" },
-  { name: "Niladri Sekhar Dhar", affiliation: "Bihar Institute of Public Finance and Policy, Patna", photo: "" },
-  { name: "Niyati Singaraju", affiliation: "International Rice Research Institute, Hyderabad", photo: "" },
-  { name: "Ranjini Basu", affiliation: "RV University, Bengaluru", photo: "" },
   { name: "Sandipan Baksi", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
-  { name: "Soundarya Iyer", affiliation: "RV University, Bengaluru", photo: "" },
   { name: "Tapas Modak Singh", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
   { name: "Vineeth M.", affiliation: "CHRIST University, Bengaluru", photo: "" },
 ];
@@ -112,13 +95,6 @@ export function OrganisersSection() {
             Experts
           </h3>
           <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
-          <p
-            className="mx-auto mt-3 max-w-2xl text-center text-sm text-gray-500"
-            data-aos="fade-up"
-          >
-            Pool of experts under consideration &mdash; a final panel of five
-            will be confirmed.
-          </p>
           <PersonList people={EXPERTS} />
         </div>
 
@@ -130,13 +106,6 @@ export function OrganisersSection() {
             Senior Scholars
           </h3>
           <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
-          <p
-            className="mx-auto mt-3 max-w-2xl text-center text-sm text-gray-500"
-            data-aos="fade-up"
-          >
-            Pool of senior scholars under consideration &mdash; a final panel
-            of eight (four per session) will be confirmed.
-          </p>
           <PersonList people={SENIOR_SCHOLARS} />
         </div>
       </div>

@@ -23,6 +23,7 @@ var REGISTRATION_HEADERS = [
   "Phone",
   "Institution/Affiliation",
   "Category",
+  "Gender",
   "Country",
   "Dietary Requirements",
 ];
@@ -81,7 +82,7 @@ function doPost(e) {
 }
 
 function handleRegistration(data) {
-  var required = ["fullName", "email", "institution", "category"];
+  var required = ["fullName", "email", "institution", "category", "gender"];
   var missing = findMissingFields(data, required);
   if (missing.length > 0) {
     return { success: false, message: "Missing required field(s): " + missing.join(", ") };
@@ -106,6 +107,7 @@ function handleRegistration(data) {
     data.phone || "",
     data.institution,
     data.category,
+    data.gender,
     data.country || "",
     data.dietaryRequirements || "",
   ]);

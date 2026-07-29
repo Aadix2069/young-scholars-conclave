@@ -12,20 +12,8 @@ import "swiper/css/pagination";
  */
 const HERO_SLIDES: { src: string; alt: string }[] = [
   {
-    src: "/hero/conference-hall-1.jpg",
-    alt: "Delegates seated at a CHRIST Economics Department conference session",
-  },
-  {
     src: "/hero/conference-hall-2.jpg",
     alt: "Attendees at a past CHRIST Economics Department conference",
-  },
-  {
-    src: "/hero/conference-hall-3.jpeg",
-    alt: "Faculty and delegates in discussion around a conference table",
-  },
-  {
-    src: "/hero/conference-hall-5.jpeg",
-    alt: "Committee members in a planning meeting",
   },
   {
     src: "/hero/conference-hall-6.jpeg",
@@ -34,14 +22,6 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
   {
     src: "/hero/conference-hall-7.jpeg",
     alt: "Delegates seated in discussion at a conference session",
-  },
-  {
-    src: "/hero/christ-campus-1.png",
-    alt: "CHRIST (Deemed to be University) Yeshwanthpur campus building",
-  },
-  {
-    src: "/hero/christ-campus-2.jpg",
-    alt: "CHRIST (Deemed to be University) main campus entrance",
   },
 ];
 

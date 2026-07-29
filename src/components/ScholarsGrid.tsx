@@ -123,7 +123,7 @@ export async function ScholarsGrid() {
             <p className="mt-2 text-justify text-sm leading-6 text-gray-600">
               Accepted scholars will be announced here following the
               Communication of Acceptance on 20 September 2026, ahead of the
-              Conclave on 1&ndash;3 December 2026.
+              Conclave on 2&ndash;4 December 2026.
             </p>
           </div>
         ) : (
