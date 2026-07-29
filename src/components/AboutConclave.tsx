@@ -10,7 +10,7 @@ export function AboutConclave() {
     >
       <SectionAccent position="top-right" />
       <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">
-        <Eyebrow className="text-center">Overview</Eyebrow>
+        
         <h2
           className="text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"

@@ -56,7 +56,7 @@ export function ThemesSection() {
     >
       <SectionAccent position="top-left" />
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <Eyebrow className="text-center">Themes</Eyebrow>
+        
         <h2
           className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"

@@ -43,7 +43,6 @@ export function DatesTimeline() {
     <section id="dates" className="relative overflow-hidden bg-brand-sand/30 py-16 md:py-24">
       <SectionAccent position="top-right" />
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <Eyebrow className="text-center">Dates</Eyebrow>
         <h2
           className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"

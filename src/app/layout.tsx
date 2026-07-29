@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AosInit } from "@/components/AosInit";
 import { FloatingCta } from "@/components/FloatingCta";
+import { HashScrollHandler } from "@/components/HashScrollHandler";
 
 export const metadata: Metadata = {
   title: "Young Scholars' Conclave 2026 | FAS & CHRIST University",
@@ -32,6 +33,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <AosInit />
+        <HashScrollHandler />
         {children}
         <FloatingCta />
       </body>
