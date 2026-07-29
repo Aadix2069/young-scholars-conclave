@@ -18,10 +18,7 @@ export function CallForPapersSection() {
         <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
         <p className="mt-5 text-justify text-base leading-7 text-white/80 sm:text-lg">
           Young scholars working on agrarian studies and rural India are
-          invited to submit their research. Applicants must be either at an
-          advanced stage of their Ph.D. research, or have completed their
-          Ph.D. within the last five years.
-        </p>
+          invited to submit their research.</p>
 
         <dl className="mx-auto mt-8 grid max-w-md grid-cols-1 gap-4 text-left sm:grid-cols-2">
           <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">
