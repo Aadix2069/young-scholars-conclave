@@ -11,9 +11,7 @@ export function CallForPapersSection() {
     >
       <SectionAccent variant="dark" position="bottom-left" />
       <div className="mx-auto max-w-3xl px-6 text-center lg:px-10" data-aos="fade-up">
-        <Eyebrow variant="dark" className="text-center">
-          Submissions
-        </Eyebrow>
+       
         <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
           Call for Papers
         </h2>
