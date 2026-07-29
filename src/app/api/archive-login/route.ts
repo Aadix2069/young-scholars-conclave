@@ -16,7 +16,9 @@ export async function POST(request: Request) {
     return Response.json({ success: false, message: "Invalid request." }, { status: 400 });
   }
 
-  if (body.password !== ARCHIVE_PASSWORD) {
+  // Trim so an accidental trailing space/newline from a copy-paste
+  // doesn't fail an otherwise-correct password.
+  if ((body.password ?? "").trim() !== ARCHIVE_PASSWORD.trim()) {
     return Response.json({ success: false, message: "Incorrect password." }, { status: 401 });
   }
 
