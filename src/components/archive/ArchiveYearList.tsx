@@ -6,14 +6,17 @@ import type { ArchiveYear } from "@/lib/archiveYears";
  * is one more entry in the ARCHIVE_YEARS array (src/app/archive/page.tsx) -
  * no structural change needed as the archive grows across years.
  *
- * A card links to /archive/[year] only once that year has a
- * spreadsheetId set - otherwise it stays a non-clickable placeholder.
+ * A card links to /archive/[year] only once that year has at least one
+ * of its three CSV links set - otherwise it stays a non-clickable
+ * placeholder.
  */
 export function ArchiveYearList({ years }: { years: ArchiveYear[] }) {
   return (
     <div className="mx-auto mt-10 max-w-4xl space-y-4">
       {years.map((entry) => {
-        const hasData = Boolean(entry.spreadsheetId);
+        const hasData = Boolean(
+          entry.csvUrls?.registrations || entry.csvUrls?.abstracts || entry.csvUrls?.papers
+        );
         const card = (
           <div
             className={`flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-[transform,box-shadow] duration-200 ease-[var(--ease-smooth)] sm:flex-row sm:items-center sm:justify-between ${

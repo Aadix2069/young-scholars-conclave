@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { ArchiveLogoutButton } from "@/components/archive/ArchiveLogoutButton";
 import { YearDataTabs } from "@/components/archive/YearDataTabs";
 import { ARCHIVE_YEARS } from "@/lib/archiveYears";
-import { ArchiveSheetsError, getYearSubmissions } from "@/lib/archiveSheets";
+import { getYearSubmissions } from "@/lib/archiveSheets";
 
 export const metadata: Metadata = {
   title: "Archive | Young Scholars' Conclave",
@@ -21,21 +21,15 @@ export default async function ArchiveYearPage({
   const { year: yearParam } = await params;
   const year = Number(yearParam);
   const entry = ARCHIVE_YEARS.find((y) => y.year === year);
+  const hasAnyUrl = Boolean(
+    entry?.csvUrls?.registrations || entry?.csvUrls?.abstracts || entry?.csvUrls?.papers
+  );
 
-  if (!entry || !entry.spreadsheetId) {
+  if (!entry || !hasAnyUrl) {
     notFound();
   }
 
-  let errorMessage: string | null = null;
-  let notConfigured = false;
-  let submissions: Awaited<ReturnType<typeof getYearSubmissions>> = null;
-
-  try {
-    submissions = await getYearSubmissions(entry.spreadsheetId);
-    notConfigured = submissions === null;
-  } catch (err) {
-    errorMessage = err instanceof ArchiveSheetsError ? err.message : "Couldn't load this year's data.";
-  }
+  const submissions = await getYearSubmissions(entry.csvUrls ?? {});
 
   return (
     <div className="flex flex-1 flex-col">
@@ -59,30 +53,12 @@ export default async function ArchiveYearPage({
               <ArchiveLogoutButton />
             </div>
 
-            {notConfigured && (
-              <p className="mx-auto mt-10 max-w-xl rounded-xl border border-dashed border-brand-gold/40 bg-brand-green/5 px-6 py-10 text-center text-base text-gray-600">
-                Archive data isn&rsquo;t connected yet. Set the Google service account
-                credentials to view submissions here.
-              </p>
-            )}
-
-            {errorMessage && (
-              <p
-                role="alert"
-                className="mx-auto mt-10 max-w-xl rounded-xl border border-red-300 bg-red-50 px-6 py-10 text-center text-base text-red-700"
-              >
-                {errorMessage}
-              </p>
-            )}
-
-            {submissions && (
-              <YearDataTabs
-                year={year}
-                registrations={submissions.registrations}
-                abstracts={submissions.abstracts}
-                papers={submissions.papers}
-              />
-            )}
+            <YearDataTabs
+              year={year}
+              registrations={submissions.registrations}
+              abstracts={submissions.abstracts}
+              papers={submissions.papers}
+            />
           </div>
         </div>
       </main>
