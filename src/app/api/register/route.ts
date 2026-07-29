@@ -6,6 +6,7 @@ type RegistrationPayload = {
   phone: string;
   institution: string;
   category: string;
+  gender: string;
   country?: string;
   dietaryRequirements?: string;
 };
@@ -16,6 +17,7 @@ const REQUIRED_FIELDS: (keyof RegistrationPayload)[] = [
   "phone",
   "institution",
   "category",
+  "gender",
 ];
 
 export async function POST(request: Request) {

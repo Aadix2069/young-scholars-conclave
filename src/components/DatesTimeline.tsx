@@ -32,7 +32,7 @@ const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeI
     Icon: DocumentIcon,
   },
   {
-    date: "1–3 Dec 2026 (alt. 2–4 Dec)",
+    date: "2–4 Dec 2026",
     label: "Conclave Dates",
     Icon: SparklesIcon,
   },

@@ -4,7 +4,10 @@ import { useRef, useState } from "react";
 import { FormField } from "../forms/FormField";
 import { useFormSubmit } from "../forms/useFormSubmit";
 
-const CATEGORIES = [ "Research Scholars", "Faculty members", "Professionals"];
+const FIXED_CATEGORY = "Research Scholars";
+const FIXED_CATEGORY_FEE = "₹3,000";
+
+const GENDERS = ["Male", "Female", "Other", "Prefer not to say"];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -13,7 +16,7 @@ type Fields = {
   email: string;
   phone: string;
   institution: string;
-  category: string;
+  gender: string;
   country: string;
   dietaryRequirements: string;
 };
@@ -23,12 +26,12 @@ const EMPTY_FIELDS: Fields = {
   email: "",
   phone: "",
   institution: "",
-  category: "",
+  gender: "",
   country: "",
   dietaryRequirements: "",
 };
 
-const REQUIRED: (keyof Fields)[] = ["fullName", "email","phone", "institution", "category"];
+const REQUIRED: (keyof Fields)[] = ["fullName", "email", "phone", "institution", "gender"];
 
 function validate(fields: Fields): Partial<Record<keyof Fields, string>> {
   const errors: Partial<Record<keyof Fields, string>> = {};
@@ -67,7 +70,7 @@ export function RegistrationForm() {
       return;
     }
 
-    const success = await submit(fields);
+    const success = await submit({ ...fields, category: FIXED_CATEGORY });
     if (success) {
       setFields(EMPTY_FIELDS);
       setErrors({});
@@ -149,18 +152,30 @@ export function RegistrationForm() {
         error={errors.institution}
       />
 
-      <FormField
-        as="select"
-        label="Category"
-        name="category"
-        required
-        placeholder="Select your category"
-        options={CATEGORIES}
-        value={fields.category}
-        onChange={(v) => setField("category", v)}
-        onBlurValidate={() => validateField("category")}
-        error={errors.category}
-      />
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <span className="mb-1.5 block text-sm font-semibold text-gray-800">Category</span>
+          <div className="flex min-h-11 items-center justify-between rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5">
+            <span className="text-base text-brand-charcoal">{FIXED_CATEGORY}</span>
+            <span className="text-sm font-semibold text-brand-blue">{FIXED_CATEGORY_FEE}</span>
+          </div>
+          <p className="mt-1.5 text-sm text-gray-500">
+            Registration is currently open to Research Scholars only.
+          </p>
+        </div>
+        <FormField
+          as="select"
+          label="Gender"
+          name="gender"
+          required
+          placeholder="Select your gender"
+          options={GENDERS}
+          value={fields.gender}
+          onChange={(v) => setField("gender", v)}
+          onBlurValidate={() => validateField("gender")}
+          error={errors.gender}
+        />
+      </div>
 
       <FormField
         as="textarea"

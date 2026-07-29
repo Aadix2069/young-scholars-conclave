@@ -36,8 +36,7 @@ export function ConclaveOverview() {
         <p className="text-justify text-base leading-8 text-gray-700">
           In 2026, FAS and CHRIST (Deemed to be University) are jointly
           organising an in-person conclave of young scholars in Bengaluru on
-          1&ndash;3 December 2026 (alternative dates: 2&ndash;4 December
-          2026). Barbara Harriss-White, Emeritus Professor of Development
+          2&ndash;4 December 2026. Barbara Harriss-White, Emeritus Professor of Development
           Studies, University of Oxford, will serve as the academic
           convenor of the event. The conclave will provide young
           researchers an opportunity to present their research, engage with

@@ -6,7 +6,7 @@ import { FloatingCta } from "@/components/FloatingCta";
 export const metadata: Metadata = {
   title: "Young Scholars' Conclave 2026 | FAS & CHRIST University",
   description:
-    "Young Scholars' Conclave 2026 — jointly organised by the Foundation for Agrarian Studies (FAS) and CHRIST (Deemed to be University), Bengaluru. 1–3 December 2026 (alt. 2–4 December). Studying the Countryside in the Global South in the Twenty-First Century.",
+    "Young Scholars' Conclave 2026 — jointly organised by the Foundation for Agrarian Studies (FAS) and CHRIST (Deemed to be University), Bengaluru. 2–4 December 2026. Studying the Countryside in the Global South in the Twenty-First Century.",
 };
 
 export default function RootLayout({
