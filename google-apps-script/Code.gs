@@ -115,6 +115,8 @@ function handleRegistration(data) {
   return { success: true, message: "Registration received." };
 }
 
+var ABSTRACT_PREVIEW_LENGTH = 150;
+
 function handleAbstractSubmission(data) {
   var required = ["paperTitle", "authorNames", "email", "institution", "theme", "abstract"];
   var missing = findMissingFields(data, required);
@@ -127,6 +129,12 @@ function handleAbstractSubmission(data) {
 
   var sheet = getOrCreateSheet("Abstract Submissions", ABSTRACT_HEADERS);
 
+  var fullAbstract = data.abstract;
+  var preview =
+    fullAbstract.length > ABSTRACT_PREVIEW_LENGTH
+      ? fullAbstract.slice(0, ABSTRACT_PREVIEW_LENGTH) + "…"
+      : fullAbstract;
+
   sheet.appendRow([
     new Date(),
     data.paperTitle,
@@ -134,8 +142,15 @@ function handleAbstractSubmission(data) {
     data.email,
     data.institution,
     data.theme,
-    data.abstract,
+    preview,
   ]);
+
+  // Keeps the row height normal regardless of abstract length - the full
+  // text is still there in full, just as a hover note on the cell instead
+  // of the visible value, since abstracts run 50+ words and would
+  // otherwise blow out the row.
+  var abstractColumn = ABSTRACT_HEADERS.indexOf("Abstract") + 1;
+  sheet.getRange(sheet.getLastRow(), abstractColumn).setNote(fullAbstract);
 
   return { success: true, message: "Abstract submitted." };
 }

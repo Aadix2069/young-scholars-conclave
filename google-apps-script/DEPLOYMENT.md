@@ -57,3 +57,12 @@ Saving alone does not update the live Web App — Apps Script Web Apps are versi
 - Uploaded files are capped at **3MB** (checked on the website before the file is sent, and re-checked in `Code.gs`) to stay well under Vercel's default request body size limit, since the file is sent as base64 inside the JSON payload.
 - Accepted file types: PDF, DOC, DOCX.
 - Files are stored in a Drive folder named "YSC 2026 — Paper Submissions" (auto-created on first submission, in the Drive of whichever account the script is deployed as), shared as "anyone with the link can view" so the link in the sheet is directly usable.
+
+## Notes on the Abstract Submissions sheet
+
+- The **Abstract** column only shows the first 150 characters of each
+  submission (plus "…"), so a long abstract doesn't blow out that row's
+  height. The full text isn't lost — it's attached to the cell as a
+  **note**: hover over the cell (small black triangle in the corner) to
+  read it in full, or click the cell and check the note panel. Copying
+  the cell's value still only copies the preview, not the full note.
