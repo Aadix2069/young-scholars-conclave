@@ -15,7 +15,11 @@ const container: Variants = {
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: EASE_SMOOTH },
+  },
 };
 
 export function Hero() {
@@ -24,75 +28,84 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex h-[85vh] min-h-[600px] w-full items-end overflow-hidden"
+      className="relative h-[85vh] min-h-[600px] w-full overflow-hidden"
     >
       <div className="absolute inset-0 -z-10 h-full w-full">
         <HeroSlideshow />
       </div>
 
-      {/* Bottom-anchored gradient - the top ~35% of each photo stays
-          clear, darkening progressively toward the bottom where the text
-          sits. Made deliberately strong at the very bottom (black/90) so
-          it holds up against whichever photo is currently showing,
-          combined with the heavy text-shadow below as a second layer of
-          contrast insurance - together these hold up across bright and
-          dark slides alike without needing a visible panel/card over the
-          photos. */}
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent"
         aria-hidden="true"
       />
 
       <motion.div
-        className="pointer-events-none relative z-10 w-full px-4 pb-10 text-center text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_16px_rgba(0,0,0,0.8)] sm:pb-14 md:pb-16"
+        className="relative z-10 flex h-full flex-col justify-between px-4 pt-16 pb-10 text-center text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_16px_rgba(0,0,0,0.8)] sm:pt-20 sm:pb-14 md:pt-24 md:pb-16 lg:pt-28 xl:pt-32"
         initial={reduceMotion ? "visible" : "hidden"}
         animate="visible"
         variants={container}
       >
-        <motion.div variants={fadeUp}>
-          <p className="mb-2 text-sm font-semibold text-white/90 sm:text-base">
+        {/* ================= TITLE ================= */}
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mt-0 max-w-5xl"
+        >
+          <p className="mb-3 text-sm font-semibold text-white/90 sm:text-base">
             Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
           </p>
-          <h1 className="text-3xl font-bold leading-tight sm:text-4xl md:text-6xl">
+
+          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             Young Scholars&rsquo; Conclave
           </h1>
-          <p className="mx-auto mt-2 max-w-2xl text-sm italic text-white/85 sm:text-base">
+
+          <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
             &ldquo;Studying the Countryside in the Global South in the
             Twenty-First Century&rdquo;
           </p>
-          <p className="mt-2 text-lg text-white/90 sm:text-xl md:text-2xl">
+
+          <p className="mt-3 text-lg text-white/90 sm:text-xl md:text-2xl">
             2&ndash;4 December 2026 &middot; Bengaluru
           </p>
         </motion.div>
 
-        <motion.div className="pointer-events-auto mt-6" variants={fadeUp}>
-          <Link
-            href="/registration"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-white bg-transparent px-8 py-3.5 text-base font-semibold text-white no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
+        {/* ================= BUTTON + COUNTDOWN ================= */}
+        <div className="pb-2">
+          <motion.div
+            className="pointer-events-auto"
+            variants={fadeUp}
           >
-            Register Now
-            <ArrowRightIcon className="animate-nudge-x h-4 w-4" />
-          </Link>
-        </motion.div>
+            <Link
+              href="/registration"
+              className="inline-flex items-center gap-2 rounded-full border border-white bg-transparent px-8 py-3.5 text-base font-semibold text-white no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
+            >
+              Register Now
+              <ArrowRightIcon className="animate-nudge-x h-4 w-4" />
+            </Link>
+          </motion.div>
 
-        <motion.div
-          className="pointer-events-auto mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-12"
-          variants={fadeUp}
-        >
-          <div className="flex flex-col items-center">
-            <h3 className="mb-2 text-sm font-semibold text-white/90 sm:text-base">
-              Conclave Starts In
-            </h3>
-            <ConclaveCountdown />
-          </div>
-          <div className="flex items-center gap-2 text-sm font-semibold text-white/90 sm:text-base">
-            <span className="relative flex h-2.5 w-2.5 shrink-0" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
-            </span>
-            Full Papers Due 10 November 2026
-          </div>
-        </motion.div>
+          <motion.div
+            className="pointer-events-auto mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-12"
+            variants={fadeUp}
+          >
+            <div className="flex flex-col items-center">
+              <h3 className="mb-2 text-sm font-semibold text-white/90 sm:text-base">
+                Conclave Starts In
+              </h3>
+              <ConclaveCountdown />
+            </div>
+
+            <div className="flex items-center gap-2 text-sm font-semibold text-white/90 sm:text-base">
+              <span
+                className="relative flex h-2.5 w-2.5 shrink-0"
+                aria-hidden="true"
+              >
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
+              </span>
+              Full Papers Due 10 November 2026
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );
