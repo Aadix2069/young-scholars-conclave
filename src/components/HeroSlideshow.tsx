@@ -23,6 +23,14 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
     src: "/hero/conference-hall-7.jpeg",
     alt: "Delegates seated in discussion at a conference session",
   },
+  {
+    src: "/hero/conference-hall-8.jpeg",
+    alt: "Delegates seated in discussion at a conference session",
+  },
+  {
+    src: "/hero/conference-hall-9.jpeg",
+    alt: "Delegates seated in discussion at a conference session",
+  },
 ];
 
 export function HeroSlideshow() {
