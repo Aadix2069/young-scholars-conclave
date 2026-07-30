@@ -27,7 +27,7 @@ const NAV_ENTRIES: NavEntry[] = [
     items: [
       { label: "Conclave", href: "/about/conclave", hash: null },
       { label: "FAS", href: "/about/fas", hash: null },
-      { label: "CHRIST", href: "/about/christ", hash: null },
+      { label: "CU-BYC", href: "/about/christ", hash: null },
     ],
   },
   {
