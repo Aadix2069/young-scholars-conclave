@@ -7,7 +7,7 @@ export function AboutChristUniversity() {
         className="mb-3 text-center text-5xl font-extrabold text-brand-blue"
         data-aos="fade-up"
       >
-        CHRIST
+        CHRIST (Deemed to be University)
       </h2>
       <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
 
