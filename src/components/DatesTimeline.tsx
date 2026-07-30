@@ -1,5 +1,4 @@
 import { CalendarIcon, CheckBadgeIcon, DocumentIcon, MegaphoneIcon, SparklesIcon } from "./icons";
-import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 
 /**

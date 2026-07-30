@@ -4,7 +4,7 @@ import { SectionAccent } from "./SectionAccent";
 
 const USEFUL_LINKS = [
   { label: "CHRIST (Deemed to be University)", href: "https://christuniversity.in/", external: true },
-  { label: "About the Conclave", href: "/about", external: false },
+  { label: "About the Conclave", href: "/about/conclave", external: false },
   { label: "Themes", href: "/#themes", external: false },
   { label: "Call for Papers", href: "/#call-for-papers", external: false },
   { label: "Contact", href: "/#contact", external: false },

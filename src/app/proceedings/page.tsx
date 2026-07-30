@@ -8,7 +8,7 @@ import {
 } from "@/components/proceedings/ProceedingsSubsection";
 
 export const metadata: Metadata = {
-  title: "Conference Proceedings | Young Scholars' Conclave 2026",
+  title: "Conclave Proceedings | Young Scholars' Conclave 2026",
   description:
     "Gallery, recordings, and reports from the Young Scholars' Conclave 2026 at CHRIST (Deemed to be University).",
 };
@@ -32,7 +32,7 @@ export default function ProceedingsPage() {
             className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
             data-aos="fade-up"
           >
-            Conference Proceedings
+            Conclave Proceedings
           </h1>
           <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
           <p

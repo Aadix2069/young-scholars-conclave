@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ChristLogo, FASLogo } from "./Logos";
 import { ArrowRightIcon } from "./icons";
 import { ConclaveCountdown } from "./ConclaveCountdown";
 import { HeroSlideshow } from "./HeroSlideshow";
@@ -19,16 +18,6 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
 };
 
-const fadeRight: Variants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
-};
-
-const fadeLeft: Variants = {
-  hidden: { opacity: 0, x: 20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_SMOOTH } },
-};
-
 export function Hero() {
   const reduceMotion = useReducedMotion();
 
@@ -42,19 +31,11 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4 text-center text-white"
+        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-black/20 p-4 text-center text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.75)]"
         initial={reduceMotion ? "visible" : "hidden"}
         animate="visible"
         variants={container}
       >
-        <motion.div className="pointer-events-auto absolute left-4 top-4 z-10" variants={fadeRight}>
-          <ChristLogo variant="white" className="h-auto w-36 sm:w-48" />
-        </motion.div>
-
-        <motion.div className="pointer-events-auto absolute right-4 top-4 z-10" variants={fadeLeft}>
-          <FASLogo variant="white" className="h-auto w-36 sm:w-48" />
-        </motion.div>
-
         <motion.div variants={fadeUp}>
           <p className="mb-3 text-sm font-semibold text-white sm:text-base">
             Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)

@@ -52,7 +52,7 @@ export function RecordingsSubsection({ items }: { items: RecordingItem[] }) {
 
 export function ReportsSubsection({ items }: { items: ReportItem[] }) {
   if (items.length === 0) {
-    return <EmptyState message="Conference reports will be published here after the event." />;
+    return <EmptyState message="Conclave reports will be published here after the event." />;
   }
   return (
     <ul className="space-y-3">

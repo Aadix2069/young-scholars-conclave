@@ -1,4 +1,3 @@
-import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 import { PersonAvatar } from "./PersonAvatar";
 import { parseCsv } from "@/lib/csv";
@@ -102,7 +101,6 @@ export async function ScholarsGrid() {
     >
       <SectionAccent position="bottom-right" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-12">
-        <Eyebrow className="text-center">Scholars</Eyebrow>
         <h2
           className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"

@@ -19,7 +19,7 @@ export default function ArchivePage() {
           <div className="mx-auto flex max-w-4xl items-start justify-between gap-4">
             <div>
               <h1 className="text-3xl font-extrabold text-brand-blue sm:text-4xl">
-                Conference Archive
+                Conclave Archive
               </h1>
               <div className="mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
               <p className="mt-4 max-w-2xl text-sm text-gray-600">

@@ -1,4 +1,3 @@
-import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 import { PersonAvatar } from "./PersonAvatar";
 
@@ -6,24 +5,14 @@ import { PersonAvatar } from "./PersonAvatar";
  * Photographs are supplied by the organising committee. Drop the image into
  * public/people/ and set `photo` to its path (e.g. "/people/jane-doe.jpg").
  * An empty string shows a branded initials circle instead.
+ *
+ * Both lists are intentionally empty for now (per client request, names
+ * to be announced later) - each section shows a "will be updated soon"
+ * message instead while empty.
  */
-const EXPERTS = [
-  { name: "Jayaraman T", affiliation: "National Institute of Advanced Study, Bengaluru", photo: "" },
-  { name: "Madhura Swaminathan", affiliation: "Indian Statistical Institute, Bengaluru", photo: "" },
-  { name: "V. K. Ramachandran", affiliation: "Former Professor, Indian Statistical Institute, Bengaluru", photo: "" },
-];
+const EXPERTS: { name: string; affiliation: string; photo: string }[] = [];
 
-const SENIOR_SCHOLARS = [
-  { name: "Anirban Kundu", affiliation: "CHRIST University, Bengaluru", photo: "" },
-  { name: "Arindam Das", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
-  { name: "Bineetha P. Bose", affiliation: "CHRIST University, Bengaluru", photo: "" },
-  { name: "Deepak Johnson", affiliation: "CHRIST University, Bengaluru", photo: "" },
-  { name: "Harshan T. P.", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "/people/harshan-tp.jpg" },
-  { name: "Jayesh M. P.", affiliation: "CHRIST University, Bengaluru", photo: "/people/jayesh-mp.jpg" },
-  { name: "Sandipan Baksi", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
-  { name: "Tapas Modak Singh", affiliation: "Foundation for Agrarian Studies, Bengaluru", photo: "" },
-  { name: "Vineeth M.", affiliation: "CHRIST University, Bengaluru", photo: "" },
-];
+const SENIOR_SCHOLARS: { name: string; affiliation: string; photo: string }[] = [];
 
 function PersonList({
   people,
@@ -55,7 +44,6 @@ export function OrganisersSection() {
     <section id="organisers" className="relative overflow-hidden bg-white py-20 md:py-28">
       <SectionAccent position="top-right" />
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <Eyebrow className="text-center">Committee</Eyebrow>
         <h2
           className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"
@@ -95,7 +83,23 @@ export function OrganisersSection() {
             Experts
           </h3>
           <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
-          <PersonList people={EXPERTS} />
+          <p
+            className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500"
+            data-aos="fade-up"
+          >
+            Leading experts from across the world will deliberate on critical
+            issues pertaining to the agrarian question and rural development.
+          </p>
+          {EXPERTS.length === 0 ? (
+            <p
+              className="mx-auto mt-8 max-w-xl rounded-xl border border-dashed border-brand-gold/40 bg-brand-green/5 px-6 py-8 text-center text-base text-gray-600"
+              data-aos="fade-up"
+            >
+              The list of experts will be updated soon.
+            </p>
+          ) : (
+            <PersonList people={EXPERTS} />
+          )}
         </div>
 
         <div className="mt-16">
@@ -106,7 +110,25 @@ export function OrganisersSection() {
             Senior Scholars
           </h3>
           <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
-          <PersonList people={SENIOR_SCHOLARS} />
+          <p
+            className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500"
+            data-aos="fade-up"
+          >
+            The Conclave will feature senior scholars from universities and
+            research institutions across the world to engage with and mentor
+            young scholars on diverse aspects of agrarian studies and the
+            rural economy.
+          </p>
+          {SENIOR_SCHOLARS.length === 0 ? (
+            <p
+              className="mx-auto mt-8 max-w-xl rounded-xl border border-dashed border-brand-gold/40 bg-brand-green/5 px-6 py-8 text-center text-base text-gray-600"
+              data-aos="fade-up"
+            >
+              The list of senior scholars will be updated soon.
+            </p>
+          ) : (
+            <PersonList people={SENIOR_SCHOLARS} />
+          )}
         </div>
       </div>
     </section>

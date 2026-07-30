@@ -4,8 +4,9 @@ import { useRef, useState } from "react";
 import { FormField } from "../forms/FormField";
 import { useFormSubmit } from "../forms/useFormSubmit";
 
+// Only category currently accepted - the fee table on the Registration
+// page already shows this, so it isn't repeated as a form field.
 const FIXED_CATEGORY = "Research Scholars";
-const FIXED_CATEGORY_FEE = "₹3,000";
 
 const GENDERS = ["Male", "Female", "Other", "Prefer not to say"];
 
@@ -152,30 +153,18 @@ export function RegistrationForm() {
         error={errors.institution}
       />
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div>
-          <span className="mb-1.5 block text-sm font-semibold text-gray-800">Category</span>
-          <div className="flex min-h-11 items-center justify-between rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5">
-            <span className="text-base text-brand-charcoal">{FIXED_CATEGORY}</span>
-            <span className="text-sm font-semibold text-brand-blue">{FIXED_CATEGORY_FEE}</span>
-          </div>
-          <p className="mt-1.5 text-sm text-gray-500">
-            Registration is currently open to Research Scholars only.
-          </p>
-        </div>
-        <FormField
-          as="select"
-          label="Gender"
-          name="gender"
-          required
-          placeholder="Select your gender"
-          options={GENDERS}
-          value={fields.gender}
-          onChange={(v) => setField("gender", v)}
-          onBlurValidate={() => validateField("gender")}
-          error={errors.gender}
-        />
-      </div>
+      <FormField
+        as="select"
+        label="Gender"
+        name="gender"
+        required
+        placeholder="Select your gender"
+        options={GENDERS}
+        value={fields.gender}
+        onChange={(v) => setField("gender", v)}
+        onBlurValidate={() => validateField("gender")}
+        error={errors.gender}
+      />
 
       <FormField
         as="textarea"

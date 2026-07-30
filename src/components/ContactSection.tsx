@@ -1,4 +1,3 @@
-import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 import { PersonAvatar } from "./PersonAvatar";
 import { MailIcon, MapPinIcon } from "./icons";
@@ -11,7 +10,6 @@ export function ContactSection() {
     >
       <SectionAccent position="bottom-left" />
       <div className="mx-auto max-w-5xl px-6 lg:px-10">
-        <Eyebrow className="text-center">Get in Touch</Eyebrow>
         <h2
           className="text-center text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"
@@ -25,7 +23,7 @@ export function ContactSection() {
             className="rounded-xl border border-gray-200 border-t-4 border-t-brand-gold bg-white p-8 shadow-sm"
             data-aos="fade-up"
           >
-            <h3 className="text-lg font-bold text-brand-blue">Conference Venue</h3>
+            <h3 className="text-lg font-bold text-brand-blue">Conclave Venue</h3>
             <p className="mt-4 flex gap-3 text-base text-gray-700">
               <MapPinIcon className="mt-1 h-5 w-5 shrink-0 text-brand-green-dark" aria-hidden="true" />
               <span>

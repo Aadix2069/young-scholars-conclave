@@ -7,7 +7,7 @@ export function AboutChristUniversity() {
         className="mb-3 text-center text-5xl font-extrabold text-brand-blue"
         data-aos="fade-up"
       >
-        About CHRIST (Deemed to be University)
+        CHRIST
       </h2>
       <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
 
@@ -51,6 +51,17 @@ export function AboutChristUniversity() {
         events such as the Young Scholars&rsquo; Conclave reflects its
         ongoing commitment to research, mentorship, and academic
         collaboration.
+      </p>
+      <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-gray-700">
+        Know more about CHRIST:{" "}
+        <a
+          href="https://www.christuniversity.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-brand-blue underline underline-offset-4 hover:text-brand-green-dark"
+        >
+          christuniversity.in
+        </a>
       </p>
     </section>
   );

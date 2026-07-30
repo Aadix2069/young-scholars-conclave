@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Eyebrow } from "./Eyebrow";
 import { SectionAccent } from "./SectionAccent";
 
 export function AboutConclave() {
@@ -10,7 +9,6 @@ export function AboutConclave() {
     >
       <SectionAccent position="top-right" />
       <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">
-        
         <h2
           className="text-3xl font-extrabold text-brand-blue sm:text-4xl"
           data-aos="fade-up"
@@ -23,17 +21,14 @@ export function AboutConclave() {
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          The Young Scholars&rsquo; Conclave is jointly organised by the
-          Foundation for Agrarian Studies (FAS) and CHRIST (Deemed to be
-          University) as an in-person event in Bengaluru, bringing together
-          young researchers working on agrarian studies and rural India to
-          present their research, engage with senior scholars, and build
-          long-term academic networks. Barbara Harriss-White, Emeritus
-          Professor of Development Studies, University of Oxford, is the
-          academic convenor of the event.
+          Jointly organised by the Foundation for Agrarian Studies (FAS) and
+          CHRIST (Deemed to be University), the Young Scholars&rsquo;
+          Conclave provides a platform for young researchers to present
+          their work, engage with senior scholars, and build enduring
+          academic networks.
         </p>
         <Link
-          href="/about"
+          href="/about/conclave"
           className="mt-6 inline-block text-base font-semibold text-brand-blue underline underline-offset-4 transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-gray-700"
           data-aos="fade-up"
           data-aos-delay="200"

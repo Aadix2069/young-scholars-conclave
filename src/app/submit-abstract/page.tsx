@@ -27,8 +27,7 @@ export default function SubmitAbstractPage() {
             data-aos="fade-up"
           >
             Young scholars working on agrarian studies and rural India are invited to submit
-            their research. Applicants must be either at an advanced stage of their Ph.D.
-            research, or have completed their Ph.D. within the last five years.
+            their research.
           </p>
           <SubmitAbstractForm />
         </div>

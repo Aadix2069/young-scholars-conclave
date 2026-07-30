@@ -1,24 +1,7 @@
-import type { Metadata } from "next";
-import { Navbar } from "@/components/Navbar";
-import { ConclaveOverview } from "@/components/about/ConclaveOverview";
-import { AboutChristUniversity } from "@/components/about/AboutChristUniversity";
-import { Footer } from "@/components/Footer";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "About | Young Scholars' Conclave 2026",
-  description:
-    "About the Young Scholars' Conclave 2026, jointly organised by the Foundation for Agrarian Studies (FAS) and CHRIST (Deemed to be University), Bengaluru.",
-};
-
+// The single About page was split into /about/conclave, /about/fas, and
+// /about/christ - this keeps old links/bookmarks to plain /about working.
 export default function AboutPage() {
-  return (
-    <div className="flex flex-1 flex-col">
-      <Navbar />
-      <main id="main-content" className="flex-1">
-        <ConclaveOverview />
-        <AboutChristUniversity />
-      </main>
-      <Footer />
-    </div>
-  );
+  redirect("/about/conclave");
 }
