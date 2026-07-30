@@ -10,7 +10,7 @@ export function AboutFAS() {
       <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-blue" aria-hidden="true" />
 
       <div className="mx-auto mt-8 max-w-3xl" data-aos="fade-up" data-aos-delay="100">
-        <p className="text-justify text-base leading-8 text-gray-700">
+        <p className="text-lg leading-8 text-gray-800">
           The Foundation for Agrarian Studies (FAS) is an independent
           research organisation committed to multidisciplinary theoretical
           and empirical enquiry in agrarian studies. In practice, FAS is a

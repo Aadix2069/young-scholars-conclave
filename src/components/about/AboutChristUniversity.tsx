@@ -30,28 +30,27 @@ export function AboutChristUniversity() {
           data-aos-delay="100"
         />
       </div>
-      <p
-        className="mx-auto max-w-3xl text-justify text-xl leading-relaxed text-gray-700"
-        data-aos="fade-up"
-      >
-        CHRIST (Deemed to be University) is a Deemed to be University
-        declared under Section 3 of the UGC Act 1956, with its Central
-        Campus at Dharmaram College Post, Hosur Road, Bengaluru, Karnataka
-        560029. It is a NAAC &lsquo;A+&rsquo; accredited university offering
-        multi-disciplinary programmes in Arts, Sciences, Social Sciences,
-        Commerce, Management, Education, Law, Engineering, and Architecture,
-        with premises and campuses at multiple locations in Bangalore,
-        along with off-campuses at Delhi-NCR and Pune-Lavasa.
-        <br />
-        <br />
-        The university provides a conducive environment for academic
-        conferences, seminars, and conclaves, with state-of-the-art
-        facilities including lecture halls, seminar rooms, and computer
-        labs for presentations, discussions, and hands-on sessions. Hosting
-        events such as the Young Scholars&rsquo; Conclave reflects its
-        ongoing commitment to research, mentorship, and academic
-        collaboration.
-      </p>
+      <div className="mx-auto max-w-3xl space-y-6" data-aos="fade-up">
+        <p className="text-lg leading-8 text-gray-800">
+          CHRIST (Deemed to be University) is a Deemed to be University
+          declared under Section 3 of the UGC Act 1956, with its Central
+          Campus at Dharmaram College Post, Hosur Road, Bengaluru, Karnataka
+          560029. It is a NAAC &lsquo;A+&rsquo; accredited university offering
+          multi-disciplinary programmes in Arts, Sciences, Social Sciences,
+          Commerce, Management, Education, Law, Engineering, and Architecture,
+          with premises and campuses at multiple locations in Bangalore,
+          along with off-campuses at Delhi-NCR and Pune-Lavasa.
+        </p>
+        <p className="text-base leading-8 text-gray-700">
+          The university provides a conducive environment for academic
+          conferences, seminars, and conclaves, with state-of-the-art
+          facilities including lecture halls, seminar rooms, and computer
+          labs for presentations, discussions, and hands-on sessions. Hosting
+          events such as the Young Scholars&rsquo; Conclave reflects its
+          ongoing commitment to research, mentorship, and academic
+          collaboration.
+        </p>
+      </div>
       <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-gray-700">
         Know more about CHRIST:{" "}
         <a

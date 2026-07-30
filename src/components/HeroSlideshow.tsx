@@ -1,10 +1,7 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, A11y } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
 /**
  * Hero slides. To add more later: drop the image into public/hero/ and
@@ -33,39 +30,82 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
   },
 ];
 
+const AUTOPLAY_DELAY_MS = 5000;
+const FADE_DURATION_MS = 1200;
+
+/**
+ * Custom crossfade slideshow, not Swiper's `effect="fade"`: that option
+ * combined with `loop` has a documented bug (see prior HeroSlideshow.tsx
+ * history) where its CSS transition never fires a `transitionend` event,
+ * permanently stuck Swiper's internal `animating` flag at true after the
+ * first autoplay cycle and silently disabling further transitions. Rather
+ * than fight that, this stacks every slide absolutely and crossfades
+ * opacity directly - simple, and immune to that failure mode since there's
+ * no Swiper loop/effect machinery involved at all.
+ */
 export function HeroSlideshow() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const goTo = useCallback((i: number) => {
+    setIndex(((i % HERO_SLIDES.length) + HERO_SLIDES.length) % HERO_SLIDES.length);
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    timeoutRef.current = setTimeout(() => goTo(index + 1), AUTOPLAY_DELAY_MS);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [index, paused, goTo]);
+
   return (
-    <Swiper
-      // effect="fade" was removed: combined with loop, its CSS transition
-      // never fired a transitionend event in testing, which permanently
-      // stuck Swiper's internal `animating` flag at true after the first
-      // autoplay transition - silently disabling navigation and swipe/drag
-      // from that point on. The default slide transition doesn't have this
-      // failure mode with loop.
-      //
-      // Prev/Next arrow buttons removed per admin feedback (unclickable in
-      // practice) - autoplay, pagination dots, and touch/drag swipe remain.
-      modules={[Autoplay, Pagination, A11y]}
-      autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-      pagination={{ clickable: true }}
-      a11y={{ enabled: true }}
-      loop
-      speed={1200}
-      grabCursor
-      className="hero-swiper absolute inset-0 h-full w-full"
+    <div
+      className="absolute inset-0 h-full w-full"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      {HERO_SLIDES.map((slide) => (
-        <SwiperSlide key={slide.src}>
+      {HERO_SLIDES.map((slide, i) => (
+        <div
+          key={slide.src}
+          className="absolute inset-0 transition-opacity ease-in-out"
+          style={{
+            opacity: i === index ? 1 : 0,
+            transitionDuration: `${FADE_DURATION_MS}ms`,
+          }}
+          aria-hidden={i !== index}
+        >
           <Image
             src={slide.src}
             alt={slide.alt}
             fill
-            preload
+            priority={i === 0}
             sizes="100vw"
             className="object-cover"
           />
-        </SwiperSlide>
+        </div>
       ))}
-    </Swiper>
+
+      <div
+        className="absolute inset-x-0 bottom-4 z-10 flex justify-center gap-2"
+        role="tablist"
+        aria-label="Hero slideshow navigation"
+      >
+        {HERO_SLIDES.map((slide, i) => (
+          <button
+            key={slide.src}
+            type="button"
+            role="tab"
+            aria-selected={i === index}
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => goTo(i)}
+            className={`h-2 rounded-full transition-all duration-300 ease-[var(--ease-smooth)] ${
+              i === index ? "w-6 bg-brand-gold" : "w-2 bg-white/50 hover:bg-white/75"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

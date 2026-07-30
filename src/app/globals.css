@@ -266,11 +266,3 @@ html {
   }
 }
 
-/* Hero slideshow pagination dots - Swiper's defaults use its own theme
- * blue; this brings them in line with the conference palette. (Prev/Next
- * arrow buttons were removed - see HeroSlideshow.tsx.) */
-.hero-swiper {
-  --swiper-theme-color: var(--color-brand-gold);
-  --swiper-pagination-bullet-inactive-color: #ffffff;
-  --swiper-pagination-bullet-inactive-opacity: 0.5;
-}
