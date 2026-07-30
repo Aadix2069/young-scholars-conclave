@@ -59,21 +59,30 @@ export function OrganisersSection() {
           CHRIST (Deemed to be University).
         </p>
 
-        <div
-          className="mx-auto mt-12 flex max-w-2xl flex-col items-center rounded-xl border border-brand-gold/40 bg-brand-sand/40 px-6 py-8 text-center"
-          data-aos="fade-up"
-          data-aos-delay="60"
-        >
-          <PersonAvatar name="Barbara Harriss-White" photo="" className="h-24 w-24" />
-          <p className="mt-4 text-xs font-bold uppercase tracking-widest text-brand-blue/70">
-            Academic Convenor
-          </p>
-          <p className="mt-2 text-xl font-bold text-brand-blue">Barbara Harriss-White</p>
-          <p className="mt-1 text-sm text-gray-600">
-            Emeritus Professor of Development Studies, University of Oxford
-            (Wolfson College)
-          </p>
-        </div>
+       <div
+  className="mx-auto mt-12 flex max-w-2xl flex-col items-center rounded-xl border border-brand-gold/40 bg-brand-sand/40 px-6 py-8 text-center"
+  data-aos="fade-up"
+  data-aos-delay="60"
+>
+  <img
+    src="/conclave_organizer.jpg"
+    alt="Barbara Harriss-White"
+    className="h-36 w-36 rounded-full object-cover border-4 border-brand-gold/40 shadow-lg"
+  />
+
+  <p className="mt-5 text-xs font-bold uppercase tracking-widest text-brand-blue/70">
+    Academic Convenor
+  </p>
+
+  <p className="mt-2 text-xl font-bold text-brand-blue">
+    Barbara Harriss-White
+  </p>
+
+  <p className="mt-1 text-sm text-gray-600">
+    Emeritus Professor of Development Studies, University of Oxford
+    (Wolfson College)
+  </p>
+</div>
 
         <div className="mt-16">
           <h3
