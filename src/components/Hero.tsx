@@ -30,16 +30,21 @@ export function Hero() {
         <HeroSlideshow />
       </div>
 
-      {/* Bottom-anchored gradient, not a flat tint: the top ~40% of each
-          photo stays clear so the images actually read, darkening only
-          where the text sits at the bottom for contrast. */}
+      {/* Bottom-anchored gradient - the top ~35% of each photo stays
+          clear, darkening progressively toward the bottom where the text
+          sits. Made deliberately strong at the very bottom (black/90) so
+          it holds up against whichever photo is currently showing,
+          combined with the heavy text-shadow below as a second layer of
+          contrast insurance - together these hold up across bright and
+          dark slides alike without needing a visible panel/card over the
+          photos. */}
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent"
         aria-hidden="true"
       />
 
       <motion.div
-        className="pointer-events-none relative z-10 w-full px-4 pb-10 text-center text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:pb-14 md:pb-16"
+        className="pointer-events-none relative z-10 w-full px-4 pb-10 text-center text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.9),0_2px_16px_rgba(0,0,0,0.8)] sm:pb-14 md:pb-16"
         initial={reduceMotion ? "visible" : "hidden"}
         animate="visible"
         variants={container}
