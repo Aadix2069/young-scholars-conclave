@@ -1,4 +1,4 @@
-import { CheckBadgeIcon } from "./icons";
+import { ArrowRightIcon } from "./icons";
 
 /**
  * Icon-marker list used in place of plain browser bullets wherever body
@@ -26,7 +26,7 @@ export function StyledList({
             }`}
             aria-hidden="true"
           >
-            <CheckBadgeIcon className="h-3.5 w-3.5" />
+            <ArrowRightIcon className="h-3 w-3" />
           </span>
           <span
             className={`text-base leading-7 ${isDark ? "text-white/85" : "text-gray-700"}`}
