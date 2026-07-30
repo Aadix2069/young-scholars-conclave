@@ -23,9 +23,9 @@ export function AboutConclave() {
         >
           Jointly organised by the Foundation for Agrarian Studies (FAS) and
           CHRIST (Deemed to be University), the Young Scholars&rsquo;
-          Conclave provides a platform for young researchers to present
-          their work, engage with senior scholars, and build enduring
-          academic networks.
+          Conclave strives to be a platform for young researchers to
+          present their work, engage with senior scholars and subject
+          experts, and build enduring academic networks.
         </p>
         <Link
           href="/about/conclave"

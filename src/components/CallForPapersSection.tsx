@@ -15,8 +15,22 @@ export function CallForPapersSection() {
         </h2>
         <div className="mx-auto mt-3 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
         <p className="mt-5 text-justify text-base leading-7 text-white/80 sm:text-lg">
-          Young scholars working on agrarian studies and rural India are
-          invited to submit their research.</p>
+          Applications are invited from young scholars working in the
+          fields of agrarian studies, rural development, and allied
+          disciplines to participate in the Young Scholars&rsquo; Conclave
+          2026.
+        </p>
+        <ul className="mx-auto mt-4 max-w-xl list-disc space-y-1.5 pl-6 text-left text-sm leading-6 text-white/70 sm:text-base">
+          <li>
+            PhD candidates enrolled in recognised universities in India or
+            abroad.
+          </li>
+          <li>
+            Master&rsquo;s students with 4&ndash;5 years of research
+            experience and at least one publication in a peer-reviewed
+            journal, who intend to register for a PhD programme.
+          </li>
+        </ul>
 
         <dl className="mx-auto mt-8 grid max-w-md grid-cols-1 gap-4 text-left sm:grid-cols-2">
           <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">

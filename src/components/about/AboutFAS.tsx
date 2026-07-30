@@ -20,13 +20,13 @@ export function AboutFAS() {
           Foundation is known for collaborating with, mentoring, and
           building networks of young scholars working in the field of
           agrarian studies and on socio-economic life in rural India since
-          its inception, regularly organising academic events that give
-          young researchers the opportunity to present their research,
-          receive constructive feedback, and engage with leading scholars in
-          the field.
+          its inception. It regularly organises academic events that
+          provide young researchers the opportunity to present their
+          research, receive constructive feedback, and engage with leading
+          scholars in the field.
         </p>
         <p className="mt-6 text-base leading-8 text-gray-700">
-          Know more about FAS:{" "}
+          To know more about FAS, please visit:{" "}
           <a
             href="https://fas.org.in/"
             target="_blank"
@@ -35,6 +35,7 @@ export function AboutFAS() {
           >
             fas.org.in
           </a>
+          .
         </p>
       </div>
     </section>

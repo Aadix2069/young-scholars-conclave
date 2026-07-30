@@ -114,10 +114,10 @@ export function OrganisersSection() {
             className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500"
             data-aos="fade-up"
           >
-            The Conclave will feature senior scholars from universities and
-            research institutions across the world to engage with and mentor
-            young scholars on diverse aspects of agrarian studies and the
-            rural economy.
+            The conclave will be attended by senior scholars from
+            universities and research institutions across the world to
+            engage with and mentor young scholars on diverse aspects of
+            agrarian studies and the rural economy.
           </p>
           {SENIOR_SCHOLARS.length === 0 ? (
             <p
