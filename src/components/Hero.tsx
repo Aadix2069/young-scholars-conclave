@@ -31,7 +31,7 @@ export function Hero() {
       </div>
 
       <motion.div
-        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-black/20 p-4 text-center text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.75)]"
+        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-black/35 p-4 text-center text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.75)]"
         initial={reduceMotion ? "visible" : "hidden"}
         animate="visible"
         variants={container}
