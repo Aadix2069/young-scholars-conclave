@@ -45,28 +45,27 @@ export function Hero() {
         animate="visible"
         variants={container}
       >
-        {/* ================= TITLE ================= */}
-        <motion.div
-          variants={fadeUp}
-          className="mx-auto mt-0 max-w-5xl"
-        >
-          <p className="mb-3 text-sm font-semibold text-white/90 sm:text-base">
-            Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
-          </p>
+        {/* ================= TITLE ================= */}<motion.div
+  variants={fadeUp}
+  className="mx-auto -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 xl:-mt-20 max-w-5xl"
+>
+  <p className="mb-3 text-sm font-semibold text-white/90 sm:text-base">
+    Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
+  </p>
 
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            Young Scholars&rsquo; Conclave
-          </h1>
+  <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+    Young Scholars&rsquo; Conclave
+  </h1>
 
-          <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
-            &ldquo;Studying the Countryside in the Global South in the
-            Twenty-First Century&rdquo;
-          </p>
+  <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
+    &ldquo;Studying the Countryside in the Global South in the
+    Twenty-First Century&rdquo;
+  </p>
 
-          <p className="mt-3 text-lg text-white/90 sm:text-xl md:text-2xl">
-            2&ndash;4 December 2026 &middot; Bengaluru
-          </p>
-        </motion.div>
+  <p className="mt-3 text-lg text-white/90 sm:text-xl md:text-2xl">
+    2&ndash;4 December 2026 &middot; Bengaluru
+  </p>
+</motion.div>
 
         {/* ================= BUTTON + COUNTDOWN ================= */}
         <div className="pb-2">

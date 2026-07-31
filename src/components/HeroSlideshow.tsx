@@ -9,7 +9,7 @@ import Image from "next/image";
  */
 const HERO_SLIDES: { src: string; alt: string }[] = [
   {
-    src: "/hero/conference-hall-2.jpg",
+    src: "/hero/conference-hall-8.jpeg",
     alt: "Attendees at a past CHRIST Economics Department conference",
   },
   {
@@ -21,7 +21,7 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
     alt: "Delegates seated in discussion at a conference session",
   },
   {
-    src: "/hero/conference-hall-8.jpeg",
+    src: "/hero/conference-hall-2.jpg",
     alt: "Delegates seated in discussion at a conference session",
   },
   {

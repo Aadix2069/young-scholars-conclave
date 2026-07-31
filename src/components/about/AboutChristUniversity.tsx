@@ -9,7 +9,10 @@ export function AboutChristUniversity() {
       >
         CHRIST (Deemed to be University)
       </h2>
-      <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green" aria-hidden="true" />
+      <div
+        className="mx-auto mt-2 h-1 w-12 rounded-full bg-brand-green"
+        aria-hidden="true"
+      />
 
       <div className="mb-10 mt-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <Image
@@ -30,8 +33,9 @@ export function AboutChristUniversity() {
           data-aos-delay="100"
         />
       </div>
+
       <div className="mx-auto max-w-3xl space-y-6" data-aos="fade-up">
-        <p className="text-lg leading-8 text-gray-800">
+        <p className="text-justify text-lg leading-8 text-gray-800">
           CHRIST (Deemed to be University) is a Deemed to be University
           declared under Section 3 of the UGC Act 1956, with its Central
           Campus at Dharmaram College Post, Hosur Road, Bengaluru, Karnataka
@@ -41,7 +45,8 @@ export function AboutChristUniversity() {
           with premises and campuses at multiple locations in Bangalore,
           along with off-campuses at Delhi-NCR and Pune-Lavasa.
         </p>
-        <p className="text-base leading-8 text-gray-700">
+
+        <p className="text-justify text-base leading-8 text-gray-700">
           The university provides a conducive environment for academic
           conferences, seminars, and conclaves, with state-of-the-art
           facilities including lecture halls, seminar rooms, and computer
@@ -51,7 +56,8 @@ export function AboutChristUniversity() {
           collaboration.
         </p>
       </div>
-      <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-gray-700">
+
+      <p className="mx-auto mt-6 max-w-3xl text-justify text-base leading-relaxed text-gray-700">
         Know more about CHRIST:{" "}
         <a
           href="https://www.christuniversity.in/"
