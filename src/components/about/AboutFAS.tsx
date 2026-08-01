@@ -25,7 +25,7 @@ export function AboutFAS() {
           research, receive constructive feedback, and engage with leading
           scholars in the field.
         </p>
-        <p className="mt-6 text-base leading-8 text-gray-700 text-justify">
+        <p className="mt-6 text-lg leading-8 text-gray-700 text-justify">
           To know more about FAS, please visit:{" "}
           <a
             href="https://fas.org.in/"

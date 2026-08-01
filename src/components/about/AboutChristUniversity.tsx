@@ -46,7 +46,7 @@ export function AboutChristUniversity() {
           along with off-campuses at Delhi-NCR and Pune-Lavasa.
         </p>
 
-        <p className="text-justify text-base leading-8 text-gray-700">
+        <p className="text-justify text-lg leading-8 text-gray-800">
           The university provides a conducive environment for academic
           conferences, seminars, and conclaves, with state-of-the-art
           facilities including lecture halls, seminar rooms, and computer

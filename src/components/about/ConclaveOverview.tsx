@@ -40,7 +40,7 @@ export function ConclaveOverview() {
           University), Bengaluru.
         </p>
 
-        <p className="text-justify text-base leading-8 text-gray-700">
+        <p className="text-justify text-lg leading-8 text-gray-800">
           Drawing on FAS&rsquo;s long-standing engagement with young
           scholars, the conclave seeks to create a platform for emerging
           researchers from India and across the world working on agrarian
@@ -50,7 +50,7 @@ export function ConclaveOverview() {
           young scholars and leading experts in the field.
         </p>
 
-        <p className="text-justify text-base leading-8 text-gray-700">
+        <p className="text-justify text-lg leading-8 text-gray-800">
           The inaugural Young Scholars&rsquo; Conclave will be held at
           CHRIST (Deemed to be University), Bangalore, Yeshwanthpur Campus,
           from 2&ndash;4 December 2026.
@@ -79,7 +79,7 @@ export function ConclaveOverview() {
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        <p className="text-justify text-base leading-8 text-gray-700">
+        <p className="text-justify text-lg leading-8 text-gray-800">
           <span className="font-bold text-brand-blue">
             Barbara Harriss-White
           </span>
@@ -102,7 +102,7 @@ export function ConclaveOverview() {
           aria-hidden="true"
         />
 
-        <p className="mt-6 text-justify text-base leading-8 text-gray-700">
+        <p className="mt-6 text-justify text-lg leading-8 text-gray-800">
           The conclave will feature research presentations and discussions
           organised around the following broad thematic areas:
         </p>
