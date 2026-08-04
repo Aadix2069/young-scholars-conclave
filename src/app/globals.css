@@ -266,3 +266,68 @@ html {
   }
 }
 
+/* =====================================================================
+ * Interaction design system
+ *
+ * Shared motion/feedback primitives so hover, focus, and elevation behave
+ * identically across every component. Kept tiny and additive - existing
+ * per-component styles win whenever they specify their own behavior.
+ * ===================================================================== */
+
+@layer base {
+  /* Kill the mobile double-tap flash; the site's own hover states handle
+     desktop, so the UA highlight only ever adds noise on touch devices. */
+  *,
+  *::before,
+  *::after {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Brand-tinted text selection instead of the default UA blue. */
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-brand-gold) 35%, transparent);
+    color: var(--color-brand-charcoal);
+  }
+
+  /* Universal visible-focus fallback: any interactive element that doesn't
+     ship its own focus-visible:ring still gets a gold ring here, so no
+     keyboard user is ever left without an indicator. Components with their
+     own ring also call focus-visible:outline-none, which beats this selector
+     in the cascade. Form controls are excluded - every one already has a
+     styled focus ring via FormField. */
+  :where(a, button, summary, [tabindex], [role="button"]):focus-visible {
+    outline: 2px solid var(--color-brand-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Gentle, consistent lift for interactive cards. Pairs with each card's own
+   transition property list (transform/box-shadow) so the elevation eases
+   in at the component's existing duration. */
+@utility card-hover {
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 25px -5px rgb(0 0 0 / 0.08),
+      0 8px 10px -6px rgb(0 0 0 / 0.06);
+  }
+}
+
+/* Animated underline for text links: draws in left-to-right on hover/focus.
+   Works on any background since it uses currentColor. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition:
+    background-size 300ms var(--ease-smooth),
+    color 200ms var(--ease-smooth);
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+

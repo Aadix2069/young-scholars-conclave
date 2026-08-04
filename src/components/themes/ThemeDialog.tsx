@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import type { Theme } from "@/lib/themes";
+import { DURATIONS, EASE_SMOOTH } from "@/lib/motion";
 import { CloseIcon } from "../icons";
 import { ThemeContent } from "./ThemeContent";
 
@@ -82,7 +83,7 @@ export function ThemeDialog({ theme, index, pdfHref, onClose }: ThemeDialogProps
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
+        transition={{ duration: DURATIONS.base, ease: EASE_SMOOTH }}
         className="absolute inset-0 cursor-pointer bg-black/40 backdrop-blur-sm"
       />
       <motion.div
@@ -93,7 +94,7 @@ export function ThemeDialog({ theme, index, pdfHref, onClose }: ThemeDialogProps
         initial={{ opacity: 0, scale: 0.96, y: 24 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 24 }}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: DURATIONS.slow, ease: EASE_SMOOTH }}
         className="relative w-full max-w-3xl"
       >
         <div className="max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl">

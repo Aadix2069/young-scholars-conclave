@@ -19,7 +19,9 @@ type ThemeAccordionProps = {
 export function ThemeAccordion({ themes, pdfByTitle }: ThemeAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const open = useCallback((index: number) => setOpenIndex(index), []);
+  const toggle = useCallback((index: number) => {
+    setOpenIndex((current) => (current === index ? null : index));
+  }, []);
   const close = useCallback(() => setOpenIndex(null), []);
 
   const openTheme = openIndex !== null ? themes[openIndex] : null;
@@ -38,7 +40,7 @@ export function ThemeAccordion({ themes, pdfByTitle }: ThemeAccordionProps) {
               isOpen={openIndex === index}
               buttonId={`theme-button-${index}`}
               ariaControls={`theme-dialog-${index}`}
-              onClick={() => open(index)}
+              onToggle={toggle}
             />
           </div>
         ))}

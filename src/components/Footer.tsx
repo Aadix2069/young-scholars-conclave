@@ -42,7 +42,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-blue-300 hover:underline"
+                    className="link-underline no-underline hover:text-blue-300"
                   >
                     {link.label}
                   </a>

@@ -69,7 +69,7 @@ export function HeroSlideshow() {
       {HERO_SLIDES.map((slide, i) => (
         <div
           key={slide.src}
-          className="absolute inset-0 transition-opacity ease-in-out"
+          className="absolute inset-0 transition-opacity ease-[var(--ease-smooth)]"
           style={{
             opacity: i === index ? 1 : 0,
             transitionDuration: `${FADE_DURATION_MS}ms`,
@@ -100,7 +100,7 @@ export function HeroSlideshow() {
             aria-selected={i === index}
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => goTo(i)}
-            className={`h-2 rounded-full transition-all duration-300 ease-[var(--ease-smooth)] ${
+            className={`h-2 cursor-pointer rounded-full transition-all duration-300 ease-[var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${
               i === index ? "w-6 bg-brand-gold" : "w-2 bg-white/50 hover:bg-white/75"
             }`}
           />

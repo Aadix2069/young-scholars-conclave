@@ -25,21 +25,28 @@ export function ThemesSection() {
           Tentative thematic areas for the Young Scholars&rsquo; Conclave 2026.
         </p>
 
-        <div className="mx-auto mt-12 max-w-3xl" data-aos="fade-up" data-aos-delay="100">
-          <p className="text-justify text-base leading-7 text-gray-700">{THEMES_INTRO.lead}</p>
-          <ol className="mt-4 list-decimal space-y-2 pl-6 marker:font-semibold marker:text-brand-gold">
-            {THEMES_INTRO.items.map((item) => (
-              <li key={item} className="text-justify text-base leading-7 text-gray-700">
-                {item}
-              </li>
-            ))}
-          </ol>
-          <p className="mt-4 text-justify text-base leading-7 text-gray-700">
-            {THEMES_INTRO.closing}
+        <div
+          className="mx-auto mt-12 max-w-2xl text-center"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <p className="text-base leading-7 text-gray-700 md:text-lg">{THEMES_INTRO.lead}</p>
+          <p className="mt-3 text-sm text-gray-500">
+            
           </p>
         </div>
 
         <ThemeAccordion themes={THEMES} pdfByTitle={THEME_PDFS} />
+
+        <div
+          className="mx-auto mt-12 max-w-3xl"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <p className="rounded-xl border-l-4 border-brand-gold bg-white/70 px-6 py-5 text-justify text-base leading-7 text-gray-700">
+            {THEMES_INTRO.closing}
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormField } from "../forms/FormField";
 import { useFormSubmit } from "../forms/useFormSubmit";
 import { THEMES } from "@/lib/themes";
+import { DURATIONS, EASE_SMOOTH } from "@/lib/motion";
 
 const THEME_TITLES = THEMES.map((t) => t.title);
 
@@ -55,6 +57,12 @@ export function SubmitAbstractForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const { state, message, submit } = useFormSubmit("/api/submit-abstract");
   const formRef = useRef<HTMLFormElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  const feedbackTransition = {
+    duration: reduceMotion ? 0 : DURATIONS.slow,
+    ease: EASE_SMOOTH,
+  };
 
   function setField(key: keyof Fields, value: string) {
     setFields((prev) => ({ ...prev, [key]: value }));
@@ -87,13 +95,16 @@ export function SubmitAbstractForm() {
 
   if (state === "success") {
     return (
-      <div
+      <motion.div
         role="status"
+        initial={{ opacity: 0, scale: 0.97, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={feedbackTransition}
         className="mx-auto max-w-xl rounded-xl border border-brand-green/40 bg-brand-green/10 p-8 text-center"
       >
         <p className="text-lg font-bold text-brand-green-dark">Abstract submitted</p>
         <p className="mt-2 text-sm text-gray-700">{message}</p>
-      </div>
+      </motion.div>
     );
   }
 
@@ -176,16 +187,26 @@ export function SubmitAbstractForm() {
         helperText={`${wordCount} word${wordCount === 1 ? "" : "s"} (minimum 50)`}
       />
 
-      {state === "error" && (
-        <p role="alert" className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          {message}
-        </p>
-      )}
+      <AnimatePresence initial={false}>
+        {state === "error" && (
+          <motion.p
+            key="form-error"
+            role="alert"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={feedbackTransition}
+            className="rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700"
+          >
+            {message}
+          </motion.p>
+        )}
+      </AnimatePresence>
 
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+        className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:bg-brand-blue sm:w-auto"
       >
         {state === "submitting" ? (
           <>

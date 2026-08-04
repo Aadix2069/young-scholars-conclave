@@ -1,6 +1,8 @@
 "use client";
 
 import { useId, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { DURATIONS, EASE_SMOOTH } from "@/lib/motion";
 
 type BaseProps = {
   label: string;
@@ -44,7 +46,7 @@ type FileFieldProps = BaseProps & {
 type FormFieldProps = InputFieldProps | TextareaFieldProps | SelectFieldProps | FileFieldProps;
 
 const FIELD_CLASSES =
-  "block w-full min-h-11 rounded-lg border bg-white px-4 py-2.5 text-base text-brand-charcoal shadow-sm transition-colors duration-200 ease-[var(--ease-smooth)] focus:outline-none focus:ring-2 focus:ring-offset-1";
+  "block w-full min-h-11 rounded-lg border bg-white px-4 py-2.5 text-base text-brand-charcoal shadow-sm transition-[border-color,box-shadow] duration-200 ease-[var(--ease-smooth)] focus:outline-none focus:ring-2 focus:ring-offset-1";
 
 /**
  * Labeled form field with visible label, required indicator, and
@@ -55,12 +57,18 @@ export function FormField(props: FormFieldProps) {
   const id = useId();
   const errorId = `${id}-error`;
   const helperId = `${id}-helper`;
+  const reduceMotion = useReducedMotion();
   const [showPassword, setShowPassword] = useState(false);
   const isPassword =
     props.as !== "textarea" && props.as !== "select" && props.as !== "file" && props.type === "password";
   const borderClass = props.error
-    ? "border-red-400 focus:border-red-500 focus:ring-red-200"
-    : "border-gray-300 focus:border-brand-blue focus:ring-brand-blue/20";
+    ? "border-red-400 hover:border-red-500 focus:border-red-500 focus:ring-red-200"
+    : "border-gray-300 hover:border-brand-blue/40 focus:border-brand-blue focus:ring-brand-blue/20";
+
+  const feedbackTransition = {
+    duration: reduceMotion ? 0 : DURATIONS.fast,
+    ease: EASE_SMOOTH,
+  };
 
   return (
     <div>
@@ -143,7 +151,7 @@ export function FormField(props: FormFieldProps) {
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-xs font-semibold text-brand-blue hover:text-brand-green-dark"
+            className="absolute inset-y-0 right-0 flex cursor-pointer items-center rounded-r-lg px-3 text-xs font-semibold text-brand-blue transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-brand-green-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? "Hide" : "Show"}
@@ -165,15 +173,34 @@ export function FormField(props: FormFieldProps) {
         />
       )}
 
-      {props.error ? (
-        <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-600">
-          {props.error}
-        </p>
-      ) : props.helperText ? (
-        <p id={helperId} className="mt-1.5 text-sm text-gray-500">
-          {props.helperText}
-        </p>
-      ) : null}
+      <AnimatePresence initial={false}>
+        {props.error ? (
+          <motion.p
+            key="error"
+            id={errorId}
+            role="alert"
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={feedbackTransition}
+            className="mt-1.5 text-sm text-red-600"
+          >
+            {props.error}
+          </motion.p>
+        ) : props.helperText ? (
+          <motion.p
+            key="helper"
+            id={helperId}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={feedbackTransition}
+            className="mt-1.5 text-sm text-gray-500"
+          >
+            {props.helperText}
+          </motion.p>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

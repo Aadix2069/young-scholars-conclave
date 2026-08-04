@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { ChristLogo, ConclaveLogo, FASLogo } from "./Logos";
 import { CloseIcon, MenuIcon, ChevronDownIcon } from "./icons";
+import { EASE_SMOOTH } from "@/lib/motion";
 
 type NavLink = { label: string; href: string; hash: string | null };
 type NavGroup = { label: string; items: NavLink[] };
@@ -98,7 +100,7 @@ function NavDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="true"
-        className={`relative inline-flex items-center gap-1 whitespace-nowrap px-2 py-3 text-sm font-semibold transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-brand-green-dark ${
+        className={`relative inline-flex items-center gap-1 whitespace-nowrap rounded px-2 py-3 text-sm font-semibold transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-brand-green-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${
           groupActive ? "text-brand-blue" : "text-gray-700"
         }`}
       >
@@ -106,27 +108,35 @@ function NavDropdown({
         <ChevronDownIcon className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
 
-      {open && (
-        <ul className="absolute left-0 top-full z-20 mt-1 min-w-[13rem] rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
-          {group.items.map((link) => (
-            <li key={link.href + link.label}>
-              <Link
-                href={link.href}
-                onClick={() => {
-                  onNavigate(link);
-                  setOpen(false);
-                }}
-                aria-current={isActive(link) ? "page" : undefined}
-                className={`block whitespace-nowrap px-4 py-2 text-sm font-medium no-underline transition-colors duration-200 ease-[var(--ease-smooth)] hover:bg-brand-sand/40 hover:text-brand-green-dark ${
-                  isActive(link) ? "text-brand-blue" : "text-gray-700"
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, y: 6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: EASE_SMOOTH }}
+            className="absolute left-0 top-full z-20 mt-1 min-w-[13rem] origin-top overflow-hidden rounded-lg border border-gray-200 bg-white py-2 shadow-lg"
+          >
+            {group.items.map((link) => (
+              <li key={link.href + link.label}>
+                <Link
+                  href={link.href}
+                  onClick={() => {
+                    onNavigate(link);
+                    setOpen(false);
+                  }}
+                  aria-current={isActive(link) ? "page" : undefined}
+                  className={`block whitespace-nowrap px-4 py-2 text-sm font-medium no-underline transition-colors duration-200 ease-[var(--ease-smooth)] hover:bg-brand-sand/40 hover:text-brand-green-dark focus-visible:bg-brand-sand/40 ${
+                    isActive(link) ? "text-brand-blue" : "text-gray-700"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </li>
   );
 }
@@ -181,11 +191,12 @@ export function Navbar() {
     link.hash === null ? pathname === link.href : isHome && activeHash === link.hash;
 
   return (
-    <header
-      className={`sticky inset-x-0 top-0 z-50 w-full border-b border-gray-200 bg-white transition-shadow duration-300 ease-[var(--ease-smooth)] ${
-        scrolled ? "shadow-md" : "shadow-sm"
-      }`}
-    >
+    <MotionConfig reducedMotion="user">
+      <header
+        className={`sticky inset-x-0 top-0 z-50 w-full border-b border-gray-200 bg-white transition-shadow duration-300 ease-[var(--ease-smooth)] ${
+          scrolled ? "shadow-md" : "shadow-sm"
+        }`}
+      >
       <nav className="px-4">
         <div className="flex h-20 items-center justify-between gap-2 sm:h-24 sm:gap-6">
           <Link
@@ -236,15 +247,22 @@ export function Navbar() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="z-20 block cursor-pointer border-none bg-none p-2 text-gray-600 xl:hidden"
+            className="z-20 block cursor-pointer rounded-md p-2 text-gray-600 transition-colors duration-200 ease-[var(--ease-smooth)] hover:bg-brand-sand/40 hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 active:scale-95 xl:hidden"
           >
             {menuOpen ? <CloseIcon className="h-8 w-8" /> : <MenuIcon className="h-8 w-8" />}
           </button>
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="absolute left-0 top-20 z-10 max-h-[calc(100vh-5rem)] w-full overflow-y-auto bg-white shadow-lg sm:top-24 xl:hidden">
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: EASE_SMOOTH }}
+            className="absolute left-0 top-20 z-10 max-h-[calc(100vh-5rem)] w-full overflow-y-auto bg-white shadow-lg sm:top-24 xl:hidden"
+          >
           {NAV_ENTRIES.map((entry) =>
             isGroup(entry) ? (
               <div key={entry.label} className="border-b border-gray-200">
@@ -265,26 +283,34 @@ export function Navbar() {
                     }`}
                   />
                 </button>
-                {openMobileGroup === entry.label && (
-                  <div className="bg-brand-sand/20 pb-2">
-                    {entry.items.map((link) => (
-                      <Link
-                        key={link.href + link.label}
-                        href={link.href}
-                        onClick={() => {
-                          handleLinkClick(link);
-                          setOpenMobileGroup(null);
-                        }}
-                        aria-current={isActive(link) ? "page" : undefined}
-                        className={`block px-8 py-2.5 text-base no-underline transition-colors hover:text-brand-green-dark ${
-                          isActive(link) ? "font-semibold text-brand-blue" : "text-gray-600"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {openMobileGroup === entry.label && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2, ease: EASE_SMOOTH }}
+                      className="overflow-hidden bg-brand-sand/20"
+                    >
+                      {entry.items.map((link) => (
+                        <Link
+                          key={link.href + link.label}
+                          href={link.href}
+                          onClick={() => {
+                            handleLinkClick(link);
+                            setOpenMobileGroup(null);
+                          }}
+                          aria-current={isActive(link) ? "page" : undefined}
+                          className={`block px-8 py-2.5 text-base no-underline transition-colors duration-200 ease-[var(--ease-smooth)] hover:text-brand-green-dark focus-visible:text-brand-green-dark ${
+                            isActive(link) ? "font-semibold text-brand-blue" : "text-gray-600"
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
               <Link
@@ -300,8 +326,10 @@ export function Navbar() {
               </Link>
             )
           )}
-        </div>
+        </motion.div>
       )}
-    </header>
+      </AnimatePresence>
+      </header>
+    </MotionConfig>
   );
 }

@@ -17,16 +17,9 @@ export type Theme = {
   description: string[];
 };
 
-/** Introductory copy rendered above the theme cards, verbatim. */
+/** Introductory copy rendered above and below the theme cards, verbatim. */
 export const THEMES_INTRO = {
   lead: "The conclave will focus on the following broad thematic areas:",
-  items: [
-    "Role of Science and Technology in Agrarian and Rural Transformation.",
-    "Inequality, Deprivation, and Living Standards in the Countryside.",
-    "Agrarian Relations.",
-    "Dynamics of Farm and Non-Farm, and Rural and Urban Linkages (including Migration).",
-    "Agriculture and the Environment (including Climate Change).",
-  ],
   closing:
     "These themes are indicative rather than exhaustive. Scholars are welcome to submit papers that broadly align with these thematic areas. We particularly encourage submissions that connect field-based experiences and empirical evidence with government policies and programmes. Papers addressing data sources, databases, and methodological approaches to the study of rural India are also welcome.",
 };
