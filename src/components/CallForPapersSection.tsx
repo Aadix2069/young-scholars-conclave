@@ -38,7 +38,7 @@ export function CallForPapersSection() {
               Communication of Acceptance
             </dt>
             <dd className="mt-1 text-base font-semibold text-white">
-              20 September 2026
+              30 September 2026
             </dd>
           </div>
           <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">
@@ -46,7 +46,7 @@ export function CallForPapersSection() {
               Full Papers Due
             </dt>
             <dd className="mt-1 text-base font-semibold text-white">
-              10 November 2026
+               10 November 2026
             </dd>
           </div>
         </dl>

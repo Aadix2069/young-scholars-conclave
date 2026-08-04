@@ -11,10 +11,10 @@
 /** Per-theme description PDFs, keyed by the exact theme title. */
 export const THEME_PDFS: Record<string, string> = {
   "Role of Science and Technology in Agrarian and Rural Transformation": "",
-  "Policies and Practices in Rural and Agrarian Development": "",
-  "Inequality and Deprivation in the Countryside": "",
-  "The Dynamics of Farm–Non-Farm Linkages": "",
-  "Agriculture as an Arena of Human–Nature Interaction": "",
+  "Inequality, Deprivation, and Living Standards in the Countryside": "",
+  "Agrarian Relations": "",
+  "Dynamics of Farm and Non-Farm, and Rural and Urban Linkages (including Migration)": "",
+  "Agriculture and the Environment (including Climate Change)": "",
 };
 
 /** Submission guidelines PDF, linked from the Call for Papers section. */

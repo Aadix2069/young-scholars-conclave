@@ -4,19 +4,16 @@ import { SectionAccent } from "./SectionAccent";
 /**
  * Conclave milestones in chronological order.
  *
- * `date: null` renders an explicit "To be announced" state. The Call for
- * Applications and Last Date to Submit dates were requested by the client
- * design review but not supplied with it — set the real date string here
- * when the organising committee confirms it. Do not guess a date.
+ * `date: null` renders an explicit "To be announced" state.
  */
 const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeIcon }[] = [
   {
-    date: null,
+    date: "05 August 2026",
     label: "Call for Applications",
     Icon: MegaphoneIcon,
   },
   {
-    date: null,
+    date: "31 August 2026",
     label: "Last Date to Submit",
     Icon: CalendarIcon,
   },
