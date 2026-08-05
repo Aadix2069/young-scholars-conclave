@@ -36,6 +36,7 @@ const NAV_ENTRIES: NavEntry[] = [
     label: "Submissions",
     items: [
       { label: "Call for Papers", href: "/#call-for-papers", hash: "#call-for-papers" },
+      { label: "Submission Guidelines", href: "/submission-guidelines", hash: null },
       { label: "Submit Abstract", href: "/submit-abstract", hash: null },
       { label: "Submit Full Paper", href: "/submit-paper", hash: null },
     ],

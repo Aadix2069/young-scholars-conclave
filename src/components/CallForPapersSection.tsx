@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { SectionAccent } from "./SectionAccent";
 import { StyledList } from "./StyledList";
-import { SUBMISSION_GUIDELINES_PDF } from "@/lib/conferenceDocs";
 
 const ELIGIBILITY = [
   "PhD candidates enrolled in recognised universities in India or abroad.",
@@ -58,24 +57,12 @@ export function CallForPapersSection() {
           >
             Submit Abstract
           </Link>
-          {SUBMISSION_GUIDELINES_PDF ? (
-            <a
-              href={SUBMISSION_GUIDELINES_PDF}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-8 py-3 text-sm font-semibold text-white transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
-            >
-              Submission Guidelines
-            </a>
-          ) : (
-            <span
-              className="inline-flex cursor-not-allowed items-center justify-center rounded-full border-2 border-white/40 px-8 py-3 text-sm font-semibold text-white/60"
-              aria-disabled="true"
-              title="The submission guidelines PDF will be available soon"
-            >
-              Submission Guidelines
-            </span>
-          )}
+          <Link
+            href="/submission-guidelines"
+            className="inline-flex items-center justify-center rounded-full border-2 border-white/70 px-8 py-3 text-sm font-semibold text-white transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
+          >
+            Submission Guidelines
+          </Link>
         </div>
       </div>
     </section>

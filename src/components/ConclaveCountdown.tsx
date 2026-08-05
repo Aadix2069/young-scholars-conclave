@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const CONCLAVE_START = new Date("2026-12-02T09:00:00").getTime();
+const CONCLAVE_START = new Date("2026-12-02T10:00:00").getTime();
 
 interface TimeLeft {
   days: number;
@@ -26,42 +26,48 @@ function calculateTimeLeft(): TimeLeft {
   };
 }
 
-function AnimatedNumber({ value }: { value: number }) {
+const BASKERVILLE_FONT =
+  '"Baskerville Old Face", "Baskerville", "Baskerville SemiBold", "Garamond", serif';
+
+/**
+ * Animates an individual digit moving vertically without container backgrounds.
+ * Scaled up to h-9 / w-4 (sm:h-10 / sm:w-5) and text-xl (sm:text-2xl).
+ */
+function SingleDigit({ char }: { char: string }) {
   return (
-    <div className="relative h-14 w-16 overflow-hidden sm:h-16 sm:w-20">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={value}
-          initial={{
-            y: 60,
-            opacity: 0,
-            scale: 0.9,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            scale: 1,
-          }}
-          exit={{
-            y: -60,
-            opacity: 0,
-            scale: 1.08,
-          }}
+    <div className="relative h-9 w-4 overflow-hidden sm:h-10 sm:w-5">
+      <AnimatePresence mode="popLayout">
+        <motion.span
+          key={char}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
           transition={{
-            duration: 0.45,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.35,
+            ease: [0.16, 1, 0.3, 1],
           }}
-          className="absolute inset-0 flex items-center justify-center text-4xl font-black tracking-tight text-white sm:text-5xl"
-          style={{
-            fontFamily:
-              'Impact, Haettenschweiler, "Arial Black", sans-serif',
-            textShadow:
-              "0 3px 10px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.35)",
-          }}
+          className="absolute inset-0 flex items-center justify-center text-xl font-semibold text-white sm:text-2xl"
+          style={{ fontFamily: BASKERVILLE_FONT }}
         >
-          {String(value).padStart(2, "0")}
-        </motion.div>
+          {char}
+        </motion.span>
       </AnimatePresence>
+    </div>
+  );
+}
+
+/**
+ * Splits a two-digit number into individual animated characters.
+ */
+function AnimatedNumber({ value }: { value: number }) {
+  const formatted = String(value).padStart(2, "0");
+  const digits = formatted.split("");
+
+  return (
+    <div className="flex items-center justify-center">
+      {digits.map((digit, index) => (
+        <SingleDigit key={index} char={digit} />
+      ))}
     </div>
   );
 }
@@ -74,10 +80,12 @@ function TimeBlock({
   label: string;
 }) {
   return (
-    <div className="flex min-w-[72px] flex-col items-center sm:min-w-[90px]">
+    <div className="flex flex-col items-center">
       <AnimatedNumber value={value} />
-
-      <span className="mt-2 text-[11px] font-bold uppercase tracking-[0.35em] text-white/80 sm:text-xs">
+      <span
+        className="mt-1 text-[11px] uppercase tracking-widest text-neutral-400 sm:text-xs"
+        style={{ fontFamily: BASKERVILLE_FONT }}
+      >
         {label}
       </span>
     </div>
@@ -85,22 +93,27 @@ function TimeBlock({
 }
 
 export function ConclaveCountdown() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const update = () => {
+    setIsMounted(true);
+    setTimeLeft(calculateTimeLeft());
+
+    const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
-    };
-
-    update();
-
-    // Update four times per second for better synchronization.
-    const interval = setInterval(update, 250);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   const hasStarted =
+    isMounted &&
     timeLeft.days === 0 &&
     timeLeft.hours === 0 &&
     timeLeft.minutes === 0 &&
@@ -108,41 +121,51 @@ export function ConclaveCountdown() {
 
   if (hasStarted) {
     return (
-      <motion.span
-        initial={{ opacity: 0, y: 12 }}
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-xl font-bold text-white md:text-2xl"
+        className="inline-flex items-center gap-2 text-base text-emerald-400 sm:text-lg"
+        style={{ fontFamily: BASKERVILLE_FONT }}
       >
-        🎉 The Conclave Has Started
-      </motion.span>
+        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+        The Conclave Has Started
+      </motion.div>
     );
   }
 
   return (
-    <motion.div
-      layout
-      className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6"
+    <div
+      className="inline-flex items-center gap-3 sm:gap-4"
       aria-live="polite"
     >
       <TimeBlock value={timeLeft.days} label="Days" />
 
-      <span className="pb-6 text-3xl font-bold text-white/70 sm:text-4xl">
+      <span
+        className="pb-4 text-sm text-neutral-500 sm:text-base"
+        style={{ fontFamily: BASKERVILLE_FONT }}
+      >
         :
       </span>
 
       <TimeBlock value={timeLeft.hours} label="Hours" />
 
-      <span className="pb-6 text-3xl font-bold text-white/70 sm:text-4xl">
+      <span
+        className="pb-4 text-sm text-neutral-500 sm:text-base"
+        style={{ fontFamily: BASKERVILLE_FONT }}
+      >
         :
       </span>
 
-      <TimeBlock value={timeLeft.minutes} label="Minutes" />
+      <TimeBlock value={timeLeft.minutes} label="Mins" />
 
-      <span className="pb-6 text-3xl font-bold text-white/70 sm:text-4xl">
+      <span
+        className="pb-4 text-sm text-neutral-500 sm:text-base"
+        style={{ fontFamily: BASKERVILLE_FONT }}
+      >
         :
       </span>
 
-      <TimeBlock value={timeLeft.seconds} label="Seconds" />
-    </motion.div>
+      <TimeBlock value={timeLeft.seconds} label="Secs" />
+    </div>
   );
 }

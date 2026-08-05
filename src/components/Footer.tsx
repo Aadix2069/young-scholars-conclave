@@ -7,6 +7,7 @@ const USEFUL_LINKS = [
   { label: "About the Conclave", href: "/about/conclave", external: false },
   { label: "Themes", href: "/#themes", external: false },
   { label: "Call for Papers", href: "/#call-for-papers", external: false },
+  { label: "Submission Guidelines", href: "/submission-guidelines", external: false },
   { label: "Contact", href: "/#contact", external: false },
 ];
 
