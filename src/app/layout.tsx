@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AosInit } from "@/components/AosInit";
-import { FloatingCta } from "@/components/FloatingCta";
+// import { FloatingCta } from "@/components/FloatingCta";
 import { HashScrollHandler } from "@/components/HashScrollHandler";
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({
         <AosInit />
         <HashScrollHandler />
         {children}
-        <FloatingCta />
+        {/* <FloatingCta /> */}
       </body>
     </html>
   );

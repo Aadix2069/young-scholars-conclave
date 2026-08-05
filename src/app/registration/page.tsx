@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
-import { RegistrationFees } from "@/components/registration/RegistrationFees";
-import { RegistrationForm } from "@/components/registration/RegistrationForm";
+// import { RegistrationFees } from "@/components/registration/RegistrationFees";
+// import { RegistrationForm } from "@/components/registration/RegistrationForm";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -15,13 +15,13 @@ export default function RegistrationPage() {
     <div className="flex flex-1 flex-col">
       <Navbar />
       <main id="main-content" className="flex-1">
-        <RegistrationFees />
+        {/* <RegistrationFees />
         <div className="container mx-auto px-4 pb-16 md:px-8 md:pb-24 lg:px-12">
           <h2 className="mb-8 text-center text-2xl font-extrabold text-brand-blue sm:text-3xl">
             Register Now
           </h2>
           <RegistrationForm />
-        </div>
+        </div> */}
       </main>
       <Footer />
     </div>

@@ -55,7 +55,7 @@ const NAV_ENTRIES: NavEntry[] = [
       { label: "Archive", href: "/archive", hash: null },
     ],
   },
-  { label: "Registration", href: "/registration", hash: null },
+  // { label: "Registration", href: "/registration", hash: null },
   { label: "Contact", href: "/#contact", hash: "#contact" },
 ];
 
