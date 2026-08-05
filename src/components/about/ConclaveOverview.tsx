@@ -2,7 +2,7 @@ import { THEMES } from "@/lib/themes";
 import { StyledList } from "../StyledList";
 
 const AIMS = [
-  "Create a platform for young scholars from across the world working on rural development in the Global South.",
+  "Create a platform for young scholars from across the world working on rural development.",
   "Provide young scholars with an opportunity to present their work and receive feedback from their peers to help shape their research.",
   "Facilitate interaction between young scholars and senior scholars working on different aspects of rural India and agrarian studies.",
   "Curate special lectures by experts in the field.",
@@ -44,7 +44,7 @@ export function ConclaveOverview() {
           Drawing on FAS&rsquo;s long-standing engagement with young
           scholars, the conclave seeks to create a platform for emerging
           researchers from India and across the world working on agrarian
-          studies and rural development, particularly in the Global South.
+          studies and rural development.
           The initiative aims to encourage the exchange of academic
           knowledge, strengthen research, and foster collaboration between
           young scholars and leading experts in the field.

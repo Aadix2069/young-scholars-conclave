@@ -24,7 +24,7 @@ export function ConclaveCountdown() {
         ? "Conclave Starts Soon"
         : days === 0
         ? "The Conclave Starts Today"
-        : `${days} ${days === 1 ? "Day" : "Days"} To Go`}
+        : `${days} ${days === 1 ? "Day" : "Days"}`}
     </span>
   );
 }

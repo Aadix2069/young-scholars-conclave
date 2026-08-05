@@ -18,7 +18,7 @@ const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeI
     Icon: CalendarIcon,
   },
   {
-    date: "20 September 2026",
+    date: "30 September 2026",
     label: "Communication of Acceptance",
     Icon: CheckBadgeIcon,
   },

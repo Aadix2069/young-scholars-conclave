@@ -59,7 +59,7 @@ export function Hero() {
 </h1>
 
   <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
-    &ldquo;Studying the Countryside in the Global South in the
+    &ldquo;Studying the Countryside in the
     Twenty-First Century&rdquo;
   </p>
 

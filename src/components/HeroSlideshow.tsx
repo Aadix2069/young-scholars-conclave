@@ -19,6 +19,12 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
     src: "/hero/conference-hall-9.jpeg",
     alt: "Delegates seated in discussion at a conference session",
   },
+
+  {
+    src: "/hero/poster.png",
+    alt: "Call for Papers",
+  },
+  
 ];
 
 const AUTOPLAY_DELAY_MS = 5000;
