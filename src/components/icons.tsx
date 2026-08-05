@@ -2,6 +2,24 @@ type IconProps = {
   className?: string;
 };
 
+export function UploadIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 15.5v-11m0 0L8.5 8M12 4.5l3.5 3.5" />
+      <path d="M4.5 15.5v2A2.5 2.5 0 0 0 7 20h10a2.5 2.5 0 0 0 2.5-2.5v-2" />
+    </svg>
+  );
+}
+
 export function DocumentIcon({ className }: IconProps) {
   return (
     <svg

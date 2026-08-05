@@ -6,7 +6,7 @@ This connects the website's Registration, Submit Abstract, and Submit Full Paper
 
 1. Go to [sheets.google.com](https://sheets.google.com) and create a new blank spreadsheet.
 2. Name it something like "Young Scholars' Conclave 2026 — Submissions".
-3. Leave it empty — the script creates its own "Registrations", "Abstract Submissions", and "Paper Submissions" tabs automatically on first submission. The paper flow also creates a "YSC 2026 — Paper Submissions" Drive folder on first use, to hold uploaded manuscripts.
+3. Leave it empty — the script creates its own "Registrations", "Abstract Submissions", and "Paper Submissions" tabs automatically on first submission. The abstract flow also creates a "YSC 2026 — Abstract Submissions/CV Files" Drive folder tree and the paper flow a "YSC 2026 — Paper Submissions" Drive folder on first use, to hold uploaded CVs and manuscripts.
 
 ## 2. Add the script
 
@@ -24,7 +24,7 @@ This connects the website's Registration, Submit Abstract, and Submit Full Paper
    - **Execute as**: **Me** (your Google account)
    - **Who has access**: **Anyone** (this must be "Anyone", not "Anyone with a Google account" — the site submits without asking visitors to sign in)
 4. Click **Deploy**.
-5. Google will ask you to authorize the script — click through the consent screens (you'll see an "unverified app" warning since this is your own script; click **Advanced → Go to (project name)** to proceed). The paper flow uses `DriveApp` to save uploaded manuscripts, so this authorization step will also ask for Drive permission — accept it, or paper uploads will fail.
+5. Google will ask you to authorize the script — click through the consent screens (you'll see an "unverified app" warning since this is your own script; click **Advanced → Go to (project name)** to proceed). Both the abstract flow (CV uploads) and the paper flow (manuscripts) use `DriveApp`, so this authorization step will also ask for Drive permission — accept it, or file uploads will fail.
 6. Copy the **Web app URL** it gives you — it looks like `https://script.google.com/macros/s/AKfycb.../exec`.
 
 ## 4. Give the URL to the website
@@ -39,7 +39,7 @@ The website never talks to Apps Script directly from the browser — it goes thr
 
 ## 5. Test it
 
-Once the env var is set and the site is running, submit a test entry through the Registration, Submit Abstract, or Submit Full Paper page and confirm a new row appears in the Sheet within a few seconds. For the paper form, also confirm the "Paper File Link" column has a working Drive link to the uploaded manuscript.
+Once the env var is set and the site is running, submit a test entry through the Registration, Submit Abstract, or Submit Full Paper page and confirm a new row appears in the Sheet within a few seconds. For the abstract form, upload a small PDF as the CV and confirm the "CV Google Drive URL" column has a working Drive link; for the paper form, confirm the "Paper File Link" column has a working Drive link to the uploaded manuscript.
 
 ## Updating the script later
 
@@ -66,3 +66,24 @@ Saving alone does not update the live Web App — Apps Script Web Apps are versi
   **note**: hover over the cell (small black triangle in the corner) to
   read it in full, or click the cell and check the note panel. Copying
   the cell's value still only copies the preview, not the full note.
+
+## Notes on the CV upload (Abstract flow)
+
+- The abstract form now requires a **Curriculum Vitae** upload, **PDF only**,
+  capped at **5MB**. The file is validated in three places: the browser
+  (extension, MIME type, size, and the `%PDF-` header after encoding), the
+  Next.js route (`src/app/api/submit-abstract/route.ts`), and again in
+  `Code.gs` — the last line of defense before anything is written to Drive.
+- CVs are stored in a Drive folder tree **"YSC 2026 — Abstract Submissions /
+  CV Files"** (auto-created on first submission), shared as "anyone with the
+  link can view" so the URL recorded in the sheet is directly usable.
+- Each abstract row now records: **CV File Name**, **CV File ID**, **CV
+  Google Drive URL**, and **CV Upload Timestamp**. If the "Abstract
+  Submissions" sheet was created before this feature, the new columns are
+  appended automatically on the first submission (`ensureColumns`) — the
+  existing columns are never touched.
+- Duplicate submissions are prevented by matching **email + paper title**
+  (case-insensitive). Submitting the same title from the same email again
+  is rejected before the CV is saved to Drive.
+- If writing the sheet row fails after the CV was already saved to Drive,
+  the script trashes the orphaned CV file so no upload is left dangling.

@@ -55,7 +55,7 @@ export function Hero() {
   <h1 className="mx-auto max-w-5xl text-4xl font-bold leading-[1.1] sm:text-5xl md:text-[3.4rem] lg:text-[4rem]">
   Young Scholars&rsquo; Conclave
   <br className="hidden md:block" />
-  <span className="block md:inline"> on Rural Transformation</span>
+  <span className="block md:inline text-5xl"> on Rural Transformation</span>
 </h1>
 
   <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">

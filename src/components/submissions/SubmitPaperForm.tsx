@@ -177,7 +177,7 @@ export function SubmitPaperForm() {
         className="mx-auto max-w-xl rounded-xl border border-brand-green/40 bg-brand-green/10 p-8 text-center"
       >
         <p className="text-lg font-bold text-brand-green-dark">Full paper submitted</p>
-        <p className="mt-2 text-sm text-gray-700">{message}</p>
+        <p className="mt-2 text-sm text-gray-700"></p>
       </motion.div>
     );
   }

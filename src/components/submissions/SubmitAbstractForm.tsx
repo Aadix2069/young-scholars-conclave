@@ -3,9 +3,17 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormField } from "../forms/FormField";
+import { FileDropzone } from "../forms/FileDropzone";
 import { useFormSubmit } from "../forms/useFormSubmit";
 import { THEMES } from "@/lib/themes";
 import { DURATIONS, EASE_SMOOTH } from "@/lib/motion";
+import {
+  MAX_CV_FILE_SIZE,
+  PDF_MIME_TYPE,
+  fileToBase64,
+  isPdfBase64,
+  validatePdfFile,
+} from "@/lib/fileUtils";
 
 const THEME_TITLES = THEMES.map((t) => t.title);
 
@@ -38,6 +46,8 @@ const REQUIRED: (keyof Fields)[] = [
   "abstract",
 ];
 
+type ExtraErrors = { cv?: string };
+
 function validate(fields: Fields): Partial<Record<keyof Fields, string>> {
   const errors: Partial<Record<keyof Fields, string>> = {};
   for (const key of REQUIRED) {
@@ -54,8 +64,12 @@ function validate(fields: Fields): Partial<Record<keyof Fields, string>> {
 
 export function SubmitAbstractForm() {
   const [fields, setFields] = useState<Fields>(EMPTY_FIELDS);
-  const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
-  const { state, message, submit } = useFormSubmit("/api/submit-abstract");
+  const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>> & ExtraErrors>({});
+  const [cv, setCv] = useState<File | null>(null);
+  const [encoding, setEncoding] = useState(false);
+  const { state, message, submit } = useFormSubmit("/api/submit-abstract", {
+    timeoutMs: 45000,
+  });
   const formRef = useRef<HTMLFormElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -76,22 +90,51 @@ export function SubmitAbstractForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const fieldErrors = validate(fields);
-    setErrors(fieldErrors);
+    const cvError = validatePdfFile(cv, MAX_CV_FILE_SIZE);
+    const allErrors = { ...fieldErrors, cv: cvError };
+    setErrors(allErrors);
 
-    if (Object.keys(fieldErrors).length > 0) {
-      const firstInvalidKey = REQUIRED.find((key) => fieldErrors[key]) ?? "email";
-      formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalidKey}"]`)?.focus();
+    const firstInvalidField = REQUIRED.find((key) => fieldErrors[key]);
+    if (Object.values(allErrors).some(Boolean)) {
+      if (firstInvalidField) {
+        formRef.current?.querySelector<HTMLElement>(`[name="${firstInvalidField}"]`)?.focus();
+      } else if (cvError) {
+        formRef.current?.querySelector<HTMLElement>(`[name="cv"]`)?.focus();
+      }
       return;
     }
 
-    const success = await submit(fields);
+    setEncoding(true);
+    let cvBase64: string;
+    try {
+      cvBase64 = await fileToBase64(cv as File);
+    } catch {
+      setEncoding(false);
+      setErrors((prev) => ({ ...prev, cv: "Couldn't read this file. Please try another." }));
+      return;
+    }
+    if (!isPdfBase64(cvBase64)) {
+      setEncoding(false);
+      setErrors((prev) => ({ ...prev, cv: "This doesn't appear to be a valid PDF file." }));
+      return;
+    }
+    setEncoding(false);
+
+    const success = await submit({
+      ...fields,
+      cvFileName: (cv as File).name,
+      cvFileMimeType: (cv as File).type || PDF_MIME_TYPE,
+      cvFileBase64: cvBase64,
+    });
     if (success) {
       setFields(EMPTY_FIELDS);
       setErrors({});
+      setCv(null);
     }
   }
 
   const wordCount = fields.abstract.trim() ? fields.abstract.trim().split(/\s+/).length : 0;
+  const submitting = state === "submitting" || encoding;
 
   if (state === "success") {
     return (
@@ -103,7 +146,10 @@ export function SubmitAbstractForm() {
         className="mx-auto max-w-xl rounded-xl border border-brand-green/40 bg-brand-green/10 p-8 text-center"
       >
         <p className="text-lg font-bold text-brand-green-dark">Abstract submitted</p>
-        <p className="mt-2 text-sm text-gray-700"></p>
+        <p className="mt-2 text-sm text-gray-700">
+          Your abstract and CV have been received. The academic committee
+          will review your submission and notify you of the outcome.
+        </p>
       </motion.div>
     );
   }
@@ -187,6 +233,24 @@ export function SubmitAbstractForm() {
         helperText={`${wordCount} word${wordCount === 1 ? "" : "s"} (minimum 50)`}
       />
 
+      <FileDropzone
+        label="Curriculum Vitae (CV) (PDF Only)"
+        name="cv"
+        required
+        accept={[".pdf"]}
+        file={cv}
+        disabled={submitting}
+        onFileChange={(f) => {
+          setCv(f);
+          setErrors((prev) => ({ ...prev, cv: validatePdfFile(f, MAX_CV_FILE_SIZE) }));
+        }}
+        onBlurValidate={() =>
+          setErrors((prev) => ({ ...prev, cv: validatePdfFile(cv, MAX_CV_FILE_SIZE) }))
+        }
+        error={errors.cv}
+        helperText="Upload your latest Curriculum Vitae in PDF format. Maximum file size: 5 MB."
+      />
+
       <AnimatePresence initial={false}>
         {state === "error" && (
           <motion.p
@@ -205,16 +269,16 @@ export function SubmitAbstractForm() {
 
       <button
         type="submit"
-        disabled={state === "submitting"}
+        disabled={submitting}
         className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:bg-brand-blue sm:w-auto"
       >
-        {state === "submitting" ? (
+        {submitting ? (
           <>
             <span
               className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white"
               aria-hidden="true"
             />
-            Submitting&hellip;
+            {encoding ? "Preparing CV;" : "Submitting;"}
           </>
         ) : (
           "Submit Abstract"
