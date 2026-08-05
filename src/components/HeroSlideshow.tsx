@@ -20,10 +20,7 @@ const HERO_SLIDES: { src: string; alt: string }[] = [
     alt: "Delegates seated in discussion at a conference session",
   },
 
-  {
-    src: "/hero/poster.png",
-    alt: "Call for Papers",
-  },
+  
   
 ];
 

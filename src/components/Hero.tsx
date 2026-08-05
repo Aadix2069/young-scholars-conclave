@@ -70,18 +70,7 @@ export function Hero() {
 
         {/* ================= BUTTON + COUNTDOWN ================= */}
         <div className="pb-2">
-          <motion.div
-            className="pointer-events-auto"
-            variants={fadeUp}
-          >
-            <Link
-              href="/registration"
-              className="inline-flex items-center gap-2 rounded-full border border-white bg-transparent px-8 py-3.5 text-base font-semibold text-white no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-blue-950"
-            >
-              Register Now
-              <ArrowRightIcon className="animate-nudge-x h-4 w-4" />
-            </Link>
-          </motion.div>
+         
 
           <motion.div
             className="pointer-events-auto mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-12"
