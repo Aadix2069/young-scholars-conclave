@@ -52,9 +52,11 @@ export function Hero() {
     Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
   </p>
 
-  <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-    Young Scholars&rsquo; Conclave
-  </h1>
+  <h1 className="mx-auto max-w-5xl text-4xl font-bold leading-[1.1] sm:text-5xl md:text-[3.4rem] lg:text-[4rem]">
+  Young Scholars&rsquo; Conclave
+  <br className="hidden md:block" />
+  <span className="block md:inline"> on Rural Transformation</span>
+</h1>
 
   <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
     &ldquo;Studying the Countryside in the Global South in the
