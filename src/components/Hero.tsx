@@ -44,34 +44,34 @@ export function Hero() {
         animate="visible"
         variants={container}
       >
-        {/* ================= TITLE ================= */}<motion.div
-  variants={fadeUp}
-  className="mx-auto -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 xl:-mt-20 max-w-5xl"
->
-  <p className="mb-3 text-sm font-semibold text-white/90 sm:text-base">
-    Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
-  </p>
+        {/* ================= TITLE ================= */}
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 xl:-mt-20 max-w-5xl"
+        >
+          <p className="mb-3 text-sm font-semibold text-white/90 sm:text-base">
+            Foundation for Agrarian Studies &amp; CHRIST (Deemed to be University)
+          </p>
 
-  <h1 className="mx-auto max-w-5xl text-4xl font-bold leading-[1.1] sm:text-5xl md:text-[3.4rem] lg:text-[4rem]">
-  Young Scholars&rsquo; Conclave
-  <br className="hidden md:block" />
-  <span className="block md:inline text-5xl"> on Rural Transformation</span>
-</h1>
+          <h1 className="mx-auto max-w-5xl text-3xl font-bold leading-[1.15] sm:text-4xl md:text-[3.4rem] lg:text-[4rem]">
+            Young Scholars&rsquo; Conclave
+            <br className="hidden md:block" />
+            <span className="block text-2xl sm:text-3xl md:inline md:text-5xl">
+              {" "}on Rural Transformation
+            </span>
+          </h1>
 
-  <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
-    &ldquo;Studying the Countryside in the
-    Twenty-First Century&rdquo;
-  </p>
+          <p className="mx-auto mt-3 max-w-3xl text-sm italic text-white/85 sm:text-base md:text-lg">
+            &ldquo;Studying the Countryside in the Twenty-First Century&rdquo;
+          </p>
 
-  <p className="mt-3 text-lg text-white/90 sm:text-xl md:text-2xl">
-    2&ndash;4 December 2026 &middot; Bengaluru
-  </p>
-</motion.div>
+          <p className="mt-3 text-lg text-white/90 sm:text-xl md:text-2xl">
+            2&ndash;4 December 2026 &middot; Bengaluru
+          </p>
+        </motion.div>
 
         {/* ================= BUTTON + COUNTDOWN ================= */}
         <div className="pb-2">
-         
-
           <motion.div
             className="pointer-events-auto mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-12"
             variants={fadeUp}
