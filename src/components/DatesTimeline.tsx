@@ -14,7 +14,7 @@ const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeI
   },
   {
     date: "31 August 2026",
-    label: "Last Date to Submit",
+    label: "Last Date to Submit Abstract",
     Icon: CalendarIcon,
   },
   {
