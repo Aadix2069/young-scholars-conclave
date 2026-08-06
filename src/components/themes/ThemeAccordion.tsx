@@ -40,6 +40,7 @@ export function ThemeAccordion({ themes, pdfByTitle }: ThemeAccordionProps) {
               isOpen={openIndex === index}
               buttonId={`theme-button-${index}`}
               ariaControls={`theme-dialog-${index}`}
+              accent={theme.accent}
               onToggle={toggle}
             />
           </div>

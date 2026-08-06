@@ -7,6 +7,10 @@ type ThemeCardProps = {
   isOpen: boolean;
   buttonId: string;
   ariaControls: string;
+  accent: {
+    shell: string;
+    border: string;
+  };
   onToggle: (index: number) => void;
 };
 
@@ -23,6 +27,7 @@ export const ThemeCard = memo(function ThemeCard({
   isOpen,
   buttonId,
   ariaControls,
+  accent,
   onToggle,
 }: ThemeCardProps) {
   return (
@@ -34,7 +39,9 @@ export const ThemeCard = memo(function ThemeCard({
       aria-controls={ariaControls}
       onClick={() => onToggle(index)}
       className={`flex h-full w-full cursor-pointer flex-col justify-between rounded-xl border border-gray-200 border-t-4 bg-white p-6 text-left shadow-sm transition-[transform,box-shadow,border-color,background-color] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${
-        isOpen ? "border-t-brand-gold border-brand-gold bg-brand-sand/20" : "border-t-brand-green"
+        isOpen
+          ? "border-t-brand-gold border-brand-gold bg-brand-sand/20"
+          : `${accent.shell} ${accent.border}`
       }`}
     >
       <div>
