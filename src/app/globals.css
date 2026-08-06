@@ -28,6 +28,11 @@
    * Accents, hover states, dividers. */
   --color-brand-gold: #c8a24a;
 
+  /* Darker derived shade of Warm Gold (same hue, ~30% darker) for use as
+   * text/UI-icon color - the base gold is only ~2.4:1 against white/off-white,
+   * failing WCAG AA (4.5:1 text / 3:1 UI); this shade passes at 4.64:1. */
+  --color-brand-gold-dark: #8c7134;
+
   /* FAS green - the one color value the DOCX review note explicitly confirms
    * ("Here is the FAS green colour: RGB 153,174,106"), overriding the two
    * palette mockups in the same doc, which disagree with each other on this
@@ -65,6 +70,7 @@
 
   --color-brand-blue: var(--color-brand-blue);
   --color-brand-gold: var(--color-brand-gold);
+  --color-brand-gold-dark: var(--color-brand-gold-dark);
   --color-brand-green: var(--color-brand-green);
   --color-brand-green-dark: var(--color-brand-green-dark);
   --color-brand-charcoal: var(--color-brand-charcoal);
@@ -77,6 +83,30 @@ body {
   color: var(--foreground);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+/* Faint film-grain overlay so flat section backgrounds (off-white, sand,
+ * muted blue, the blue-900 gradients) read as a soft material instead of a
+ * dead-flat fill. Pure SVG turbulence noise with only the alpha channel
+ * scaled (RGB zeroed to black), so it's a plain per-pixel darken - no
+ * blend-mode color-science surprises across the different section tints.
+ * Fixed + pointer-events:none so it never intercepts clicks or scrolls with
+ * content; opacity is baked into the SVG (~3.5% max) to stay subtle. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+@media print {
+  body::after {
+    display: none;
+  }
 }
 
 html {

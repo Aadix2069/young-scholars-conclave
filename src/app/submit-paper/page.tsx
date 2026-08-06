@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { SubmitPaperForm } from "@/components/submissions/SubmitPaperForm";
 import { Footer } from "@/components/Footer";
+import { FULL_PAPER_SUBMISSION_ENABLED } from "@/lib/featureFlags";
 
 export const metadata: Metadata = {
   title: "Submit Full Paper | Young Scholars' Conclave 2026",
@@ -10,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function SubmitPaperPage() {
+  if (!FULL_PAPER_SUBMISSION_ENABLED) notFound();
+
   return (
     <div className="flex flex-1 flex-col">
       <Navbar />

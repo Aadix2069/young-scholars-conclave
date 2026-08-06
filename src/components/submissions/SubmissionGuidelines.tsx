@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { StyledList } from "../StyledList";
+import { FULL_PAPER_SUBMISSION_ENABLED } from "@/lib/featureFlags";
 
 const ABSTRACT_DETAILS = [
   "Title of the paper",
@@ -9,8 +10,10 @@ const ABSTRACT_DETAILS = [
 ];
 
 const REVIEW_PROCESS = [
-  "All submissions will undergo peer review by an academic committee.",
-  "Authors of selected abstracts will be invited to submit full papers and present their work during the conclave.",
+  "All submissions will undergo a rigorous review process by an academic committee.",
+  FULL_PAPER_SUBMISSION_ENABLED
+    ? "Authors of selected abstracts will be invited to submit full papers and present their work during the conclave."
+    : "Authors of selected abstracts will be invited to present their work during the conclave.",
 ];
 
 const FULL_PAPER_GUIDELINES = [
@@ -20,9 +23,11 @@ const FULL_PAPER_GUIDELINES = [
 ];
 
 const IMPORTANT_DATES = [
-  { activity: "Last date for abstract submission", date: "August 31, 2026" },
+  { activity: "Last date for abstract submission", date: "September 1, 2026" },
   { activity: "Communication of acceptance", date: "September 30, 2026" },
-  { activity: "Deadline for submission of full papers", date: "November 10, 2026" },
+  ...(FULL_PAPER_SUBMISSION_ENABLED
+    ? [{ activity: "Deadline for submission of full papers", date: "November 10, 2026" }]
+    : []),
   { activity: "Young Scholars\u2019 Conclave", date: "December 2\u20134, 2026" },
 ];
 
@@ -41,12 +46,12 @@ export function SubmissionGuidelines() {
       <section className="space-y-6" data-aos="fade-up">
         <SectionHeading>Guidelines for Abstract Submission</SectionHeading>
         <p className="text-justify text-base leading-7 text-gray-700">
-          Authors are invited to submit an extended abstract of approximately
-          500 words. Applicants are required to submit a short CV along with
+          Authors are invited to submit an abstract of 5,000–7,000
+          words. Applicants are required to submit a short CV along with
           their abstract.
         </p>
         <p className="text-justify text-base leading-7 text-gray-700">
-          The extended abstract should clearly include:
+          The abstract should clearly include:
         </p>
         <StyledList items={ABSTRACT_DETAILS} className="mt-2" />
         <p className="text-justify text-base leading-7 text-gray-700">
@@ -99,17 +104,19 @@ export function SubmissionGuidelines() {
         <StyledList items={REVIEW_PROCESS} className="mt-2" />
       </section>
 
-      <section className="space-y-6" data-aos="fade-up">
-        <SectionHeading>Full Paper Submission</SectionHeading>
-        <p className="text-justify text-base leading-7 text-gray-700">
-          Authors whose abstracts are accepted will be invited to submit a
-          full paper.
-        </p>
-        <div>
-          <p className="font-semibold text-brand-blue">Guidelines</p>
-          <StyledList items={FULL_PAPER_GUIDELINES} className="mt-2" />
-        </div>
-      </section>
+      {FULL_PAPER_SUBMISSION_ENABLED && (
+        <section className="space-y-6" data-aos="fade-up">
+          <SectionHeading>Full Paper Submission</SectionHeading>
+          <p className="text-justify text-base leading-7 text-gray-700">
+            Authors whose abstracts are accepted will be invited to submit a
+            full paper.
+          </p>
+          <div>
+            <p className="font-semibold text-brand-blue">Guidelines</p>
+            <StyledList items={FULL_PAPER_GUIDELINES} className="mt-2" />
+          </div>
+        </section>
+      )}
 
       <div
         className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row"
@@ -121,12 +128,14 @@ export function SubmissionGuidelines() {
         >
           Submit Abstract
         </Link>
-        <Link
-          href="/submit-paper"
-          className="inline-flex items-center justify-center rounded-full border-2 border-brand-blue px-8 py-3 text-sm font-semibold text-brand-blue no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/5"
-        >
-          Submit Full Paper
-        </Link>
+        {FULL_PAPER_SUBMISSION_ENABLED && (
+          <Link
+            href="/submit-paper"
+            className="inline-flex items-center justify-center rounded-full border-2 border-brand-blue px-8 py-3 text-sm font-semibold text-brand-blue no-underline transition-[transform,background] duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/5"
+          >
+            Submit Full Paper
+          </Link>
+        )}
       </div>
     </div>
   );

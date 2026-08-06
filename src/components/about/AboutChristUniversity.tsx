@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function AboutChristUniversity() {
   return (
-    <section className="mx-auto mb-20 max-w-7xl px-4 sm:px-6 lg:px-12">
+    <section className="mx-auto mb-20 max-w-7xl px-4 py-16 sm:px-6 lg:px-12">
       <h2
         className="mb-3 text-center text-5xl font-extrabold text-brand-blue"
         data-aos="fade-up"

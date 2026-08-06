@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormField } from "../forms/FormField";
@@ -50,6 +51,8 @@ function validate(fields: Fields): Partial<Record<keyof Fields, string>> {
 export function RegistrationForm() {
   const [fields, setFields] = useState<Fields>(EMPTY_FIELDS);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
+  const [consentAccepted, setConsentAccepted] = useState(false);
+  const [consentError, setConsentError] = useState<string | undefined>(undefined);
   const { state, message, submit } = useFormSubmit("/api/register");
   const formRef = useRef<HTMLFormElement>(null);
   const reduceMotion = useReducedMotion();
@@ -79,10 +82,21 @@ export function RegistrationForm() {
       return;
     }
 
-    const success = await submit({ ...fields, category: FIXED_CATEGORY });
+    const consentError = consentAccepted
+      ? undefined
+      : "You must agree to the Privacy Policy and Terms of Service to complete registration.";
+    setConsentError(consentError);
+
+    if (consentError) {
+      return;
+    }
+
+    const success = await submit({ ...fields, category: FIXED_CATEGORY, consentAccepted });
     if (success) {
       setFields(EMPTY_FIELDS);
       setErrors({});
+      setConsentAccepted(false);
+      setConsentError(undefined);
     }
   }
 
@@ -203,9 +217,41 @@ export function RegistrationForm() {
         )}
       </AnimatePresence>
 
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <label className="flex items-start gap-2.5 text-sm text-gray-800">
+          <input
+            type="checkbox"
+            checked={consentAccepted}
+            onChange={(e) => {
+              setConsentAccepted(e.target.checked);
+              if (e.target.checked) {
+                setConsentError(undefined);
+              }
+            }}
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-brand-blue focus:ring-brand-blue/20"
+          />
+          <span>
+            I agree to the{' '}
+            <Link href="/privacy-policy" className="font-semibold text-brand-blue underline-offset-4 hover:underline">
+              Privacy Policy
+            </Link>{' '}
+            and{' '}
+            <Link href="/terms-of-service" className="font-semibold text-brand-blue underline-offset-4 hover:underline">
+              Terms of Service
+            </Link>
+            .
+          </span>
+        </label>
+        {consentError && (
+          <p role="alert" className="mt-2 text-sm text-red-600">
+            {consentError}
+          </p>
+        )}
+      </div>
+
       <button
         type="submit"
-        disabled={state === "submitting"}
+        disabled={state === "submitting" || !consentAccepted}
         className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:bg-brand-blue sm:w-auto"
       >
         {state === "submitting" ? (

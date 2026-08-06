@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionAccent } from "./SectionAccent";
 import { StyledList } from "./StyledList";
+import { FULL_PAPER_SUBMISSION_ENABLED } from "@/lib/featureFlags";
 
 const ELIGIBILITY = [
   "PhD candidates enrolled in recognised universities in India or abroad.",
@@ -31,7 +32,19 @@ export function CallForPapersSection() {
           className="mx-auto mt-4 max-w-xl text-left"
         />
 
-        <dl className="mx-auto mt-8 grid max-w-md grid-cols-1 gap-4 text-left sm:grid-cols-2">
+        <dl
+          className={`mx-auto mt-8 grid gap-4 text-left ${
+            FULL_PAPER_SUBMISSION_ENABLED ? "max-w-2xl grid-cols-1 sm:grid-cols-3" : "max-w-md grid-cols-1 sm:grid-cols-2"
+          }`}
+        >
+          <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">
+            <dt className="text-xs font-bold uppercase tracking-wide text-amber-300">
+              Last Date to Submit Abstract
+            </dt>
+            <dd className="mt-1 text-base font-semibold text-white">
+              1 September 2026
+            </dd>
+          </div>
           <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">
             <dt className="text-xs font-bold uppercase tracking-wide text-amber-300">
               Communication of Acceptance
@@ -40,14 +53,16 @@ export function CallForPapersSection() {
               30 September 2026
             </dd>
           </div>
-          <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">
-            <dt className="text-xs font-bold uppercase tracking-wide text-amber-300">
-              Full Papers Due
-            </dt>
-            <dd className="mt-1 text-base font-semibold text-white">
-               10 November 2026
-            </dd>
-          </div>
+          {FULL_PAPER_SUBMISSION_ENABLED && (
+            <div className="rounded-lg border border-white/20 bg-white/5 px-5 py-4">
+              <dt className="text-xs font-bold uppercase tracking-wide text-amber-300">
+                Full Papers Due
+              </dt>
+              <dd className="mt-1 text-base font-semibold text-white">
+                 10 November 2026
+              </dd>
+            </div>
+          )}
         </dl>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">

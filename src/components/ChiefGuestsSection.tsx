@@ -43,7 +43,7 @@ export function ChiefGuestsSection() {
               >
                 <PersonAvatar name={guest.name} photo={guest.photo} className="h-28 w-28" />
                 <h3 className="mt-4 text-lg font-bold text-brand-blue">{guest.name}</h3>
-                <p className="mt-1 text-xs font-bold uppercase tracking-wide text-brand-gold">
+                <p className="mt-1 text-xs font-bold uppercase tracking-wide text-brand-gold-dark">
                   {guest.role}
                 </p>
                 <p className="mt-2 text-sm text-gray-500">{guest.affiliation}</p>

@@ -26,8 +26,7 @@ export default function SubmitAbstractPage() {
             className="mx-auto mb-10 max-w-2xl text-center text-sm text-gray-500"
             data-aos="fade-up"
           >
-            Young scholars working on agrarian studies and rural India are invited to submit
-            their research.
+          
           </p>
           <SubmitAbstractForm />
         </div>

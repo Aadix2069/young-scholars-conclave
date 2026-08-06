@@ -116,7 +116,7 @@ export async function ScholarsGrid() {
           >
             <PersonAvatar name="" photo="" className="h-16 w-16" />
             <p className="mt-5 text-lg font-bold text-brand-blue">
-              Scholar Profiles Coming Soon
+              Scholar Profiles will be announced
             </p>
             <p className="mt-2 text-justify text-sm leading-6 text-gray-600">
               Accepted scholars will be announced here following the

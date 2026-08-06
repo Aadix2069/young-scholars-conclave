@@ -8,7 +8,8 @@ export function AosInit() {
     AOS.init({
       duration: 400,
       easing: "ease-out-cubic",
-      once: true,
+      once: false,
+      mirror: true,
       offset: 60,
       disable: () =>
         window.matchMedia("(prefers-reduced-motion: reduce)").matches,

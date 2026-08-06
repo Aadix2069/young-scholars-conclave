@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormField } from "../forms/FormField";
@@ -46,7 +47,7 @@ const REQUIRED: (keyof Fields)[] = [
   "abstract",
 ];
 
-type ExtraErrors = { cv?: string };
+type ExtraErrors = { cv?: string; consent?: string };
 
 function validate(fields: Fields): Partial<Record<keyof Fields, string>> {
   const errors: Partial<Record<keyof Fields, string>> = {};
@@ -66,6 +67,8 @@ export function SubmitAbstractForm() {
   const [fields, setFields] = useState<Fields>(EMPTY_FIELDS);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>> & ExtraErrors>({});
   const [cv, setCv] = useState<File | null>(null);
+  const [consentAccepted, setConsentAccepted] = useState(false);
+  const [consentError, setConsentError] = useState<string | undefined>(undefined);
   const [encoding, setEncoding] = useState(false);
   const { state, message, submit } = useFormSubmit("/api/submit-abstract", {
     timeoutMs: 45000,
@@ -91,8 +94,12 @@ export function SubmitAbstractForm() {
     e.preventDefault();
     const fieldErrors = validate(fields);
     const cvError = validatePdfFile(cv, MAX_CV_FILE_SIZE);
-    const allErrors = { ...fieldErrors, cv: cvError };
+    const consentError = consentAccepted
+      ? undefined
+      : "You must agree to the Privacy Policy and Terms of Service to submit your abstract.";
+    const allErrors = { ...fieldErrors, cv: cvError, consent: consentError };
     setErrors(allErrors);
+    setConsentError(consentError);
 
     const firstInvalidField = REQUIRED.find((key) => fieldErrors[key]);
     if (Object.values(allErrors).some(Boolean)) {
@@ -125,11 +132,14 @@ export function SubmitAbstractForm() {
       cvFileName: (cv as File).name,
       cvFileMimeType: (cv as File).type || PDF_MIME_TYPE,
       cvFileBase64: cvBase64,
+      consentAccepted,
     });
     if (success) {
       setFields(EMPTY_FIELDS);
       setErrors({});
       setCv(null);
+      setConsentAccepted(false);
+      setConsentError(undefined);
     }
   }
 
@@ -267,9 +277,41 @@ export function SubmitAbstractForm() {
         )}
       </AnimatePresence>
 
+      <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <label className="flex items-start gap-2.5 text-sm text-gray-800">
+          <input
+            type="checkbox"
+            checked={consentAccepted}
+            onChange={(e) => {
+              setConsentAccepted(e.target.checked);
+              if (e.target.checked) {
+                setConsentError(undefined);
+              }
+            }}
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-brand-blue focus:ring-brand-blue/20"
+          />
+          <span>
+            I agree to the{' '}
+            <Link href="/privacy-policy" className="font-semibold text-brand-blue underline-offset-4 hover:underline">
+              Privacy Policy
+            </Link>{' '}
+            and{' '}
+            <Link href="/terms-of-service" className="font-semibold text-brand-blue underline-offset-4 hover:underline">
+              Terms of Service
+            </Link>
+            .
+          </span>
+        </label>
+        {consentError && (
+          <p role="alert" className="mt-2 text-sm text-red-600">
+            {consentError}
+          </p>
+        )}
+      </div>
+
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !consentAccepted}
         className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:bg-brand-blue sm:w-auto"
       >
         {submitting ? (

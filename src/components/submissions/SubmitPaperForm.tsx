@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormField } from "../forms/FormField";
@@ -125,7 +126,7 @@ export function SubmitPaperForm() {
     const fileError = validateFile(file);
     const declarationError = declarationAccepted
       ? undefined
-      : "You must accept the declaration to submit.";
+      : "You must agree to the Privacy Policy and Terms of Service to submit.";
     const allErrors = { ...fieldErrors, file: fileError, declaration: declarationError };
     setErrors(allErrors);
 
@@ -156,6 +157,7 @@ export function SubmitPaperForm() {
       fileMimeType: (file as File).type || "application/octet-stream",
       fileBase64,
       declaration: "true",
+      consentAccepted: declarationAccepted,
     });
     if (success) {
       setFields(EMPTY_FIELDS);
@@ -332,7 +334,15 @@ export function SubmitPaperForm() {
             className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-brand-blue focus:ring-brand-blue/20"
           />
           <span>
-            I confirm this is original, unpublished work and consent to its review.
+            I agree to the{' '}
+            <Link href="/privacy-policy" className="font-semibold text-brand-blue underline-offset-4 hover:underline">
+              Privacy Policy
+            </Link>{' '}
+            and{' '}
+            <Link href="/terms-of-service" className="font-semibold text-brand-blue underline-offset-4 hover:underline">
+              Terms of Service
+            </Link>
+            , and confirm this is original, unpublished work and consent to its review.
             <span className="ml-0.5 text-red-500" aria-hidden="true">
               *
             </span>
@@ -363,7 +373,7 @@ export function SubmitPaperForm() {
 
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !declarationAccepted}
         className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:bg-brand-blue sm:w-auto"
       >
         {submitting ? (
