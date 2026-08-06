@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useInView, type Variants } from "framer-motion";
 import { scaleFadeIn, EASE_SMOOTH } from "@/lib/motion";
@@ -57,7 +57,8 @@ const modalContentVariants: Variants = {
 export function PosterShowcase() {
   const reduceMotion = useReducedMotion();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const ref = useInView({ once: true, margin: "-100px" });
+  const ref = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") setIsModalOpen(false);
@@ -83,7 +84,7 @@ export function PosterShowcase() {
         <motion.div
           ref={ref}
           initial={reduceMotion ? "visible" : "hidden"}
-          animate={ref ? "visible" : "hidden"}
+          animate={inView || reduceMotion ? "visible" : "hidden"}
           variants={containerVariants}
           className="text-center"
         >
@@ -95,7 +96,7 @@ export function PosterShowcase() {
             onClick={openModal}
             onKeyDown={openModal}
             aria-label="View conference poster in full size"
-            whileHover={reduceMotion ? undefined : hoverVariants}
+            whileHover={reduceMotion ? undefined : { y: -4, boxShadow: "0 32px 64px -20px rgba(0, 0, 0, 0.25)" }}
             whileTap={{ scale: 0.99 }}
           >
             <div className="relative rounded-xl overflow-hidden border border-brand-blue/10 bg-white shadow-lg">
