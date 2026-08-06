@@ -311,7 +311,7 @@ export function SubmitAbstractForm() {
 
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !consentAccepted}
         className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-brand-blue px-8 py-3.5 text-base font-bold text-white shadow-md transition duration-200 ease-[var(--ease-smooth)] hover:-translate-y-0.5 hover:bg-brand-blue/90 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:bg-brand-blue sm:w-auto"
       >
         {submitting ? (
