@@ -10,7 +10,7 @@ const ABSTRACT_DETAILS = [
 ];
 
 const REVIEW_PROCESS = [
-  "All submissions will undergo a rigorous review process by an academic committee.",
+  "All submissions will undergo peer review by an academic committee.",
   FULL_PAPER_SUBMISSION_ENABLED
     ? "Authors of selected abstracts will be invited to submit full papers and present their work during the conclave."
     : "Authors of selected abstracts will be invited to present their work during the conclave.",
@@ -20,14 +20,6 @@ const FULL_PAPER_GUIDELINES = [
   "Length: 6,000\u20138,000 words",
   "Submission deadline: 10 November 2026",
   "Selected papers will be presented in thematic sessions during the conclave.",
-];
-const REGISTRATION_DETAILS = [
-  "Registration fee: Rs. 3,000 per participant.",
-  "The registration fee covers participation in all academic sessions, conference materials, and refreshments during the conclave.",
-  "Shared accommodation will be available for participants at Rs. 500 per person per day.",
-  "A limited number of registration fee waivers will be available for scholars who require financial assistance.",
-  "Applicants seeking a fee waiver must submit a separate application along with a brief justification.",
-  "Details regarding the application process and deadlines for fee waivers will be communicated to shortlisted participants.",
 ];
 const IMPORTANT_DATES = [
   { activity: "Last date for abstract submission", date: "August 31, 2026" },
@@ -58,7 +50,7 @@ export function SubmissionGuidelines() {
           their abstract.
         </p>
         <p className="text-justify text-base leading-7 text-gray-700">
-          The abstract should clearly include:
+          The extended abstract should clearly include:
         </p>
         <StyledList items={ABSTRACT_DETAILS} className="mt-2" />
         <p className="text-justify text-base leading-7 text-gray-700">
@@ -111,23 +103,56 @@ export function SubmissionGuidelines() {
         <StyledList items={REVIEW_PROCESS} className="mt-2" />
       </section>
 
-      {FULL_PAPER_SUBMISSION_ENABLED && (
-        <section className="space-y-6" data-aos="fade-up">
-          <SectionHeading>Full Paper Submission</SectionHeading>
-          <p className="text-justify text-base leading-7 text-gray-700">
-            Authors whose abstracts are accepted will be invited to submit a
-            full paper.
-          </p>
-          <div>
-            <p className="font-semibold text-brand-blue">Guidelines</p>
-            <StyledList items={FULL_PAPER_GUIDELINES} className="mt-2" />
-          </div>
-        </section>
-      )}
+      <section className="space-y-6" data-aos="fade-up">
+        <SectionHeading>Full Paper Submission</SectionHeading>
+        <p className="text-justify text-base leading-7 text-gray-700">
+          Authors whose abstracts are accepted will be invited to submit a
+          full paper.
+        </p>
+        <div>
+          <p className="font-semibold text-brand-blue">Guidelines</p>
+          <StyledList items={FULL_PAPER_GUIDELINES} className="mt-2" />
+        </div>
+      </section>
 
       <section className="space-y-6" data-aos="fade-up">
-        <SectionHeading>Registration and Accommodation</SectionHeading>
-        <StyledList items={REGISTRATION_DETAILS} className="mt-2" />
+        <SectionHeading>Registration (For Participants with Accepted Abstracts)</SectionHeading>
+        <p className="text-justify text-base leading-7 text-gray-700">
+          All participants whose abstracts are accepted are required to register
+          for the conclave.
+        </p>
+        <div className="space-y-4">
+          <div>
+            <p className="font-semibold text-brand-blue">Registration</p>
+            <StyledList
+              items={[
+                "Registration Fee: Rs. 3,000 per participant.",
+                "The registration fee covers participation in all academic sessions, conference materials, and refreshments during the conclave.",
+              ]}
+              className="mt-2"
+            />
+          </div>
+          <div>
+            <p className="font-semibold text-brand-blue">Accommodation</p>
+            <StyledList
+              items={[
+                "Shared accommodation will be available for participants at Rs. 500 per person per day.",
+              ]}
+              className="mt-2"
+            />
+          </div>
+          <div>
+            <p className="font-semibold text-brand-blue">Fee Waiver</p>
+            <StyledList
+              items={[
+                "A limited number of registration fee waivers will be available for scholars who require financial assistance.",
+                "Applicants seeking a fee waiver must submit a separate application along with a brief justification.",
+                "Details regarding the application process and deadlines for fee waivers will be communicated to shortlisted participants.",
+              ]}
+              className="mt-2"
+            />
+          </div>
+        </div>
       </section>
 
       <div
