@@ -200,22 +200,40 @@ export function Navbar() {
       >
       <nav className="px-4">
         <div className="flex h-20 items-center justify-between gap-2 sm:h-24 sm:gap-6">
-          <Link
-            href="/"
-            className="flex min-w-0 shrink-0 items-center gap-2.5 no-underline sm:gap-3"
-            aria-label="Young Scholars' Conclave — a collaboration between CHRIST (Deemed to be University) and the Foundation for Agrarian Studies"
-          >
-            <ChristLogo variant="color" className="h-auto w-24 shrink-0 sm:w-44" />
+          <div className="flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3">
+            <a
+              href="https://www.christuniversity.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+              aria-label="Visit CHRIST (Deemed to be University)"
+            >
+              <ChristLogo variant="color" className="h-auto w-24 shrink-0 sm:w-44" />
+            </a>
             <span
               className="shrink-0 text-lg font-light text-brand-gold sm:text-xl"
               aria-hidden="true"
             >
               ×
             </span>
-            <FASLogo className="h-auto w-24 shrink-0 sm:w-44" />
+            <a
+              href="https://fas.org.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+              aria-label="Visit the Foundation for Agrarian Studies"
+            >
+              <FASLogo className="h-auto w-24 shrink-0 sm:w-44" />
+            </a>
             <span className="hidden h-8 w-px shrink-0 bg-gray-200 sm:block sm:h-10" aria-hidden="true" />
-            <ConclaveLogo className="hidden shrink-0 sm:flex sm:h-11" />
-          </Link>
+            <Link
+              href="/"
+              className="hidden shrink-0 transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 sm:flex"
+              aria-label="Go to the home page"
+            >
+              <ConclaveLogo className="sm:h-11" />
+            </Link>
+          </div>
 
           <ul className="hidden items-center gap-0.5 xl:flex">
             {NAV_ENTRIES.map((entry) =>
