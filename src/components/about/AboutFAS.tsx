@@ -2,7 +2,7 @@ export function AboutFAS() {
   return (
     <section className="mx-auto mb-20 max-w-5xl px-4 py-16 sm:px-6 lg:px-12">
       <h2
-        className="mb-3 text-center text-5xl font-extrabold text-brand-green"
+        className="mb-3 text-center text-5xl font-extrabold text-brand-green-dark"
         data-aos="fade-up"
       >
         FAS

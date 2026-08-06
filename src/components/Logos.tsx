@@ -98,7 +98,7 @@ export function ConclaveLogo({
       >
         Young Scholars&rsquo;
       </span>
-      <span className="whitespace-nowrap text-[0.6rem] font-bold uppercase tracking-[0.25em] text-brand-green sm:text-xs">
+      <span className="whitespace-nowrap text-[0.6rem] font-bold uppercase tracking-[0.25em] text-brand-green-dark sm:text-xs">
         Conclave
       </span>
     </span>

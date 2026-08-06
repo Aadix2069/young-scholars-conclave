@@ -53,7 +53,7 @@ export const ThemeCard = memo(function ThemeCard({
       <span className="mt-6 flex items-center justify-between gap-4">
         <span className="text-sm font-semibold text-brand-blue">Know more</span>
         <ChevronDownIcon
-          className={`h-4 w-4 shrink-0 text-brand-gold transition-transform duration-300 ease-[var(--ease-smooth)] ${
+          className={`h-4 w-4 shrink-0 text-brand-blue transition-transform duration-300 ease-[var(--ease-smooth)] ${
             isOpen ? "rotate-180" : ""
           }`}
         />
