@@ -157,7 +157,7 @@ export function SubmitPaperForm() {
       fileMimeType: (file as File).type || "application/octet-stream",
       fileBase64,
       declaration: "true",
-      consentAccepted: declarationAccepted,
+      consentAccepted: String(declarationAccepted),
     });
     if (success) {
       setFields(EMPTY_FIELDS);
