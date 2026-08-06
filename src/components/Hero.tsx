@@ -74,7 +74,7 @@ export function Hero() {
         {/* ================= BUTTON + COUNTDOWN ================= */}
         <div className="pb-2">
           <motion.div
-            className="pointer-events-auto mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-12"
+            className="pointer-events-auto mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8"
             variants={fadeUp}
           >
             <div className="flex flex-col items-center">
@@ -82,6 +82,10 @@ export function Hero() {
                 Conclave Starts In
               </h3>
               <ConclaveCountdown />
+            </div>
+
+            <div className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white/95 shadow-sm backdrop-blur-sm sm:text-base">
+              Abstract Due on 1st September
             </div>
 
             {FULL_PAPER_SUBMISSION_ENABLED && (

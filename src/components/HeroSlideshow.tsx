@@ -9,6 +9,11 @@ import Image from "next/image";
  */
 const HERO_SLIDES: { src: string; alt: string; delayMs: number }[] = [
   {
+    src: "/hero/conference-hall-11.jpeg",
+    alt: "Delegates seated in discussion at a conference session",
+    delayMs: 7000,
+  },
+  {
     src: "/hero/conference-hall-8.jpeg",
     alt: "Attendees at a past CHRIST Economics Department conference",
     delayMs: 3000,
@@ -17,11 +22,6 @@ const HERO_SLIDES: { src: string; alt: string; delayMs: number }[] = [
     src: "/hero/conference-hall-9.jpeg",
     alt: "Delegates seated in discussion at a conference session",
     delayMs: 3000,
-  },
-  {
-    src: "/hero/conference-hall-11.jpeg",
-    alt: "Delegates seated in discussion at a conference session",
-    delayMs: 7000,
   },
 ];
 const FADE_DURATION_MS = 1200;

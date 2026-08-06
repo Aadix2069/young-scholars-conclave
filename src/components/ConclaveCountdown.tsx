@@ -7,9 +7,6 @@ const CONCLAVE_START = new Date("2026-12-02T10:00:00").getTime();
 
 interface TimeLeft {
   days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
 }
 
 function calculateTimeLeft(): TimeLeft {
@@ -18,11 +15,6 @@ function calculateTimeLeft(): TimeLeft {
 
   return {
     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor(
-      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    ),
-    minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-    seconds: Math.floor((difference % (1000 * 60)) / 1000),
   };
 }
 
@@ -95,9 +87,6 @@ function TimeBlock({
 export function ConclaveCountdown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
   });
   const [isMounted, setIsMounted] = useState(false);
 
@@ -112,12 +101,7 @@ export function ConclaveCountdown() {
     return () => clearInterval(interval);
   }, []);
 
-  const hasStarted =
-    isMounted &&
-    timeLeft.days === 0 &&
-    timeLeft.hours === 0 &&
-    timeLeft.minutes === 0 &&
-    timeLeft.seconds === 0;
+  const hasStarted = isMounted && timeLeft.days === 0;
 
   if (hasStarted) {
     return (
@@ -139,33 +123,6 @@ export function ConclaveCountdown() {
       aria-live="polite"
     >
       <TimeBlock value={timeLeft.days} label="Days" />
-
-      <span
-        className="pb-4 text-sm text-neutral-500 sm:text-base"
-        style={{ fontFamily: BASKERVILLE_FONT }}
-      >
-        :
-      </span>
-
-      <TimeBlock value={timeLeft.hours} label="Hours" />
-
-      <span
-        className="pb-4 text-sm text-neutral-500 sm:text-base"
-        style={{ fontFamily: BASKERVILLE_FONT }}
-      >
-        :
-      </span>
-
-      <TimeBlock value={timeLeft.minutes} label="Mins" />
-
-      <span
-        className="pb-4 text-sm text-neutral-500 sm:text-base"
-        style={{ fontFamily: BASKERVILLE_FONT }}
-      >
-        :
-      </span>
-
-      <TimeBlock value={timeLeft.seconds} label="Secs" />
     </div>
   );
 }
