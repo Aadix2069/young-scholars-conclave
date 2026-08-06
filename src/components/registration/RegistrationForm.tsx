@@ -91,7 +91,7 @@ export function RegistrationForm() {
       return;
     }
 
-    const success = await submit({ ...fields, category: FIXED_CATEGORY, consentAccepted });
+    const success = await submit({ ...fields, category: FIXED_CATEGORY, consentAccepted: String(consentAccepted) });
     if (success) {
       setFields(EMPTY_FIELDS);
       setErrors({});

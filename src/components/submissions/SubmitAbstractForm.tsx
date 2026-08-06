@@ -132,7 +132,7 @@ export function SubmitAbstractForm() {
       cvFileName: (cv as File).name,
       cvFileMimeType: (cv as File).type || PDF_MIME_TYPE,
       cvFileBase64: cvBase64,
-      consentAccepted,
+consentAccepted: String(consentAccepted),
     });
     if (success) {
       setFields(EMPTY_FIELDS);
