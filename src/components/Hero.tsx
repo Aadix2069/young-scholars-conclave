@@ -6,6 +6,7 @@ import { ArrowRightIcon } from "./icons";
 import { ConclaveCountdown } from "./ConclaveCountdown";
 import { HeroSlideshow } from "./HeroSlideshow";
 import { EASE_SMOOTH } from "@/lib/motion";
+import { FULL_PAPER_SUBMISSION_ENABLED } from "@/lib/featureFlags";
 
 const container: Variants = {
   hidden: {},
@@ -83,16 +84,18 @@ export function Hero() {
               <ConclaveCountdown />
             </div>
 
-            <div className="flex items-center gap-2 text-sm font-semibold text-white/90 sm:text-base">
-              <span
-                className="relative flex h-2.5 w-2.5 shrink-0"
-                aria-hidden="true"
-              >
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
-              </span>
-              Full Papers Due 10 November 2026
-            </div>
+            {FULL_PAPER_SUBMISSION_ENABLED && (
+              <div className="flex items-center gap-2 text-sm font-semibold text-white/90 sm:text-base">
+                <span
+                  className="relative flex h-2.5 w-2.5 shrink-0"
+                  aria-hidden="true"
+                >
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
+                </span>
+                Full Papers Due 10 November 2026
+              </div>
+            )}
           </motion.div>
         </div>
       </motion.div>

@@ -1,5 +1,6 @@
 import { CalendarIcon, CheckBadgeIcon, DocumentIcon, MegaphoneIcon, SparklesIcon } from "./icons";
 import { SectionAccent } from "./SectionAccent";
+import { FULL_PAPER_SUBMISSION_ENABLED } from "@/lib/featureFlags";
 
 /**
  * Conclave milestones in chronological order.
@@ -13,7 +14,7 @@ const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeI
     Icon: MegaphoneIcon,
   },
   {
-    date: "31 August 2026",
+    date: "01 September 2026",
     label: "Last Date to Submit Abstract",
     Icon: CalendarIcon,
   },
@@ -33,6 +34,10 @@ const MILESTONES: { date: string | null; label: string; Icon: typeof CheckBadgeI
     Icon: SparklesIcon,
   },
 ];
+
+const VISIBLE_MILESTONES = FULL_PAPER_SUBMISSION_ENABLED
+  ? MILESTONES
+  : MILESTONES.filter((m) => m.label !== "Submission of Full Papers");
 
 export function DatesTimeline() {
   return (
@@ -59,10 +64,12 @@ export function DatesTimeline() {
             aria-hidden="true"
           />
 
-          {MILESTONES.map(({ date, label, Icon }, index) => (
+          {VISIBLE_MILESTONES.map(({ date, label, Icon }, index) => (
             <div
               key={label}
-              className="relative flex items-start gap-4 md:w-1/5 md:flex-col md:items-center md:text-center md:gap-0"
+              className={`relative flex items-start gap-4 md:flex-col md:items-center md:text-center md:gap-0 ${
+                VISIBLE_MILESTONES.length === MILESTONES.length ? "md:w-1/5" : "md:w-1/4"
+              }`}
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >

@@ -29,9 +29,9 @@ export function ContactSection() {
               <span>
                 <strong>CHRIST (Deemed to be University)</strong>
                 <br />
-                Central Campus, Dharmaram College Post, Hosur Road,
+                Bangalore Yeshwanthpur Campus, Nalagadderanahalli, Peenya,
                 <br />
-                Bengaluru, Karnataka 560029
+                Bengaluru, Karnataka 560073
               </span>
             </p>
             <p className="mt-5 flex items-center gap-3 text-base text-gray-700">

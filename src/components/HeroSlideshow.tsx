@@ -7,26 +7,23 @@ import Image from "next/image";
  * Hero slides. To add more later: drop the image into public/hero/ and
  * append an entry here with its path.
  */
-const HERO_SLIDES: { src: string; alt: string }[] = [
+const HERO_SLIDES: { src: string; alt: string; delayMs: number }[] = [
   {
     src: "/hero/conference-hall-8.jpeg",
     alt: "Attendees at a past CHRIST Economics Department conference",
+    delayMs: 3000,
   },
-  
-
   {
     src: "/hero/conference-hall-9.jpeg",
     alt: "Delegates seated in discussion at a conference session",
+    delayMs: 3000,
   },
-
   {
     src: "/hero/conference-hall-11.jpeg",
     alt: "Delegates seated in discussion at a conference session",
+    delayMs: 7000,
   },
-  
 ];
-
-const AUTOPLAY_DELAY_MS = 5000;
 const FADE_DURATION_MS = 1200;
 
 /**
@@ -50,7 +47,7 @@ export function HeroSlideshow() {
 
   useEffect(() => {
     if (paused) return;
-    timeoutRef.current = setTimeout(() => goTo(index + 1), AUTOPLAY_DELAY_MS);
+    timeoutRef.current = setTimeout(() => goTo(index + 1), HERO_SLIDES[index].delayMs);
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };

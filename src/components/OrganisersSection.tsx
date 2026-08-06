@@ -96,7 +96,7 @@ export function OrganisersSection() {
             className="mx-auto mt-4 max-w-2xl text-center text-sm text-gray-500"
             data-aos="fade-up"
           >
-            Leading experts from across the world will deliberate on critical
+            Leading experts from across the world will deliberate on
             issues pertaining to the agrarian question and rural development.
           </p>
           {EXPERTS.length === 0 ? (

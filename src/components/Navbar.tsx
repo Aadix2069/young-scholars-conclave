@@ -7,6 +7,7 @@ import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { ChristLogo, ConclaveLogo, FASLogo } from "./Logos";
 import { CloseIcon, MenuIcon, ChevronDownIcon } from "./icons";
 import { EASE_SMOOTH } from "@/lib/motion";
+import { FULL_PAPER_SUBMISSION_ENABLED } from "@/lib/featureFlags";
 
 type NavLink = { label: string; href: string; hash: string | null };
 type NavGroup = { label: string; items: NavLink[] };
@@ -38,7 +39,9 @@ const NAV_ENTRIES: NavEntry[] = [
       { label: "Call for Papers", href: "/#call-for-papers", hash: "#call-for-papers" },
       { label: "Submission Guidelines", href: "/submission-guidelines", hash: null },
       { label: "Submit Abstract", href: "/submit-abstract", hash: null },
-      { label: "Submit Full Paper", href: "/submit-paper", hash: null },
+      ...(FULL_PAPER_SUBMISSION_ENABLED
+        ? [{ label: "Submit Full Paper", href: "/submit-paper", hash: null }]
+        : []),
     ],
   },
   {

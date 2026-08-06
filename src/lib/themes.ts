@@ -82,7 +82,7 @@ export const THEMES: Theme[] = [
     title: "Agriculture and the Environment (including Climate Change)",
     heading: "Agriculture and Environment including (Climate Change)",
     description: [
-      "Agriculture and rural livelihoods are closely linked to environmental conditions and natural resources. Environmental degradation, water scarcity, and climate variability have emerged as major challenges affecting agricultural production and rural communities. At the same time, important debates continue over how to balance environmental sustainability, agricultural productivity and growth, and livelihood security, particularly for the rural poor.",
+      "Agriculture and rural livelihoods are closely linked to environmental conditions and natural resources. Environmental degradation, water scarcity, and climate variability have emerged as major challenges affecting agricultural production and rural communities. At the same time, important debates continue over how to balance environmental sustainability, agricultural productivity and livelihood security, particularly for the rural poor.",
       "In many countries of the Global South, including India, climate change has also intensified debates over agricultural policy. A key concern is the growing emphasis on climate change mitigation, which risks overshadowing the need to increase agricultural production and productivity, critical dimensions of food security and rural livelihoods.",
       "This theme invites papers on environmental change in rural areas; climate change adaptation and mitigation; sustainable agriculture; irrigation and water resource management; and policy responses to environmental and climate-related challenges.",
     ],

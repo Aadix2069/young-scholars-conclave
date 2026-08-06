@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
 
             <div className="mt-8 space-y-6 text-base leading-8 text-gray-700">
               <p>
-                Welcome to Young Scholars Conclave (“YSC”, “we”, “our”, or “us”). Your privacy is important to us. This Privacy Policy explains how we collect, use, store, and protect your information when you use the Young Scholars Conclave website and related services.
+                Welcome to Young Scholars Conclave. Your privacy is important to us. This Privacy Policy explains how we collect, use, store, and protect your information when you use the Young Scholars Conclave website and related services.
               </p>
 
               <h2 className="text-xl font-semibold text-brand-blue">1. Information We Collect</h2>
