@@ -21,9 +21,16 @@ const FULL_PAPER_GUIDELINES = [
   "Submission deadline: 10 November 2026",
   "Selected papers will be presented in thematic sessions during the conclave.",
 ];
-
+const REGISTRATION_DETAILS = [
+  "Registration fee: Rs. 3,000 per participant.",
+  "The registration fee covers participation in all academic sessions, conference materials, and refreshments during the conclave.",
+  "Shared accommodation will be available for participants at Rs. 500 per person per day.",
+  "A limited number of registration fee waivers will be available for scholars who require financial assistance.",
+  "Applicants seeking a fee waiver must submit a separate application along with a brief justification.",
+  "Details regarding the application process and deadlines for fee waivers will be communicated to shortlisted participants.",
+];
 const IMPORTANT_DATES = [
-  { activity: "Last date for abstract submission", date: "September 1, 2026" },
+  { activity: "Last date for abstract submission", date: "August 31, 2026" },
   { activity: "Communication of acceptance", date: "September 30, 2026" },
   ...(FULL_PAPER_SUBMISSION_ENABLED
     ? [{ activity: "Deadline for submission of full papers", date: "November 10, 2026" }]
@@ -46,8 +53,8 @@ export function SubmissionGuidelines() {
       <section className="space-y-6" data-aos="fade-up">
         <SectionHeading>Guidelines for Abstract Submission</SectionHeading>
         <p className="text-justify text-base leading-7 text-gray-700">
-          Authors are invited to submit an abstract of 5,000–7,000
-          words. Applicants are required to submit a short CV along with
+          Authors are invited to submit an extended abstract of approximately
+          500 words. Applicants are required to submit a short CV along with
           their abstract.
         </p>
         <p className="text-justify text-base leading-7 text-gray-700">
@@ -117,6 +124,11 @@ export function SubmissionGuidelines() {
           </div>
         </section>
       )}
+
+      <section className="space-y-6" data-aos="fade-up">
+        <SectionHeading>Registration and Accommodation</SectionHeading>
+        <StyledList items={REGISTRATION_DETAILS} className="mt-2" />
+      </section>
 
       <div
         className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row"
